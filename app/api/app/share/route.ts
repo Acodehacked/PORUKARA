@@ -24,7 +24,7 @@ async function POST(req: Request) {
         connection.end();
         return NextResponse.json({
             status:'success',
-            data:`https://porukaracollege.in/page/${small_id}`
+            data:`https://porukaracollege.in/pages/${small_id}`
         });         
     } catch (e) {
         return NextResponse.json({
