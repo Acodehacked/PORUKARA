@@ -113,7 +113,7 @@ const Places = ({ data, categories }: {
 
   return (
     <>
-      <div className='w-full flex md:flex-row flex-col justify-between'>
+      <div className='w-full flex gap-3 md:flex-row flex-col justify-between'>
         <div className='flex flex-col'>
           <h3 className="text-[30px]">Places</h3>
           <button className='bg-green-600 px-4 py-2 text-white rounded-sm shadow-sm' onClick={() => setAddDialogOpen(true)}>Add Place</button>
