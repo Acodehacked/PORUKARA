@@ -1,11 +1,13 @@
 import { getDb2 } from "@/db";
 import { AppShareTable, app_categories, app_place } from "@/db/schema";
 import { randomUUID } from "crypto";
-import { desc, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
 async function POST(req: Request) {
-
+    return NextResponse.json({
+        status:'success',
+        data:`https://porukaracollege.in/page/csc`
+    }); 
     try {
         const data = await req.json();
         const placeId = data['place_id'] as string;
