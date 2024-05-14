@@ -8,5 +8,5 @@ async function migration(){
     console.log('migrated Successfully')
     return 0;
 }
-
+ 
 migration();

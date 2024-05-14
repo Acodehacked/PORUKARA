@@ -13,7 +13,7 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": true
-        },
+        }, 
         "name": {
           "name": "name",
           "type": "varchar(256)",

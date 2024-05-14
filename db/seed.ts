@@ -14,5 +14,5 @@ async function main() {
         })
         console.log("Seeded successfully")
     })
-}
+} 
 main();

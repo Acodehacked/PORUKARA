@@ -1,1 +1,1 @@
-ALTER TABLE `app_place` DROP INDEX `email_idx`;
+ALTER TABLE `app_place` DROP INDEX `email_idx`; 
