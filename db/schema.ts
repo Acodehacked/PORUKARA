@@ -154,6 +154,14 @@ export const app_logintable = mysqlTable('app_logintable', {
   emailIndex: uniqueIndex('email_idx').on(app_logintable.email),
 }))
 
+export const AppShareTable = mysqlTable('app_share',{
+  id: int('id').primaryKey().autoincrement(),
+  userId: varchar('user_id',{length:400}).notNull(),
+  pageId: int('page_id').notNull(),
+  userName : varchar('share_name',{length: 250}).notNull(),
+  updated_at : timestamp("updated_at").default(sql`CURRENT_TIMESTAMP`),
+});
+
 export const app_place = mysqlTable('app_place',{
   id: int('id').primaryKey().autoincrement(),
   app_category_id: int('app_category_id').notNull().references(()=>app_categories.id),
