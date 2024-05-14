@@ -115,13 +115,13 @@ export default async function Page({ params }: { params: { id: string } }) {
                     <div className="flex flex-col w-full">
                         <div className="px-6 w-full pt-3 pb-4 flex flex-col text-justify">
                             <span className="text-black/50 mb-2">Description</span>
-                            This destination is a bustling metropolis with a skyline dominated by impressive skyscrapers, yet it holds onto its rich cultural heritage with pride.
+                            {'This destination is a bustling metropolis with a skyline dominated by impressive skyscrapers, yet it holds onto its rich cultural heritage with pride.'}
                             <br />
-                            Stroll through its vibrant streets, and you'll encounter a harmonious blend of old and new. Historic temples and shrines stand alongside contemporary art installations and cutting-edge architecture. The city is renowned for its meticulously maintained gardens, offering serene escapes amidst the urban hustle and bustle. During spring, these gardens transform into enchanting wonderlands with cherry blossoms painting the landscape in shades of pink and white....
+                            {'Stroll through its vibrant streets, and you\'ll encounter a harmonious blend of old and new. Historic temples and shrines stand alongside contemporary art installations and cutting-edge architecture. The city is renowned for its meticulously maintained gardens, offering serene escapes amidst the urban hustle and bustle. During spring, these gardens transform into enchanting wonderlands with cherry blossoms painting the landscape in shades of pink and white....'}
                         </div>
                         <div className="px-6 w-full pt-3 pb-4 flex flex-col text-justify">
                             <span className="text-black/50 mb-2">Facilities</span>
-                            escapes amidst the urban hustle and bustle. During spring, these gardens transform into enchanting wonderlands with cherry blossoms painting the landscape in shades of pink and white....
+                            {'escapes amidst the urban hustle and bustle. During spring, these gardens transform into enchanting wonderlands with cherry blossoms painting the landscape in shades of pink and white....'}
                         </div>
                     </div>
                     <div className="md:max-w-[350px] max-w-[500px] w-full relative group">
