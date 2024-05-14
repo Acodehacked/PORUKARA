@@ -5,4 +5,4 @@ CREATE TABLE `app_share` (
 	`share_name` varchar(250) NOT NULL,
 	`updated_at` timestamp DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT `app_share_id` PRIMARY KEY(`id`)
-); d
+);
