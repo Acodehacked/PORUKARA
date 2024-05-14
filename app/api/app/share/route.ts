@@ -4,10 +4,10 @@ import { randomUUID } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 
 async function POST(req: Request) {
-    return NextResponse.json({
-        status:'success',
-        data:`https://porukaracollege.in/page/csc`
-    }); 
+    // return NextResponse.json({
+    //     status:'success',
+    //     data:`https://porukaracollege.in/page/csc`
+    // }); 
     try {
         const data = await req.json();
         const placeId = data['place_id'] as string;
