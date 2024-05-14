@@ -84,7 +84,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <div className="w-full no-scrollbar flex justify-end gap-2 px-2 pt-2 overflow-scroll">
                 {place != null && place[0]?.images.map((item, index) => {
                     return <div key={index} className="h-[50px] bg-white p-[4px] border-[0.01rem] border-zinc-300 w-[50px] rounded-sm shadow-lg">
-                        <Image src={item} width={50} height={50} className="w-full h-full rounded-sm object-cover" alt="" />
+                        <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${item}`} width={50} height={50} className="w-full h-full rounded-sm object-cover" alt="" />
                     </div>
                 })}
             </div>
