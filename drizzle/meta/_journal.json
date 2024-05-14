@@ -12,13 +12,6 @@
     {
       "idx": 1,
       "version": "5",
-      "when": 1715667648066,
-      "tag": "0001_dazzling_zeigeist",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
       "when": 1715667897286,
       "tag": "0002_bitter_manta",
       "breakpoints": true
