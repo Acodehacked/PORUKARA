@@ -92,7 +92,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                 <div className="flex justify-between w-full items-center">
                     <div className="px-6 py-3 flex items-center">
                         <h2>shared by </h2>
-                        <div className="bg-foreground text-white px-2 py-1 rounded-sm ms-2">Abin Antony</div>
+                        <div className="bg-foreground text-white px-2 py-1 rounded-sm ms-2">{ShareName}</div>
                     </div>
                     <Link href={'/'} className="bg-green-600 flex items-center gap-2 me-3 shadow-sm rounded-sm text-white px-3 py-2">Read in App <BiLink /></Link>
                 </div>
