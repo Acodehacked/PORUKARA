@@ -5,7 +5,7 @@ require('dotenv').config();
 // region: '<your-region>',
 // us-west-1:25d60071-c77b-4ce7-b153-902b2fbcf9e0 us-west-1
 const s3Client = new S3Client({
-  region: 'us-west-1',
+  region: 'us-west-1', 
   credentials: {
     accessKeyId: "AKIARAWLTUA6QRF4QG4L" as string,
     secretAccessKey: "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" as string
