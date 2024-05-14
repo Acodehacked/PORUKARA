@@ -76,7 +76,7 @@ export default async function Page({ params }: { params: { id: string } }) {
     return <div className="screen flex flex-col items-center">
     {
         place != null ? <div className="w-full max-h-[350px] flex items-center mx-auto rounded-xl overflow-hidden">
-            <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${place[0]?.images[0]}.jpg`} width={900} height={900} style={{ objectPosition: 'center' }} className="w-full h-full object-cover object-center" alt='' />
+            <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${place[0]?.images[0]}`} width={900} height={900} style={{ objectPosition: 'center' }} className="w-full h-full object-cover object-center" alt='' />
         </div> : ''
     }
     <section className="w-full md:px-10 px-4">
