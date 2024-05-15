@@ -1,7 +1,7 @@
 {
   "version": "1",
   "dialect": "mysql",
-  "entries": 
+  "entries": [
     {
       "idx": 0,
       "version": "5",
