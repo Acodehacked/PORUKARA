@@ -10,16 +10,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
 export const metadata: Metadata = {
-    title: 'Fr. Porukara CMI College of Advanced Studies',
+    title: 'Fr. Porukara CMI College of Advanced Studies | Champakulam, Kerala, India.',
     generator: 'porukaracollege, PorukaraCollege, Porukara Website, porukara, Fr Porukara School, Official Website of Porukara CMI College, Kerala ',
-    description: 'Official Website of Porukara CMI Colllege, Champakulam, Kerala, India',
+    description: 'Official Website of Porukara CMI Colllege, Champakulam, Kerala, India. Fr Porukara College Admission Opened. Apply for BCA, B.Com, BA and other 4 year UG Programmes. Admissions Open Admissions Open for BCA, BCOM with Finance and Taxation, BCOM with Computer Application, BA English Contact: 9446249412',
+    keywords: 'Fr. Porukara CMI College, BCA Colleges,Best BCA, B.Com COllege in kerala,Colleges in Kerala,Best Colleges in Kuttanad, Best College in Alappuzha,BCA,B.Com',
     openGraph: {
         type: "website",
         url: "https://porukaracollege.in",
         title: "Fr. Porukara CMI Colllege of Advanced Studies",
         description: "Offical website of Fr. Porukara CMI College of advanced Studies, Gagultha Monastry,Champakulam , Kerala",
-        siteName: "Fr. Porukara College",
-        images: ["https://porukaracollege.in/assets/logo-gold.png","https://porukaracollege.in/assets/college1.png"],
+        siteName: "Fr. Porukara CMI College",
+        images: ["https://porukaracollege.in/assets/collegepic.jpg","https://porukaracollege.in/assets/college1.png"],
     }
   }
 export default function Page() {
