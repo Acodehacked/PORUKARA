@@ -1,6 +1,5 @@
 import {  getDb2 } from "@/db"
 import { ClientResponses, QuestionsDB } from "@/db/schema";
-import { desc } from "drizzle-orm";
 import QuestionsList from "./Questions";
 
 export const dynamic = "force-dynamic";

@@ -1,13 +1,5 @@
-'use client'
-import { Button } from '@/components/ui/button';
-import ProgressBar from "@ramonak/react-progress-bar";
-import { GlobalAnimationVariant } from '@/constants';
-import { AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
-import { deleteQuestion, updatenummber } from './api';
-import { PlusCircle, Trash2Icon, X } from 'lucide-react';
+// 'use client'
+import Options from './Options';
 const QuestionsList = ({ Questions, Responses }: {
     Questions: {
         type: "null" | "select" | "text" | "checkbox" | "int" | "yesno" | "havenot" | null;
@@ -27,37 +19,34 @@ const QuestionsList = ({ Questions, Responses }: {
         added_on: Date | null;
     }[]
 }) => {
-    const router = useRouter();
-    const [deletedialogOpen, setdeletedialogOpen] = useState(-1);
-    const DeleteEvent = async () => {
-        const response = await deleteQuestion(deletedialogOpen);
-        if (response?.error == null) {
-            setdeletedialogOpen(-1)
-            router.refresh();
-        } else {
+    // const router = useRouter();
+    // const [deletedialogOpen, setdeletedialogOpen] = useState(-1);
+    // const DeleteEvent = async () => {
+    //     const response = await deleteQuestion(deletedialogOpen);
+    //     if (response?.error == null) {
+    //         setdeletedialogOpen(-1)
+    //         router.refresh();
+    //     } else {
 
-        }
-    }
-    const AddNumber = async (quesno: number) => {
-        const response = await updatenummber(quesno);
-        if (response.error == null) {
-            router.refresh()
-        }
-    }
+    //     }
+    // }
+    // const AddNumber = async (quesno: number) => {
+    //     const response = await updatenummber(quesno);
+    //     if (response.error == null) {
+    //         router.refresh()
+    //     }
+    // }
     return (
         <>
-            {Responses.map((response, index) => {
-                // let responsey: object = JSON.parse(response.responses as unknown as string) as object;
+            {Responses.length > 0 && Responses.map((response, index) => {
                 let responsey: object = response.responses as object;
-                console.log(responsey)
-                console.log(Object.getOwnPropertyDescriptors(responsey))
+                // console.log(Object.getOwnPropertyDescriptors(responsey))
 
             })}
             <div className='w-full flex max-w-[600px] mx-auto flex-col gap-2'>{Questions.map((item, index) => {
                 let row = [];
                 if (item.option_len != null) {
                     const len = item.option_len || 0;
-                    const alp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm']
                     for (let i = 0; i < len; i++) {
                         // let Json = item.options_list as object;
                         let Json = JSON.parse(item.options_list as string) as object;
@@ -106,23 +95,12 @@ const QuestionsList = ({ Questions, Responses }: {
                                         numberofpeople++;
                                     }
                                 }
-                                if(subtext != undefined){
+                                if (subtext != undefined) {
                                     multiplevalues.push(subtext.value);
                                 }
                             }
                         }
-                        row.push(
-                            <div key={i} className="bg-white flex justify-between items-center rounded-sm px-3 py-1 text-[11px] mt-2">
-                                {/* {text} */}
-                                <h2 className='mal text-[15px]'>{`${alp[i]}. ${otitle?.value}`}</h2>
-                                {/* <span>{`${(numberofpeople/Responses.length)*100}% people done`}</span> */}
-                                <ProgressBar className='w-[150px]' completed={(numberofpeople/Responses.length)*100} />
-                                {/* <div className="flex gap-1">
-                                    <div className="bg-blue-700 rounded-full px-3 py-1 text-[10px] text-white">Required</div>
-                                    <div className="bg-blue-700 rounded-full px-3 py-1 text-[10px] text-white">{otype?.value}</div>
-                                </div> */}
-                            </div>
-                        )
+                        row.push(<Options i={i} otitle={otitle} numberofpeople={numberofpeople} responselength={Responses.length} />)
                     }
                 }
 
@@ -147,7 +125,7 @@ const QuestionsList = ({ Questions, Responses }: {
                     </div>
                 </div>
             })}</div>
-            <AnimatePresence>
+            {/* <AnimatePresence>
                 {deletedialogOpen != -1 && <motion.div transition={{ duration: 0.1 }} variants={GlobalAnimationVariant} initial="hidden" animate="visible" exit="hidden" className='fixed top-0 z-[40] bottom-0 left-0 right-0 flex items-center justify-center bg-[rgba(0,0,0,0.7)]'>
                     <div className='bg-white rounded-lg p-2'>
                         <div className='flex justify-between'>
@@ -163,7 +141,7 @@ const QuestionsList = ({ Questions, Responses }: {
                         </div>
                     </div>
                 </motion.div>}
-            </AnimatePresence>
+            </AnimatePresence> */}
         </>
     )
 }
