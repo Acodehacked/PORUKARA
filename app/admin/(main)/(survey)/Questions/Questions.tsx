@@ -38,93 +38,89 @@ const QuestionsList = ({ Questions, Responses }: {
     // }
     return (
         <>
-            {Responses.length > 0 && Responses.map((response, index) => {
-                let responsey: object = response.responses as object;
-                // console.log(Object.getOwnPropertyDescriptors(responsey))
-
-            })}
             <div className='w-full flex max-w-[600px] mx-auto flex-col gap-2'>{Questions.map((item, index) => {
-                let row = [];
-                if (item.option_len != null) {
-                    const len = item.option_len || 0;
-                    for (let i = 0; i < len; i++) {
-                        // let Json = item.options_list as object;
-                        let Json = JSON.parse(item.options_list as string) as object;
-                        let responses = '';
-
-                        // {
-                        //     '0optionvalue': 'ക്രിസ്ത്യന്‍',
-                        //     '1response': 'ABin Antony',
-                        //     '2optionvalue': 'mattullava',
-                        //     '2optionvalueM': 'w456',
-                        //     '3response': 'ഇല്ലാ',
-                        //     '4optionvalue0': 'SA',
-                        //     '5optionvalue0': 'car',
-                        //     '5optionvalue1': 'bike',
-                        //     '6optionvalue0': 'addu',
-                        //     '6optionvalue0M': '345',
-                        //     '6optionvalue1': 'kozhi',
-                        //     '6optionvalue1M': '3451'
-                        //   }
-
-
-
-                        let otitle = Object.getOwnPropertyDescriptor(Json, `optiontitle${i}`);
-                        let otype = Object.getOwnPropertyDescriptor(Json, `optiontype${i}`);
-                        var numberofpeople = 0;
-                        var multiplevalues = [];
-                        var percent = '0%';
-                        //not needed
-                        var text = '';
-                        for (let q = 0; q < Responses.length; q++) {
-                            let responsey: object = JSON.parse(Responses[q].responses as string) as object;
-                            text += Responses[q].responses;
-                            if (otype?.value == 'select') {
-                                var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue`);
-                                if (value != undefined) {
-                                    if (value.value == otitle?.value) {
-                                        numberofpeople++;
+                    let row = [];
+                    if (item.option_len != null) {
+                        const len = item.option_len || 0;
+                        for (let i = 0; i < len; i++) {
+                            let Json = item.options_list as object;
+                            // let Json = JSON.parse(item.options_list as string) as object;
+                            let responses = '';
+    
+                            // {
+                            //     '0optionvalue': 'ക്രിസ്ത്യന്‍',
+                            //     '1response': 'ABin Antony',
+                            //     '2optionvalue': 'mattullava',
+                            //     '2optionvalueM': 'w456',
+                            //     '3response': 'ഇല്ലാ',
+                            //     '4optionvalue0': 'SA',
+                            //     '5optionvalue0': 'car',
+                            //     '5optionvalue1': 'bike',
+                            //     '6optionvalue0': 'addu',
+                            //     '6optionvalue0M': '345',
+                            //     '6optionvalue1': 'kozhi',
+                            //     '6optionvalue1M': '3451'
+                            //   }
+    
+    
+    
+                            let otitle = Object.getOwnPropertyDescriptor(Json, `optiontitle${i}`);
+                            let otype = Object.getOwnPropertyDescriptor(Json, `optiontype${i}`);
+                            var numberofpeople = 0;
+                            var multiplevalues = [];
+                            //not needed
+                            var text = '';
+                            for (let q = 0; q < Responses.length; q++) {
+                                // let responsey: object = JSON.parse(Responses[q].responses as string) as object;
+                                let responsey: object = Responses[q].responses as object;
+                                text += Responses[q].responses;
+                                if (otype?.value == 'select') {
+                                    var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue`);
+                                    if (value != undefined) {
+                                        if (value.value == otitle?.value) {
+                                            numberofpeople++;
+                                        }
+                                    }
+                                }
+                                if (otype?.value == 'select_text') {
+                                    var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue`);
+                                    var subtext = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalueM`);
+                                    if (value != undefined) {
+                                        if (value.value == otitle?.value) {
+                                            numberofpeople++;
+                                        }
+                                    }
+                                    if (subtext != undefined) {
+                                        multiplevalues.push(subtext.value);
                                     }
                                 }
                             }
-                            if (otype?.value == 'select_text') {
-                                var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue`);
-                                var subtext = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalueM`);
-                                if (value != undefined) {
-                                    if (value.value == otitle?.value) {
-                                        numberofpeople++;
-                                    }
-                                }
-                                if (subtext != undefined) {
-                                    multiplevalues.push(subtext.value);
-                                }
-                            }
+                            let percent = numberofpeople == 0 ? '0' : ((numberofpeople/Responses.length)*100); 
+                            row.push(<Options i={i} otitle={otitle} percent={percent} />)
                         }
-                        row.push(<Options i={i} otitle={otitle} numberofpeople={numberofpeople} responselength={Responses.length} />)
                     }
-                }
-
-                // console.log(item.options_list);
-                return <div key={index} className="bg-white shadow-md w-full p-4 flex flex-col items-start rounded-xl">
-                    <h3><span className="pe-2 text-[15px] mal">{item.question_no}.</span><span className="mal text-[16px]">{item.title}</span></h3>
-                    <div className="flex gap-2">
-                        <div className="border-blue-300 rounded-full px-3 py-1 text-[10px] mt-2 text-zinc-600 border-[0.01rem]">{item.type}</div>
-                        <div className='flex gap-2'>
-                            {item.required ? <div className="border-blue-300 rounded-full px-3 py-1 text-[10px] mt-2 text-zinc-600 border-[0.01rem]">Required</div> : ''}
-                            {/* <Button variant={'destructive'} onClick={()=>{
-                                setdeletedialogOpen(item.question_no);
-                            }} size={'icon'}><Trash2Icon className='text-white' /></Button>
-                            <Button variant={'outline'} onClick={()=>{
-                                AddNumber(item.question_no)
-                            }} size={'icon'}><PlusCircle className='' /></Button> */}
+    
+                    // console.log(item.options_list);
+                    return <div key={index} className="bg-white shadow-md w-full p-4 flex flex-col items-start rounded-xl">
+                        <h3><span className="pe-2 text-[15px] mal">{item.question_no}.</span><span className="mal text-[16px]">{item.title}</span></h3>
+                        <div className="flex gap-2">
+                            <div className="border-blue-300 rounded-full px-3 py-1 text-[10px] mt-2 text-zinc-600 border-[0.01rem]">{item.type}</div>
+                            <div className='flex gap-2'>
+                                {item.required ? <div className="border-blue-300 rounded-full px-3 py-1 text-[10px] mt-2 text-zinc-600 border-[0.01rem]">Required</div> : ''}
+                                {/* <Button variant={'destructive'} onClick={()=>{
+                                    setdeletedialogOpen(item.question_no);
+                                }} size={'icon'}><Trash2Icon className='text-white' /></Button>
+                                <Button variant={'outline'} onClick={()=>{
+                                    AddNumber(item.question_no)
+                                }} size={'icon'}><PlusCircle className='' /></Button> */}
+                            </div>
+                        </div>
+                        <div className="ps-3 w-full flex flex-col mt-3">
+                            {/* {item.option_len != null ? <h2 className="text-[11px]">{item?.option_len > 0 ? 'Sub Questions' : ''}</h2> : ''} */}
+                            {row}
                         </div>
                     </div>
-                    <div className="ps-3 w-full flex flex-col mt-3">
-                        {/* {item.option_len != null ? <h2 className="text-[11px]">{item?.option_len > 0 ? 'Sub Questions' : ''}</h2> : ''} */}
-                        {row}
-                    </div>
-                </div>
-            })}</div>
+                })}</div>
             {/* <AnimatePresence>
                 {deletedialogOpen != -1 && <motion.div transition={{ duration: 0.1 }} variants={GlobalAnimationVariant} initial="hidden" animate="visible" exit="hidden" className='fixed top-0 z-[40] bottom-0 left-0 right-0 flex items-center justify-center bg-[rgba(0,0,0,0.7)]'>
                     <div className='bg-white rounded-lg p-2'>
