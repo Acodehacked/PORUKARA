@@ -1,5 +1,8 @@
-// 'use client'
+'use client'
+import { useState } from 'react';
 import Options from './Options';
+import { AnimatePresence, motion } from 'framer-motion';
+import { X } from 'lucide-react';
 const QuestionsList = ({ Questions, Responses }: {
     Questions: {
         type: "null" | "select" | "text" | "checkbox" | "int" | "yesno" | "havenot" | null;
@@ -21,6 +24,9 @@ const QuestionsList = ({ Questions, Responses }: {
 }) => {
     // const router = useRouter();
     // const [deletedialogOpen, setdeletedialogOpen] = useState(-1);
+    const [detailsOpen, setdetailsOpen] = useState(-1);
+    const [detailssubOpen, setdetailssubOpen] = useState(-1);
+    const [multipleAnswers, setmultipleAnswers] = useState<string[]>([]);
     // const DeleteEvent = async () => {
     //     const response = await deleteQuestion(deletedialogOpen);
     //     if (response?.error == null) {
@@ -30,15 +36,34 @@ const QuestionsList = ({ Questions, Responses }: {
 
     //     }
     // }
-    // const AddNumber = async (quesno: number) => {
-    //     const response = await updatenummber(quesno);
-    //     if (response.error == null) {
-    //         router.refresh()
-    //     }
-    // }
+    const SetDetailsPage = (quesno: number, option: number) => {
+        setmultipleAnswers([]);
+        let multipleanswers: string[] = [];
+        // let Json = JSON.parse(Questions[quesno].options_list as string) as object;
+        let Json = Questions[quesno].options_list as object;
+        for (let q = 0; q < Responses.length; q++) {
+            // let responsey: object = JSON.parse(Responses[q].responses as string) as object;
+            let responsey: object = Responses[q].responses as  object;
+            let otype = Object.getOwnPropertyDescriptor(Json, `optiontype${option}`);
+
+            if (otype?.value == 'select_text') {
+                var value = Object.getOwnPropertyDescriptor(responsey, `${Questions[quesno].question_no}optionvalue`);
+                var subtext = Object.getOwnPropertyDescriptor(responsey, `${Questions[quesno].question_no}optionvalueM`);
+                if (subtext != undefined) {
+                    multipleanswers.push(subtext.value);
+                }
+            }
+        }
+        setmultipleAnswers(multipleanswers)
+        setdetailsOpen(quesno);
+
+    }
     return (
-        <>
-            <div className='w-full flex max-w-[600px] mx-auto flex-col gap-2'>{Questions.map((item, index) => {
+        <div className="flex md:flex-row flex-col w-full items-start relative">
+            <div className='w-full flex max-w-[600px] mx-auto flex-col gap-2'>
+                <h3>total Questions: <b>{Questions.length}</b></h3>
+                <h3>total Responses: <b>{Responses.length}</b></h3>
+                {Questions.map((item, index) => {
                     let row = [];
                     if (item.option_len != null) {
                         const len = item.option_len || 0;
@@ -46,7 +71,7 @@ const QuestionsList = ({ Questions, Responses }: {
                             let Json = item.options_list as object;
                             // let Json = JSON.parse(item.options_list as string) as object;
                             let responses = '';
-    
+
                             // {
                             //     '0optionvalue': 'ക്രിസ്ത്യന്‍',
                             //     '1response': 'ABin Antony',
@@ -61,13 +86,15 @@ const QuestionsList = ({ Questions, Responses }: {
                             //     '6optionvalue1': 'kozhi',
                             //     '6optionvalue1M': '3451'
                             //   }
-    
-    
-    
+
+
+
                             let otitle = Object.getOwnPropertyDescriptor(Json, `optiontitle${i}`);
                             let otype = Object.getOwnPropertyDescriptor(Json, `optiontype${i}`);
                             var numberofpeople = 0;
                             var multiplevalues = [];
+                            let rev = ["SA", "A", "CS", "DA", "SDA"];
+                            let revA = [0, 0, 0, 0, 0];
                             //not needed
                             var text = '';
                             for (let q = 0; q < Responses.length; q++) {
@@ -90,16 +117,37 @@ const QuestionsList = ({ Questions, Responses }: {
                                             numberofpeople++;
                                         }
                                     }
-                                    if (subtext != undefined) {
-                                        multiplevalues.push(subtext.value);
+                                    // if (subtext != undefined) { //4optionvalue0
+                                    //     multiplevalues.push(subtext.value);
+                                    // }
+                                }
+                                if (otype?.value == 'review') {
+                                    var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue${i}`);
+                                    console.log(value)
+                                    if (value != undefined) {
+                                        for(let re=0;re<rev.length;re++){
+                                            if (value?.value == rev[re]) {
+                                                revA[re] = revA[re] + 1;
+                                            }
+                                        };
                                     }
                                 }
+
                             }
-                            let percent = numberofpeople == 0 ? '0' : ((numberofpeople/Responses.length)*100); 
-                            row.push(<Options i={i} otitle={otitle} percent={percent} />)
+                            let percent = numberofpeople == 0 ? '0' : ((numberofpeople / Responses.length) * 100);
+                            row.push(
+                                <Options 
+                                    SetDetailsPage={SetDetailsPage} 
+                                    question={index} 
+                                    i={i} 
+                                    otitle={otitle} 
+                                    numberofpeople={Responses.length} 
+                                    percent={percent} 
+                                    reviews={revA}
+                                    type={otype?.value == 'select_text' ? "extra" : otype?.value == 'review' ? 'review' : ''} />)
                         }
                     }
-    
+
                     // console.log(item.options_list);
                     return <div key={index} className="bg-white shadow-md w-full p-4 flex flex-col items-start rounded-xl">
                         <h3><span className="pe-2 text-[15px] mal">{item.question_no}.</span><span className="mal text-[16px]">{item.title}</span></h3>
@@ -120,25 +168,27 @@ const QuestionsList = ({ Questions, Responses }: {
                             {row}
                         </div>
                     </div>
-                })}</div>
-            {/* <AnimatePresence>
-                {deletedialogOpen != -1 && <motion.div transition={{ duration: 0.1 }} variants={GlobalAnimationVariant} initial="hidden" animate="visible" exit="hidden" className='fixed top-0 z-[40] bottom-0 left-0 right-0 flex items-center justify-center bg-[rgba(0,0,0,0.7)]'>
-                    <div className='bg-white rounded-lg p-2'>
-                        <div className='flex justify-between'>
-                            <h2>Alert</h2>
-                            <X onClick={() => setdeletedialogOpen(-1)} />
-                        </div>
-                        <div className='px-3 py-6'>
-                            <h3 className='text-red-400 font-bold'>Are you sure about deleting question number {deletedialogOpen}? </h3>
-                        </div>
-                        <div className='flex justify-end gap-3'>
-                            <Button variant={'secondary'} className='text-black bg-zinc-200' onClick={() => setdeletedialogOpen(-1)}>Cancel</Button>
-                            <Button onClick={() => DeleteEvent()} variant={'destructive'}>Delete</Button>
+                })}
+            </div>
+            <AnimatePresence>
+                {detailsOpen != -1 && <motion.div transition={{ stiffness: 1 }} initial={{ opacity: 0, x: 500 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 500 }} className='max-w-[350px] w-full h-screen bg-white md:sticky fixed left-0 md:rounded-sm rounded-none bottom-0 top-[0px] md:shadow-md shadow-2xl'>
+                    <div className='px-5 py-2 flex w-full justify-between'>
+                        <h2>Question: {detailsOpen + 1}</h2>
+                        <div onClick={() => setdetailsOpen(-1)}>
+                            <X />
                         </div>
                     </div>
+                    <div className='h-full mt-2 flex flex-col p-2 gap-1 max-h-[90vh] overflow-y-scroll'>
+                        {multipleAnswers.map((item, index) => {
+                            return <div key={index} className='p-2 bg-zinc-50 rounded-sm'>
+                                {item}
+                            </div>
+                        })}
+                    </div>
                 </motion.div>}
-            </AnimatePresence> */}
-        </>
+            </AnimatePresence>
+
+        </div>
     )
 }
 

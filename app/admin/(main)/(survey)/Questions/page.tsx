@@ -11,7 +11,6 @@ export default async function Page() {
     return <main>
         <div className="flex">
             <div className="w-full">
-                <h3>total Questions: {Questions.length}</h3>
                 <div className="flex flex-col mt-3 items-start gap-3">
                     <QuestionsList Responses={Responses} Questions={Questions} />
                 </div>

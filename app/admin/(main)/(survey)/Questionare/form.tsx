@@ -52,7 +52,7 @@ const SurveyForm = ({ MainData, gene_id }: {
     }
   }
   return <>
-    <form ref={ref} className="w-full" action={handlesubmit}>
+    <form ref={ref} className="w-full max-w-[600px] mx-auto" action={handlesubmit}>
       {MainData.map((item, index) => {
         let options = MainData[index].options_list as unknown as object;
         // let options = JSON.parse(MainData[index].options_list as string);
