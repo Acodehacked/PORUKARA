@@ -13,10 +13,18 @@ import Snackbar from "@/components/ui/snackbar/snackbar";
 
 
 export const metadata: Metadata = {
-  title: "Fr Porukara CMI College | of Advanced Studies",
-  description: "Offical website of Fr. Porukara CMI College of advanced Studies, Gagultha Monastry,Champakulam , Kerala",
-};
-
+  title: 'Fr. Porukara CMI College of Advanced Studies',
+  generator: 'porukaracollege, PorukaraCollege, Porukara Website, porukara, Fr Porukara School, Official Website of Porukara CMI College, Kerala ',
+  description: 'Official Website of Porukara CMI Colllege, Champakulam, Kerala, India',
+  openGraph: {
+      type: "website",
+      url: "https://porukaracollege.in",
+      title: "Fr. Porukara CMI Colllege of Advanced Studies",
+      description: "Offical website of Fr. Porukara CMI College of advanced Studies, Gagultha Monastry,Champakulam , Kerala",
+      siteName: "Fr. Porukara College",
+      images: ["https://porukaracollege.in/assets/logo-gold.png","https://porukaracollege.in/assets/college1.png"],
+  }
+}
 export default function Layout({
   children,
 }: {
