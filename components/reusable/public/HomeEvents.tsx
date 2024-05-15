@@ -165,7 +165,7 @@ const AdmssionForm = () => {
     return <div className='w-full mb-20 min-h-[50vh] bg-primary flex justify-center items-center font-bold text-white text-[50px] flex-col overflow-hidden'>
         <h1 className='sm:mt-[0px] mt-[30px] sm:text-[50px] text-[30px]'>Join Our College?</h1>
         <div className='mt-10 gap-2 flex md:flex-row flex-col'>
-            <Link className='sm:text-[23px] text-[18px] font-medium flex items-center gap-3 p-3 border-2 border-white/50 rounded-sm hover:bg-white/40 hover:text-foreground transition-all duration-200' href={'/assets/upload/PorukaraApplicationForm.pdf'}>Download Admission Form <DownloadCloud /></Link>
+            <Link className='sm:text-[23px] text-[18px] font-medium flex items-center gap-3 p-3 border-2 border-white/50 rounded-sm hover:bg-white/40 hover:text-foreground transition-all duration-200' href={'/assets/PorukaraApplicationForm.pdf'}>Download Admission Form <DownloadCloud /></Link>
             <Link className='sm:text-[23px] text-[18px]  font-medium flex items-center gap-3 p-3 border-2 border-white/50 rounded-sm hover:bg-white/40 hover:text-foreground transition-all duration-200' href={'/Admission'}>Register Now <BiLinkExternal /></Link>
         </div>
         <Image className='mb-[-100px] animate-pulse' src={'/assets/graduatehat.png'} width={200} height={200} alt='' />

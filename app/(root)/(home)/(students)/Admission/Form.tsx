@@ -155,7 +155,7 @@ const Form = () => {
                 <div className='flex flex-col justify-between items-center gap-2'>
                     <div className='flex sm:flex-row flex-col justify-end gap-4 mt-3'>
 
-                        <Button variant={'outline'} asChild><Link href={'/assets/upload/PorukaraApplicationForm.pdf'}>Download Application Form &nbsp;<DownloadCloud size={15} className='text-[13px]' /></Link></Button>
+                        <Button variant={'outline'} asChild><Link href={'/assets/PorukaraApplicationForm.pdf'}>Download Application Form &nbsp;<DownloadCloud size={15} className='text-[13px]' /></Link></Button>
                         <Button disabled={loading} className='flex items-center gap-2 ' onClick={handleClick} type='button'>{loading ? 'Submitting' : 'Apply for Course'}{loading ? <LucideLoader className='animate-spin' /> : <CheckCheckIcon />}</Button>
                     </div>
                     <span className='text-[12px] text-blue-900 font-semibold mt-2'>You can also fill Application Form and send it to porukaracollege@gmail.com</span>

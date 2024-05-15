@@ -27,7 +27,7 @@ const Course = ({ children, duration, title, applylink, eligibility, id, image }
       <div className='flex justify-end gap-3 md:flex-row sm:flex-row flex-col'>
         {/* /assets/applicationform.pdf */}
         <Button variant={'outline'} asChild={true} className='float-right min-w-[200px] mt-5'>
-          <Link href={'/assets/applicationform.pdf'}>Download Application Form</Link></Button>
+          <Link href={'/assets/PorukaraApplicationForm.pdf'}>Download Application Form</Link></Button>
         <Button variant={'default'} asChild={true} className='float-right min-w-[200px] mt-5 bg-foreground'>
           <Link href={'/Admission'}>Apply Now</Link></Button>
       </div>
