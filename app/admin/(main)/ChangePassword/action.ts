@@ -1,5 +1,5 @@
 'use server'
-import { getDb } from "@/db";
+import {  getDb2 } from "@/db";
 import { AdminLoginTable } from "@/db/schema";
 import { compare, hash } from "bcrypt";
 import { eq } from "drizzle-orm";
@@ -14,9 +14,10 @@ async function changePasswordServer({ oldpassword, newpassword }:
     const session = await getServerSession();
 
     const usermail = session?.user?.email || '';
-    const db = await getDb();
+    const {db,connection} = await getDb2();
     const user = await db.select().from(AdminLoginTable).where(eq(AdminLoginTable.email, usermail));
 
+    connection.end();
     if (await compare(oldpassword, user[0]?.password || '01234')) {
         hash(newpassword, 10, async (error, newhash) => {
             const response = await db.update(AdminLoginTable).set({

@@ -2,8 +2,12 @@ import { Metadata } from "next";
 import Form from "./Form";
 
 export const metadata: Metadata = {
-    title: 'Admissions | Fr Porukara College',
-    description: 'Fr Porukara College Admission Opened. Apply for BCA, B.Com, BA and other 4 year UG Programmes. Admissions Open Admissions Open for BCA, BCOM with Finance and Taxation, BCOM with Computer Application, BA English Contact: 9446249412'
+    title: 'Admissions | Fr. Porukara CMI College',
+    description: 'Fr Porukara College Admission Opened. Apply for BCA, B.Com, BA and other 4 year UG Programmes. Admissions Open Admissions Open for BCA, BCOM with Finance and Taxation, BCOM with Computer Application, BA English Contact: 9446249412',
+    keywords: 'Fr. Porukara CMI College, BCA Colleges,Best BCA, B.Com COllege in kerala,Colleges in Kerala,Best Colleges in Kuttanad, Best College in Alappuzha,BCA,B.Com',
+    openGraph:{
+        images: ['https://porukaracollege.in/assets/logo-gold.png']
+    }
 }
 export default function Page() {
     return <main>

@@ -42,7 +42,7 @@ export default function HomeNavbar() {
         console.log(menuopen)
     }, [menuopen])
     return (
-        <div className={cn('w-100 flex fixed flex-col top-0 left-0 right-0 text-foreground transition-all bg-gradient-to-t to-primary from-blue-800 sky-300 duration-500 items-center w-full z-[40]', colorChange ? "shadow-xl md:top-[-80px]" : "")}>
+        <div className={cn('w-100 flex fixed flex-col top-0 left-0 right-0 text-foreground transition-all bg-gradient-to-t to-primary from-blue-800 sky-300 duration-500 items-center w-full z-[999]', colorChange ? "shadow-xl md:top-[-80px]" : "")}>
             <motion.nav className={cn("flex  w-full items-center px-3 h-[80px] md:px-5 z-[40] max-w-screen-xl mx-auto justify-between", colorChange ? "" : '')}>
 
                 <div className='flex select-none'>

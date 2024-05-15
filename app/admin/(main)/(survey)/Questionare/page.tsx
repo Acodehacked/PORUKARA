@@ -1,4 +1,4 @@
-import { getDb, getDb2 } from "@/db";
+import {  getDb2 } from "@/db";
 import { QuestionsDB } from "@/db/schema";
 import { sql } from "drizzle-orm";
 import SurveyForm from "./form";

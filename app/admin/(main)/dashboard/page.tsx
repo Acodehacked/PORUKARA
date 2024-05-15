@@ -6,8 +6,8 @@ import { getDb2 } from "@/db";
 import { ClientResponses, QuestionsDB } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
+export const dynamic = "force-dynamic";
 export default async function page() {
-
     const { db, connection } = await getDb2();
     const Responses = await db.select().from(ClientResponses).where(eq(ClientResponses.status, 'completed'));
     const Questions = await db.select().from(QuestionsDB);

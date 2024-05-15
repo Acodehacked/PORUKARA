@@ -1,4 +1,4 @@
-import { getDb, getDb2 } from "@/db";
+import {  getDb2 } from "@/db";
 import { QuestionsDB } from "@/db/schema";
 import { NextResponse } from "next/server";
 

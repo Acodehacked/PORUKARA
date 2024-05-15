@@ -539,12 +539,12 @@ export const ADMINSIDEBARLINKS = [
         link: '/dashboard',
         submenu: []
     },
-    // {
-    //     title: 'Questions',
-    //     icon: 'bxs-book',
-    //     link: '/Questions',
-    //     submenu: []
-    // },
+    {
+        title: 'Questions',
+        icon: 'bxs-book',
+        link: '/Questions',
+        submenu: []
+    },
     // {
     //     title: 'Add Questions',
     //     icon: 'bx-question-mark',

@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "61667311-a138-4a50-8877-00393a700f18",
-  "prevId": "99d5ed54-b3d4-40b4-99dd-35dd46903297",
+  "id": "9121187d-4427-460f-b962-7c629a4ab5f1",
+  "prevId": "82a3f12f-326a-44c4-8db2-e91b862f86a5",
   "tables": {
     "AdminLoginTable": {
       "name": "AdminLoginTable",
@@ -13,7 +13,7 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": true
-        }, 
+        },
         "name": {
           "name": "name",
           "type": "varchar(256)",
@@ -49,6 +49,87 @@
       "compositePrimaryKeys": {
         "AdminLoginTable_id": {
           "name": "AdminLoginTable_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "admissions": {
+      "name": "admissions",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "student_name": {
+          "name": "student_name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "mobile": {
+          "name": "mobile",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(150)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "address": {
+          "name": "address",
+          "type": "varchar(3250)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "course": {
+          "name": "course",
+          "type": "varchar(1250)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "submitted_at": {
+          "name": "submitted_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {
+        "mobile_idx": {
+          "name": "mobile_idx",
+          "columns": [
+            "mobile"
+          ],
+          "isUnique": true
+        },
+        "email_idx": {
+          "name": "email_idx",
+          "columns": [
+            "email"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "admissions_id": {
+          "name": "admissions_id",
           "columns": [
             "id"
           ]

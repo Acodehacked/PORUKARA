@@ -77,6 +77,19 @@ export const Events = mysqlTable('Events', {
   nameIndex: uniqueIndex('name_idx').on(Events.title)
 }))
 
+export const AdmissionTable = mysqlTable('admissions', {
+  id: int('id').primaryKey().autoincrement(),
+  name: varchar('student_name', { length: 256 }).notNull(),
+  mobile: varchar('mobile', { length: 100 }).notNull(),
+  email: varchar('email', { length: 150 }).notNull(),
+  address: varchar('address', { length: 3250 }).notNull(),
+  appliedCourse: varchar('course', { length: 1250 }).notNull(),
+  submittedAt: timestamp('submitted_at').notNull().defaultNow()
+}, (AdmissionTable) => ({
+  mobileIdx: uniqueIndex('mobile_idx').on(AdmissionTable.mobile),
+  emailIdx: uniqueIndex('email_idx').on(AdmissionTable.email),
+}))
+
 export const HomeCarousel = mysqlTable('HomeCarousel', {
   id: int('id').primaryKey().autoincrement(),
   title: varchar('title', { length: 256 }).notNull(),
@@ -116,7 +129,7 @@ export const ClientResponses = mysqlTable('ClientResponses', {
   id: int('id').primaryKey().autoincrement(),
   gen_id: varchar('generated_id',{length:300}).notNull(),
   status: varchar('status', { length: 20, enum: ['started', 'progress', 'completed']}),
-  responses: varchar('responses',{length:2000}),
+  responses: json('responses').notNull(),
   added_on : date('date')
 }, (ClientDb) => ({
   genIndex: uniqueIndex('gen_idx').on(ClientDb.gen_id),

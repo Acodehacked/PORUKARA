@@ -1,12 +1,9 @@
-import { getDb } from '@/db';
-import { hash } from 'bcrypt';
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 export default async function page(){
     const session = await getServerSession();
-    const db = await getDb();
-        
+
     if(session == null){
         redirect('/admin/login');
     }else{

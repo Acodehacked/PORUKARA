@@ -1,8 +1,9 @@
 // import { db } from "@/db";
-import { getDb } from "@/db";
+import {  getDb2 } from "@/db";
 import { AdminLoginTable } from "@/db/schema";
 import { compare, hash } from "bcrypt";
 import { sql } from "drizzle-orm";
+import { connect } from "http2";
 import NextAuth, { AuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
@@ -20,7 +21,7 @@ const authOptions = NextAuth({
         password: { label: 'Username', type: 'password' },
       },
       async authorize(credentials, req) {
-        const db = await getDb();
+        const {db,connection} = await getDb2();
         
         const user = await db.select().from(AdminLoginTable).where(
           sql`${AdminLoginTable.email}=${credentials?.username}`);
@@ -30,6 +31,7 @@ const authOptions = NextAuth({
           name: '',
           email: ''
         }
+        connection.end();
         if (user.length > 0) {
           User = {
             id: user[0].id.toString(),

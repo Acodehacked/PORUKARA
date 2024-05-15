@@ -5,19 +5,15 @@ import { NextResponse } from "next/server";
 export default async function AddResponse(formdata: FormData, gen_id: string) {
     console.log(formdata);
     const { db, connection } = await getDb2();
-    let json = <{k:string,v:string}[]>[];
+    let json = <any>{};
     Array.from(formdata.entries()).forEach(([key, value]) => {
-        // json[``] = value;
-        json.push({
-            k: `${key}`,
-            v: `${value}`
-        })
+        json[`${key}`] = value;
     })
     console.log(json)
     try{
         const response = await db.insert(ClientResponses).values({
             gen_id: gen_id,
-            responses: JSON.stringify(json),
+            responses: json,
             status: 'completed',
             added_on: new Date()
         })

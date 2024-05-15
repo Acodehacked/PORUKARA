@@ -1,9 +1,9 @@
 'use server'
-import { getDb } from "@/db/index";
+import {  getDb2 } from "@/db/index";
 import { Events } from "@/db/schema";
 import { eq } from "drizzle-orm";
 export async function AddEvent(title: string,date: Date) {
-    const db = await getDb();
+    const {db,connection} = await getDb2();
     await db.insert(Events).values({
         title: title,
         description: '',
@@ -12,6 +12,7 @@ export async function AddEvent(title: string,date: Date) {
         date: date,
         link: '/link',
     })
+    connection.end();
     return {
         message: 'Added Successfully',
         error: null
@@ -19,8 +20,9 @@ export async function AddEvent(title: string,date: Date) {
 }
 
 export async function deleteEvent(id: number) {
-    const db = await getDb();
-    await db.delete(Events).where(eq(Events.id, id))
+    const {db,connection} = await getDb2();
+    await db.delete(Events).where(eq(Events.id, id));
+    connection.end();
     return {
         message: 'Deleted Successfully',
         error: null

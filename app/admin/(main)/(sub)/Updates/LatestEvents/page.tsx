@@ -10,12 +10,13 @@ import AddItem from "./AddItem";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import UpcomingEvents from "./UpcomingEvents";
-import { getDb } from "@/db";
+import {  getDb2 } from "@/db";
 
 export default async function Page() {
     const EventNO = 0;
-    const db = await getDb();
+    const {db,connection}= await getDb2();
     const events = await db.select().from(Events).limit(50);
+    connection.end();
     return <main className="flex flex-col items-start w-full">
         <div className="flex justify-between md:flex-row w-full flex-col items-center">
             <h3 className="text-[30px] mb-2">{EventTypes[EventNO] + 's'}</h3>
