@@ -1,1 +1,0 @@
-ALTER TABLE `ClientResponses` MODIFY COLUMN `responses` json NOT NULL;

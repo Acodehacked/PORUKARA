@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "9121187d-4427-460f-b962-7c629a4ab5f1",
-  "prevId": "82a3f12f-326a-44c4-8db2-e91b862f86a5",
+  "id": "1efc2284-609e-4dfb-9257-5b5c813fa9a9",
+  "prevId": "f09d8ab4-6ead-45c1-9ae6-7a4d9f0d6151",
   "tables": {
     "AdminLoginTable": {
       "name": "AdminLoginTable",
@@ -267,9 +267,9 @@
         },
         "responses": {
           "name": "responses",
-          "type": "varchar(2000)",
+          "type": "json",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
         "date": {
@@ -928,6 +928,97 @@
       },
       "uniqueConstraints": {}
     },
+    "app_sub_categories": {
+      "name": "app_sub_categories",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "tname": {
+          "name": "tname",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "name_idx": {
+          "name": "name_idx",
+          "columns": [
+            "tname"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "app_sub_categories_id": {
+          "name": "app_sub_categories_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "app_top_categories": {
+      "name": "app_top_categories",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "tname": {
+          "name": "tname",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "timage": {
+          "name": "timage",
+          "type": "varchar(600)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sub_categories": {
+          "name": "sub_categories",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "('[]')"
+        }
+      },
+      "indexes": {
+        "name_idx": {
+          "name": "name_idx",
+          "columns": [
+            "tname"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "app_top_categories_id": {
+          "name": "app_top_categories_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
     "app_type_categories": {
       "name": "app_type_categories",
       "columns": {
@@ -951,6 +1042,14 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "sub_categories": {
+          "name": "sub_categories",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "('[]')"
         }
       },
       "indexes": {

@@ -23,12 +23,7 @@ export const metadata: Metadata = {
         title: "Fr. Porukara CMI Colllege of Advanced Studies",
         description: "Offical website of Fr. Porukara CMI College of advanced Studies, Gagultha Monastry,Champakulam , Kerala",
         siteName: "Fr. Porukara College",
-        images: [{
-            url: "https://porukaracollege.in/assets/college1.png",
-        },
-        {
-            url: "https://porukaracollege.in/assets/logo-gold.png"
-        }],
+        images: ["https://porukaracollege.in/assets/thumbnail.jpg"],
     }
 }
 export default function RootLayout({children}:{children:React.ReactNode}){

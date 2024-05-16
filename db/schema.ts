@@ -146,13 +146,29 @@ export const app_categories = mysqlTable('app_categories',{
 },(app_categories) => ({
   nameIndex: uniqueIndex('name_idx').on(app_categories.name),
 }))
+export const app_top_categories = mysqlTable('app_top_categories',{
+  id: int('id').primaryKey().autoincrement(),
+  name: varchar('tname',{length:100}),
+  image: varchar('timage',{length:600}).notNull(),
+  subCategories: json('sub_categories').$type<number[]>().default([]).notNull(),
+},(app_top_categories) => ({
+  nameIndex: uniqueIndex('name_idx').on(app_top_categories.name),
+}))
 
 export const app_type_categories = mysqlTable('app_type_categories',{
   id: int('id').primaryKey().autoincrement(),
   name: varchar('tname',{length:300}),
-  image: varchar('timage',{length:600}).notNull()
+  image: varchar('timage',{length:600}).notNull(),
+  subSuggestions: json('sub_categories').$type<number[]>().default([]).notNull(),
 },(app_type_categories) => ({
   nameIndex: uniqueIndex('name_idx').on(app_type_categories.name),
+}))
+
+export const app_sub_suggesstions = mysqlTable('app_sub_categories',{
+  id: int('id').primaryKey().autoincrement(),
+  name: varchar('tname',{length:200}),
+},(app_sub_suggesstions) => ({
+  nameIndex: uniqueIndex('name_idx').on(app_sub_suggesstions.name),
 }))
 
 export const app_logintable = mysqlTable('app_logintable', {
