@@ -43,14 +43,16 @@ const QuestionsList = ({ Questions, Responses }: {
         let Json = Questions[quesno].options_list as object;
         for (let q = 0; q < Responses.length; q++) {
             // let responsey: object = JSON.parse(Responses[q].responses as string) as object;
-            let responsey: object = Responses[q].responses as  object;
+            let responsey: object = Responses[q].responses as object;
             let otype = Object.getOwnPropertyDescriptor(Json, `optiontype${option}`);
 
             if (otype?.value == 'select_text') {
                 var value = Object.getOwnPropertyDescriptor(responsey, `${Questions[quesno].question_no}optionvalue`);
                 var subtext = Object.getOwnPropertyDescriptor(responsey, `${Questions[quesno].question_no}optionvalueM`);
                 if (subtext != undefined) {
-                    multipleanswers.push(subtext.value);
+                    if (subtext?.value != '') {
+                        multipleanswers.push(subtext.value);
+                    }
                 }
             }
         }
@@ -125,7 +127,7 @@ const QuestionsList = ({ Questions, Responses }: {
                                     var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue${i}`);
                                     console.log(value)
                                     if (value != undefined) {
-                                        for(let re=0;re<rev.length;re++){
+                                        for (let re = 0; re < rev.length; re++) {
                                             if (value?.value == rev[re]) {
                                                 revA[re] = revA[re] + 1;
                                             }
@@ -136,13 +138,13 @@ const QuestionsList = ({ Questions, Responses }: {
                             }
                             let percent = numberofpeople == 0 ? '0' : ((numberofpeople / Responses.length) * 100);
                             row.push(
-                                <Options 
-                                    SetDetailsPage={SetDetailsPage} 
-                                    question={index} 
-                                    i={i} 
-                                    otitle={otitle} 
-                                    numberofpeople={Responses.length} 
-                                    percent={percent} 
+                                <Options
+                                    SetDetailsPage={SetDetailsPage}
+                                    question={index}
+                                    i={i}
+                                    otitle={otitle}
+                                    numberofpeople={Responses.length}
+                                    percent={percent}
                                     reviews={revA}
                                     type={otype?.value == 'select_text' ? "extra" : otype?.value == 'review' ? 'review' : ''} />)
                         }

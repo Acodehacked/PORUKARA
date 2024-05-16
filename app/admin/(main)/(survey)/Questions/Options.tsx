@@ -16,7 +16,7 @@ const Options = ({ question, i, otitle, percent, type, SetDetailsPage, numberofp
         percent: number | string
     }) => {
     let rev = ["SA", "A", "CS", "DA", "SDA"];
-    const alp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm']
+    const alp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm','o','p','q']
     return (
         <>
             <div key={i} className="bg-white flex justify-between items-center rounded-sm px-3 py-1 text-[11px] mt-2">
