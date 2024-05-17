@@ -6,37 +6,47 @@ export const COURSES = [
         title: 'Bachelor of Commerce (B.Com)',
         text: 'Bachelor of Commerce',
         description: '',
-        duration: '4 Year',
+        duration: '3 Year',
         image: '',
+        specializations: [
+            "Finance & Taxations",
+            "Marketing",
+            "Logistics & Management",
+            "Accounting",
+        ],
         eligibility: '+2 or Equivalent Course',
         link: '/',
         path: '/Course/BCOM'
-    },
-    {
-        title: 'Bachelor of Computer Application (BCA)',
-        text: 'Bachelor of Computer Application',
-        description: '',
-        image: '',
-        duration: '4 Year',
-        eligibility: '+2 or Equivalent Course',
-        link: '/',
-        path: '/Course/BCA'
     },
     {
         title: 'BA English',
         text: 'BA English',
         image: '',
         description: '',
-        duration: '4 Year',
+        specializations:[
+            "Media Studies",
+            "Film Studies"
+        ],
+        duration: '3 Year',
         eligibility: '+2 or Equivalent Course',
         link: '/',
         path: '/Course/BA'
     },
     {
+        title: 'Bachelor of Computer Application (BCA)',
+        text: 'Bachelor of Computer Application',
+        description: '',
+        image: '',
+        duration: '3 Year',
+        eligibility: '+2 or Equivalent Course',
+        link: '/',
+        path: '/Course/BCA'
+    },
+    {
         title: '*MSW',
         text: '*MSW',
         description: '',
-        duration: '4 Year',
+        duration: '2 Year',
         image: '',
         eligibility: 'Degree course',
         link: '/',
@@ -46,7 +56,7 @@ export const COURSES = [
         title: '*Msc Psychology',
         text: '*Msc Psychology',
         description: '',
-        duration: '4 Year',
+        duration: '2 Year',
         image: '',
         eligibility: 'Degree course',
         link: '/',
@@ -56,7 +66,7 @@ export const COURSES = [
         title: '*Msc Artificial Intelligence (AI)',
         text: '*Msc Artificial Intelligence (AI)',
         description: '',
-        duration: '4 Year',
+        duration: '2 Year',
         image: '',
         eligibility: 'Degree course',
         link: '/',
@@ -66,7 +76,7 @@ export const COURSES = [
         title: '*BSW',
         text: '*BSW',
         description: '',
-        duration: '4 Year',
+        duration: '3 Year',
         image: '',
         eligibility: '+2 or Equivalent Course',
         link: '/',
@@ -76,7 +86,7 @@ export const COURSES = [
         title: '*Bsc Psychology',
         text: '*Bsc Psychology',
         description: '',
-        duration: '4 Year',
+        duration: '2 Year',
         image: '',
         eligibility: '+2 or Equivalent Course',
         link: '/',
@@ -87,7 +97,7 @@ export const COURSES = [
         text: '*BBA',
         description: '',
         image: '',
-        duration: '4 Year',
+        duration: '3 Year',
         eligibility: '+2 or Equivalent Course',
         link: '/',
         path: '/Course/BBA'
@@ -97,7 +107,7 @@ export const COURSES = [
 export const AddedDeps = [
     {
         text: '*Four Year UG Programmes',
-        path: 'istration/FYUGProgrammes',
+        path: '/Administration/FYUGProgrammes',
         description: ''
     },
     // {

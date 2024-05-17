@@ -21,9 +21,9 @@ export default function page() {
             </div>
         </div>
         <div className="flex bg-zinc-200 w-full">
-            <div className="flex screen flex-col md:flex-row min-h-[200vh] ">
+            <div className="flex screen flex-col  md:flex-row min-h-[200vh] ">
                 <div className="px-2 max-w-[100%] md:min-w-[100px] w-full md:max-w-[30%] pt-3">
-                    <div className="p-2 sticky top-[6rem] w-full bg-white py-5">
+                    <div className="p-2 sticky top-[6rem] w-full rounded-xl bg-white py-5">
                         <div className="flex flex-col gap-2">
                             <div className="pb-2 pt-2">
                                 * subjected to University Approval
@@ -34,9 +34,9 @@ export default function page() {
                         </div>
                     </div>
                 </div>
-                <div className="w-full mb-3 bg-white mt-3 flex flex-col gap-[20px]">
+                <div className="w-full mb-3 mt-3 flex flex-col gap-[20px]">
                     {COURSES.map((item, index) => {
-                        return <Course key={index} duration={item?.duration || '1 year'} id={item?.title} applylink={item?.link || '/'} eligibility={item?.eligibility || 'Plus Two'} title={item?.title || ''} image={item?.image}>
+                        return <Course key={index} specializations={item?.specializations} duration={item?.duration || '1 year'} id={item?.title} applylink={item?.link || '/'} eligibility={item?.eligibility || 'Plus Two'} title={item?.title || ''} image={item?.image}>
                             {item?.description || ''}
                         </Course>
                     })}

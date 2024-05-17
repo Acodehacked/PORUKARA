@@ -6,7 +6,7 @@ const DialogContainer = ({ children, open, setOpen, title ,size}: { children: Re
     if(size == undefined){ size = 'sm' }
     return (
         <AnimatePresence>
-            {open && <motion.div className="dialog bg-[rgba(0,0,0,0.5)] fixed overflow-y-scroll py-4 z-[999] top-0 bottom-0 right-0 left-0 flex justify-center items-center">
+            {open && <motion.div className="dialog bg-[rgba(0,0,0,0.5)] fixed overflow-y-scroll py-[60px] z-[999] top-0 bottom-0 right-0 left-0 flex justify-center items-center">
                 {open && <motion.div
                     className={cn('bg-white p-2 rounded-sm w-full mx-4',size=='lg' ? 'max-w-[850px]':'',size=='sm'?'max-w-[450px]' : '')}
                     initial={{ opacity: 0, y: -50 }}
@@ -16,7 +16,9 @@ const DialogContainer = ({ children, open, setOpen, title ,size}: { children: Re
                 >
                     <div className='flex justify-between p-2'>
                         <span>{title}</span>
-                        <button onClick={() => setOpen(false)}><X /></button>
+                        <button onClick={() => {
+                                setOpen(false)
+                        }}><X /></button>
                     </div>
                     <hr />
                     <div className='min-h-[200px] pt-2 w-full flex flex-col items-start'>

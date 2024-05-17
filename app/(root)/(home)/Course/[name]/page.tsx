@@ -11,7 +11,8 @@ type courseType = {
     link: string,
     eligibility: string,
     image: string,
-    description: string
+    description: string,
+    specializations?: string[]
 } | null;
 export default function Page({ params }: { params: { name: string } }) {
     var Coursee: courseType = {
@@ -20,7 +21,8 @@ export default function Page({ params }: { params: { name: string } }) {
         link: '/fdfdfd',
         eligibility: 'fgfg',
         image: 'dffdfdf',
-        description: 'dd'
+        description: 'dd',
+        specializations: undefined
     };
     var find = false;
     COURSES.forEach((course) => {
@@ -35,15 +37,17 @@ export default function Page({ params }: { params: { name: string } }) {
     var otheru = COURSES.filter((item) => item.title != Coursee?.title && item.eligibility == '+2 or Equivalent Course');
     var otherp = COURSES.filter((item) => item.title != Coursee?.title && item.eligibility != '+2 or Equivalent Course');
     return <main className="pt-[200px] pb-[60px] screen">
-        <div className="px-3 pb-3 pt-1 ">
-            {Coursee?.title?.includes('*') && <div className="bg-zinc-300 w-max px-2 py-1 rounded-sm">
+        <div className="px-3 pb-1 pt-1 flex justify-center">
+            {Coursee?.title?.includes('*') && <div className="bg-red-600 text-white w-max px-2 py-1 rounded-sm">
                 Course subjected to university approval
             </div>}
         </div>
         {/* <h2 className="text-[30px]">{params.name}</h2> */}
-        <Course duration={Coursee?.duration || '1 year'} id={Coursee?.title} applylink={Coursee?.link || '/'} eligibility={Coursee?.eligibility || 'Plus Two'} title={Coursee?.title || ''} image={Coursee?.image}>
-            {Coursee?.description || ''}
-        </Course>
+        <div className="max-w-[850px] w-full mx-auto">
+            <Course specializations={Coursee?.specializations} duration={Coursee?.duration || '1 year'} id={Coursee?.title} applylink={Coursee?.link || '/'} eligibility={Coursee?.eligibility || 'Plus Two'} title={Coursee?.title || ''} image={Coursee?.image}>
+                {Coursee?.description || ''}
+            </Course>
+        </div>
         <div className="mt-10 mb-2">
             <h2>UG Courses</h2>
         </div>
@@ -56,7 +60,7 @@ export default function Page({ params }: { params: { name: string } }) {
                             <h2 className="text-[17px] mt-1 font-semibold">{item.title}</h2>
                             <p className=" text-black text-[12px] mt-2 w-max px-3 py-1 rounded-sm border-[0.01rem] border-zinc-200">{item.duration}</p>
                         </div>
-                        <div  className="absolute flex gap-2 bottom-[10px] right-[10px] z-[1]">
+                        <div className="absolute flex gap-2 bottom-[10px] right-[10px] z-[1]">
                             <div className=" text-foreground text-[12px] w-max pb-2 pe-2 rounded-full">
                                 <ArrowRightIcon size={20} />
                             </div>
@@ -77,7 +81,7 @@ export default function Page({ params }: { params: { name: string } }) {
                             <h2 className="text-[17px] mt-1 font-semibold">{item.title}</h2>
                             <p className=" text-black text-[12px] mt-2 w-max px-3 py-1 rounded-sm border-[0.01rem] border-zinc-200">{item.duration}</p>
                         </div>
-                        <div  className="absolute flex gap-2 bottom-[10px] right-[10px] z-[1]">
+                        <div className="absolute flex gap-2 bottom-[10px] right-[10px] z-[1]">
                             <div className=" text-foreground text-[12px] w-max pb-2 pe-2 rounded-full">
                                 <ArrowRightIcon size={20} />
                             </div>

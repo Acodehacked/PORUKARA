@@ -1,12 +1,15 @@
 import { Button } from '@/components/ui/button'
+import { CheckboxIndicator } from '@radix-ui/react-checkbox'
+import { CheckCheckIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { FaCheckCircle } from 'react-icons/fa'
 
-const Course = ({ children, duration, title, applylink, eligibility, id, image }: { children: React.ReactNode, duration: string, title: string, applylink: string, eligibility: string, id?: string, image?: string }) => {
+const Course = ({ children, duration, title, applylink, eligibility, id, image, specializations }: { children: React.ReactNode, duration: string, title: string, applylink: string, eligibility: string, id?: string, image?: string, specializations?: string[] }) => {
   return (
-    <div className='flex flex-col p-4 bg-white rounded-xl'>
-      <div className='flex gap-3 font-bold text-[30px] pb-4'>
+    <div className='flex flex-col p-4 md:mx-0 mx-3 my-1 bg-white rounded-xl'>
+      <div className='flex gap-3 items-start font-bold text-[30px] pb-4'>
         <Image id={id} src={'/assets/book1.png'} style={{ scrollMarginTop: '100px' }} alt='' width={50} height={50} />
         <div className='flex flex-col justify-center'>
           <span className='text-zinc-500 p-0 m-0 font-medium text-[17px]'>{duration}</span>
@@ -16,6 +19,15 @@ const Course = ({ children, duration, title, applylink, eligibility, id, image }
       <div className='border-t-zinc-200 border-t-2 py-4 lg:flex-row flex-col-reverse flex w-full'>
         <div className='lg:w-[60%] w-[100%] p-4'>
           {children}
+          <div className='px-3 gap-1 flex flex-col'>
+            {specializations?.length  != undefined ? <h2 className='mb-2'>Specifications</h2> : ""}
+            {specializations?.map((spec, index) => {
+              return <div key={index} className='flex ms-2 gap-2'>
+                <FaCheckCircle size={25} className='text-green-600' />
+                <h2>{spec}</h2>
+              </div>
+            })}
+          </div>
         </div>
         {image !== '' ? <Image alt='' className='lg:w-[40%] h-full object-cover rounded-xl w-[100%]' src={`/${image}`} width={900} height={900} /> : ''}
       </div>
@@ -28,8 +40,8 @@ const Course = ({ children, duration, title, applylink, eligibility, id, image }
         {/* /assets/applicationform.pdf */}
         <Button variant={'outline'} asChild={true} className='float-right min-w-[200px] mt-5'>
           <Link href={'/assets/PorukaraApplicationForm.pdf'}>Download Application Form</Link></Button>
-        <Button variant={'default'} asChild={true} className='float-right min-w-[200px] mt-5 bg-foreground'>
-          <Link href={'/Admission'}>Apply Now</Link></Button>
+        <Button variant={'default'} asChild={true} className='float-right min-w-[200px] md:mt-5 bg-foreground'>
+          <Link href={`/Admission?appliedCourse=${title}`}>Apply Now</Link></Button>
       </div>
     </div>
   )
