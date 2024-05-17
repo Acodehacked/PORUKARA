@@ -581,7 +581,7 @@ export const DEMOEVENTS = [
     {
         title: '',
         desc: '',
-        image: '/assets/l1.jpeg'
+        image: '/assets/Mukhamukham.jpg'
     },
     {
         title: '',
@@ -622,6 +622,11 @@ export const DEMOEVENTS = [
         title: ' ',
         desc: '',
         image: '/assets/l8.jpeg'
+    },
+    {
+        title: ' ',
+        desc: '',
+        image: '/assets/l1.jpeg'
     }
 ];
 export const UPCOMING_EVENTS = [

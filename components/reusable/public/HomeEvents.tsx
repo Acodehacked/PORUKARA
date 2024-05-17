@@ -51,7 +51,7 @@ const HomeEvents = () => {
                     <Carousel >
                         <CarouselContent>
                             {DEMOEVENTS.map((item, index) => {
-                                return <CarouselItem key={index} className="lg:basis-1/4 sm:basis:1/2 basis-1/1">
+                                return <CarouselItem key={index} className="lg:basis-1/4 sm:basis:1/2 basis-1/1 cursor-pointer">
                                     <motion.div
                                         initial="hidden"
                                         whileInView="visible"
@@ -60,25 +60,25 @@ const HomeEvents = () => {
                                         variants={{
                                             visible: { opacity: 1, y: 0 },
                                             hidden: { opacity: 0, y: 200 }
-                                        }} key={index} className={`group event_card w-min-[100px] bg-zinc-50 h-[330px] mx-2 mt-2 rounded-xl relative overflow-hidden`}>
-                                        <div className="content p-3 text-white h-full flex flex-col justify-end relative z-[2]">
-                                            <h5 className="text-[25px] font-bold">{item.title}</h5>
-                                            <p className='font-medium text-[14px] pt-1 pb-2'>{item.desc}</p>
-                                            <div className='w-full text-[13px] flex justify-between p-2 border-t-2 border-t-primary'>
-                                                <p>2 days Ago</p>
-                                                <Link href={'/Latest-Events'} >Read More..</Link>
-                                            </div>
-                                        </div>
+                                        }} key={index} className={`group event_card w-full w-max-[300px] bg-zinc-50 h-[330px] mx-2 mt-2 rounded-xl relative overflow-hidden`}>
                                         <div className="bg absolute group-hover:scale-[1.1] duration-700 transition-all scale-100 top-0 bottom-0 left-0 right-0 z-[1]">
                                             <Image src={item.image} className='object-contain  transition-all duration-500' alt='d' fill={true} />
                                         </div>
                                     </motion.div>
+                                    <div className="px-3 text-black flex flex-col justify-end z-[2]">
+                                        {/* <h5 className="text-[25px] font-bold">{item.title}</h5> */}
+                                        {/* <p className='font-medium text-[14px] pt-1 pb-2'>{item.desc}</p> */}
+                                        <div className='w-full text-[13px] flex justify-between p-2 border-t-2x border-t-primaryx'>
+                                            <p>2 days Ago</p>
+                                            <Link href={'/Latest-Events'} >Read More..</Link>
+                                        </div>
+                                    </div>
                                 </CarouselItem>
                             })}
                         </CarouselContent>
                     </Carousel>
                 </div>
-                <div className='flex w-full justify-end'>
+                <div className='flex w-full justify-end mb-3'>
                     <Link href={'/Latest-Events'} className='rounded-full hover:bg-foreground duration-150 transition-all hover:text-white bg-slate-200 ps-3 flex gap-3 items-center'>
                         <span>View All</span> <ChevronRight size={30} className='rounded-full bg-foreground p-2 text-white' />
                     </Link>
