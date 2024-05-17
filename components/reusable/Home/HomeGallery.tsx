@@ -1,10 +1,32 @@
 'use client'
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
 import { Gallery } from 'react-grid-gallery'
 import { BiImages } from 'react-icons/bi';
 const HomeGallery = () => {
     const images = [
         {
-            src: "/assets/graduate3.jpg",
+            src: "/assets/g1.jpeg",
+            width: 320,
+            height: 174,
+        },
+        {
+            src: "/assets/g2.jpeg",
+            width: 320,
+            height: 174,
+        },
+        {
+            src: "/assets/g3.jpeg",
+            width: 320,
+            height: 174,
+        },
+        {
+            src: "/assets/g4.jpeg",
+            width: 320,
+            height: 174,
+        },
+        {
+            src: "/assets/g5.jpeg",
             width: 320,
             height: 174,
         },
@@ -46,13 +68,29 @@ const HomeGallery = () => {
         },
 
     ];
-    return <div className="screen-lg mt-3">
+    let halflen = images.length / 2;
+    let row = [];
+    for (let i = 0; i < halflen; i++) {
+        let firstrowindex = i * 2;
+        row.push(<div className='flex w-full gap-2'>
+            <div className={cn('h-[200px] object-cover overflow-hidden rounded-xl', i % 2 == 0 ? 'w-[60%]' : 'w-[40%]')}>
+                <Image className='w-full h-full object-cover' src={`${images[firstrowindex].src}`} alt={''} width={200} objectFit='cover' height={200} />
+            </div>
+            <div className={cn('h-[200px] overflow-hidden rounded-xl object-cover', i % 2 == 0 ? 'w-[40%]' : 'w-[60%]')}>
+                <Image className='w-full h-full object-cover' src={`${images[firstrowindex + 1].src}`} objectFit='cover' alt={''} width={200} height={200} />
+            </div>
+        </div>)
+    }
+    return <div className="screen-lg mx-3 mt-3">
         <div className='screen-lg flex justify-center gap-2 items-end p-4'>
             <BiImages className='text-primary p-2' />
             <h2 className='text-[40px] font-bold'>Image</h2>
             <p className='text-[24px] font-medium mb-1'>Gallery</p>
         </div>
-        <Gallery images={images} enableImageSelection={false} />
+        {/* <Gallery images={images} enableImageSelection={false} /> */}
+        <div className='flex flex-col mx-2 gap-2'>
+            {row}
+        </div>
     </div>
 }
 export default HomeGallery
