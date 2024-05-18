@@ -74,10 +74,10 @@ const HomeGallery = () => {
         let firstrowindex = i * 2;
         row.push(<div className='flex w-full gap-2'>
             <div className={cn('h-[200px] object-cover overflow-hidden rounded-xl', i % 2 == 0 ? 'w-[60%]' : 'w-[40%]')}>
-                <Image className='w-full h-full object-cover' src={`${images[firstrowindex].src}`} alt={''} width={200} objectFit='cover' height={200} />
+                <Image className='w-full h-full object-cover' src={images[firstrowindex].src} alt={''} width={400} placeholder="empty" height={400} />
             </div>
             <div className={cn('h-[200px] overflow-hidden rounded-xl object-cover', i % 2 == 0 ? 'w-[40%]' : 'w-[60%]')}>
-                <Image className='w-full h-full object-cover' src={`${images[firstrowindex + 1].src}`} objectFit='cover' alt={''} width={200} height={200} />
+                <Image className='w-full h-full object-cover' src={images[firstrowindex + 1].src} placeholder='empty' alt={''} width={400} height={400} />
             </div>
         </div>)
     }

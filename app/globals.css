@@ -340,6 +340,11 @@ input{
   width: 3px;
   border-radius: 5px;
 }
+.minors span{
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
 
 .link-footer::after {
   content: '';

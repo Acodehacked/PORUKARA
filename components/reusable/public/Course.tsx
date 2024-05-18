@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { CheckboxIndicator } from '@radix-ui/react-checkbox'
-import { CheckCheckIcon } from 'lucide-react'
+import { ArrowRightCircleIcon, CheckCheckIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -17,16 +17,26 @@ const Course = ({ children, duration, title, applylink, eligibility, id, image, 
         </div>
       </div>
       <div className='border-t-zinc-200 border-t-2 py-4 lg:flex-row flex-col-reverse flex w-full'>
-        <div className='lg:w-[60%] w-[100%] p-4'>
-          {children}
-          <div className='px-3 gap-1 flex flex-col'>
-            {specializations?.length  != undefined ? <h2 className='mb-2'>Specifications</h2> : ""}
+        <div className='w-[100%] p-4 flex justify-between'>
+          {/* {children} */}
+          <div className='px-3 gap-1 flex flex-col w-full'>
+            {specializations?.length != undefined ? <h2 className='mb-2'>Specifications</h2> : ""}
             {specializations?.map((spec, index) => {
               return <div key={index} className='flex ms-2 gap-2'>
                 <FaCheckCircle size={25} className='text-green-600' />
                 <h2>{spec}</h2>
               </div>
             })}
+          </div>
+          <div className="bg-blue-700 max-w-[400px] w-full rounded-xl overflow-hidden">
+            <h3 className="text-white px-3 py-2 text-[20px]">Available Minors</h3>
+            <div className="flex flex-col minors bg-blue-900 py-2 text-white px-5">
+              <span><ArrowRightCircleIcon size={10} /> Computer Application</span>
+              <span><ArrowRightCircleIcon size={10} /> English</span>
+              <span><ArrowRightCircleIcon size={10} /> Hindi</span>
+              <span><ArrowRightCircleIcon size={10} /> Malayalam</span>
+              <span><ArrowRightCircleIcon size={10} /> Commerce</span>
+            </div>
           </div>
         </div>
         {image !== '' ? <Image alt='' className='lg:w-[40%] h-full object-cover rounded-xl w-[100%]' src={`/${image}`} width={900} height={900} /> : ''}

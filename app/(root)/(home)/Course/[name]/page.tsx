@@ -1,6 +1,6 @@
 import Course from "@/components/reusable/public/Course";
 import { COURSES } from "@/constants";
-import { ArrowRightCircle, ArrowRightIcon } from "lucide-react";
+import { ArrowRightCircle, ArrowRightCircleIcon, ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -44,6 +44,7 @@ export default function Page({ params }: { params: { name: string } }) {
         </div>
         {/* <h2 className="text-[30px]">{params.name}</h2> */}
         <div className="max-w-[850px] w-full mx-auto">
+            
             <Course specializations={Coursee?.specializations} duration={Coursee?.duration || '1 year'} id={Coursee?.title} applylink={Coursee?.link || '/'} eligibility={Coursee?.eligibility || 'Plus Two'} title={Coursee?.title || ''} image={Coursee?.image}>
                 {Coursee?.description || ''}
             </Course>

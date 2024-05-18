@@ -28,6 +28,7 @@ export default function page() {
                             <div className="pb-2 pt-2">
                                 * subjected to University Approval
                             </div>
+
                             {COURSES.map((item, index) => {
                                 return <Link key={index} className="hover:translate-x-1 hover:text-primary transition-all duration-150 p-2 border-b-2 border-b-black/10 font-semibold" href={`#${item?.title}`} >{item?.title}</Link>
                             })}
@@ -35,6 +36,16 @@ export default function page() {
                     </div>
                 </div>
                 <div className="w-full mb-3 mt-3 flex flex-col gap-[20px]">
+                    {/* <div className="bg-blue-700 rounded-xl overflow-hidden">
+                        <h3 className="text-white px-3 py-2 text-[25px]">Available Minors</h3>
+                        <div className="flex flex-col bg-blue-900 py-2 text-white px-5">
+                            <span>Computer Application</span>
+                            <span>English</span>
+                            <span>Hindi</span>
+                            <span>Malayalam</span>
+                            <span>Commerce</span>
+                        </div>
+                    </div> */}
                     {COURSES.map((item, index) => {
                         return <Course key={index} specializations={item?.specializations} duration={item?.duration || '1 year'} id={item?.title} applylink={item?.link || '/'} eligibility={item?.eligibility || 'Plus Two'} title={item?.title || ''} image={item?.image}>
                             {item?.description || ''}
