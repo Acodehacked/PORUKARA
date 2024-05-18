@@ -4,10 +4,12 @@ import { withNextVideo } from "next-video/process";
 
 export const  nextConfig = {
     reactStrictMode: true,
-    images: {
-        // unoptimized: true,
-        domains: ['https://mykuttanadu.s3.us-west-1.amazonaws.com/']
-    },
+    remotePatterns: [
+        {
+          protocol: "https", // or http
+          hostname: "mykuttanadu.s3.us-west-1.amazonaws.com", // if your website has no www, drop it
+        },
+      ],
 };
 
 export default withNextVideo(nextConfig, { folder: 'public/videos' });
