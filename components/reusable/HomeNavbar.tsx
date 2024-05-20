@@ -110,7 +110,7 @@ export default function HomeNavbar() {
                                                         </Link>
                                                     })}
                                                 </div>
-                                                <h2 className='p-2 text-[13px]'>{_nav.text == 'Departments' ? '* subjected to University Approval' : ''}</h2>
+                                                <h2 className='p-2 text-[13px]'>{_nav.text == 'Departments' ? '* subject to University Approval' : ''}</h2>
                                             </div>
 
                                         </div>

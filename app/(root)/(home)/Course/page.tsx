@@ -26,7 +26,7 @@ export default function page() {
                     <div className="p-2 sticky top-[6rem] w-full rounded-xl bg-white py-5">
                         <div className="flex flex-col gap-2">
                             <div className="pb-2 pt-2">
-                                * subjected to University Approval
+                                * subject to University Approval
                             </div>
 
                             {COURSES.map((item, index) => {

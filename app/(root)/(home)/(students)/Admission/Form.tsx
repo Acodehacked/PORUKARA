@@ -141,7 +141,7 @@ const Form = () => {
                                 })}
                             </PopoverContent>
                         </Popover>
-                        <span className='w-full flex text-[12px] mt-1 justify-end text-red-600'>* subjected to University Approval</span>
+                        <span className='w-full flex text-[12px] mt-1 justify-end text-red-600'>* subject to University Approval</span>
                     </div>
                 </div>
                 <div className="flex md:flex-row flex-col mt-2 gap-3">

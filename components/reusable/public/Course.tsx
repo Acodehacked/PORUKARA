@@ -6,7 +6,7 @@ import Link from 'next/link'
 import React from 'react'
 import { FaCheckCircle } from 'react-icons/fa'
 
-const Course = ({ children, duration, title, applylink, eligibility, id, image, specializations }: { children: React.ReactNode, duration: string, title: string, applylink: string, eligibility: string, id?: string, image?: string, specializations?: string[] }) => {
+const Course = ({ children, duration, title, applylink, eligibility, id, image, specializations }: { children: React.ReactNode, duration: string, title: string, applylink: string, eligibility: string, id?: string, image?: string, specializations?: string[] | null }) => {
   return (
     <div className='flex flex-col p-4 md:mx-0 mx-3 my-1 bg-white rounded-xl'>
       <div className='flex gap-3 items-start font-bold text-[30px] pb-4'>
@@ -19,7 +19,8 @@ const Course = ({ children, duration, title, applylink, eligibility, id, image, 
       <div className='border-t-zinc-200 border-t-2 py-4 lg:flex-row flex-col-reverse flex w-full'>
         <div className='w-[100%] p-4 flex justify-between'>
           {/* {children} */}
-          <div className='px-3 gap-1 flex flex-col w-full'>
+          {
+            specializations?.length != undefined && <div className='px-3 gap-1 flex flex-col w-full'>
             {specializations?.length != undefined ? <h2 className='mb-2'>Specifications</h2> : ""}
             {specializations?.map((spec, index) => {
               return <div key={index} className='flex ms-2 gap-2'>
@@ -28,7 +29,8 @@ const Course = ({ children, duration, title, applylink, eligibility, id, image, 
               </div>
             })}
           </div>
-          <div className="bg-blue-700 max-w-[400px] w-full rounded-xl overflow-hidden">
+          }
+          {title.includes('M') ? '' : <div className="bg-blue-700 md:max-w-[400px] w-full rounded-xl overflow-hidden">
             <h3 className="text-white px-3 py-2 text-[20px]">Available Minors</h3>
             <div className="flex flex-col minors bg-blue-900 py-2 text-white px-5">
               <span><ArrowRightCircleIcon size={10} /> Computer Application</span>
@@ -37,7 +39,7 @@ const Course = ({ children, duration, title, applylink, eligibility, id, image, 
               <span><ArrowRightCircleIcon size={10} /> Malayalam</span>
               <span><ArrowRightCircleIcon size={10} /> Commerce</span>
             </div>
-          </div>
+          </div>}
         </div>
         {image !== '' ? <Image alt='' className='lg:w-[40%] h-full object-cover rounded-xl w-[100%]' src={`/${image}`} width={900} height={900} /> : ''}
       </div>
