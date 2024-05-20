@@ -6,7 +6,7 @@ export const COURSES = [
         title: 'Bachelor of Commerce (B.Com)',
         text: 'Bachelor of Commerce',
         description: '',
-        duration: '3 Year',
+        duration: '4 Year',
         image: '',
         specializations: [
             "Finance & Taxations",
@@ -27,7 +27,7 @@ export const COURSES = [
             "Media Studies",
             "Film Studies"
         ],
-        duration: '3 Year',
+        duration: '4 Year',
         eligibility: '+2 or Equivalent Course',
         link: '/',
         path: '/Course/BA'
@@ -37,7 +37,7 @@ export const COURSES = [
         text: 'Bachelor of Computer Application',
         description: '',
         image: '',
-        duration: '3 Year',
+        duration: '4 Year',
         eligibility: '+2 or Equivalent Course',
         link: '/',
         path: '/Course/BCA'
@@ -76,7 +76,7 @@ export const COURSES = [
         title: '*BSW',
         text: '*BSW',
         description: '',
-        duration: '3 Year',
+        duration: '4 Year',
         image: '',
         eligibility: '+2 or Equivalent Course',
         link: '/',
@@ -86,7 +86,7 @@ export const COURSES = [
         title: '*Bsc Psychology',
         text: '*Bsc Psychology',
         description: '',
-        duration: '2 Year',
+        duration: '4 Year',
         image: '',
         eligibility: '+2 or Equivalent Course',
         link: '/',
@@ -97,7 +97,7 @@ export const COURSES = [
         text: '*BBA',
         description: '',
         image: '',
-        duration: '3 Year',
+        duration: '4 Year',
         eligibility: '+2 or Equivalent Course',
         link: '/',
         path: '/Course/BBA'
