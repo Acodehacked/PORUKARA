@@ -136,6 +136,19 @@ export const ClientResponses = mysqlTable('ClientResponses', {
 }))
 
 
+// WEBCODECREATORS DATABASES
+
+export const WebcodeFormTable = mysqlTable('webcode_enquiries', {
+  id: int('id').primaryKey().autoincrement(),
+  name: varchar('tname',{length:200}).notNull(),
+  phone: varchar('tphone',{length:200}).notNull(),
+  email: varchar('tmail',{length:200}).notNull(),
+  type: varchar('t_type',{length:300, enum:['Web Designing','Web Development','Web Application','App Development','Poster Designing','Logo Making']}).notNull(),
+  message: varchar('tmessage',{length:5000}).notNull(),
+  added_on : timestamp('date').notNull().defaultNow()
+});
+
+
 // MY KUTTANADU APP DATABASES
 
 export const app_categories = mysqlTable('app_categories',{
