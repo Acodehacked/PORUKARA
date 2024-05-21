@@ -22,7 +22,7 @@ export async function POST(req: Request) {
             });
         }
         try {
-            fetch('https://script.google.com/macros/s/AKfycbyn6esA4BhK4xaAePSfKViXulOZWvswg_vPOj-qiZOwkp83HMKDQMO9Izo_U1u1mVP2/exec',{
+            fetch('https://script.google.com/macros/s/AKfycbzP-gztfzF7cBgNOEMp1OuuOPEZ2LdrK1vHLwQup7Z53jQe0JHw82aCxBxoE1ZWYDKP/exec',{
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',
