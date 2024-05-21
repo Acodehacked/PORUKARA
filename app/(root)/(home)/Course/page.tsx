@@ -81,9 +81,18 @@ export default function page() {
                             },
                             "hasCourseInstance": {
                                 "@type": "CourseInstance",
-                                "courseMode": "full-time",
+                                "courseMode": "Onsite",
                                 "endDate": "2024-06-01",
-                                "startDate": `${course.duration == '4 Year' ? "2028-06-30" : '"2026-06-15"'}`
+                                "startDate": `${course.duration == '4 Year' ? "2028-06-30" : '"2026-06-15"'}`,
+                                "location": "Fr.Porukara College",
+                                "courseSchedule": {
+                                  "@type": "Schedule",
+                                  "duration": "PT3H",
+                                  "repeatFrequency": "Daily",
+                                  "repeatCount": 31,
+                                  "startDate": "2024-06-01",
+                                  "endDate": `${course.duration == '4 Year' ? "2028-06-30" : '"2026-06-15"'}`
+                                },
                             },
                             "offers": {
                                 "@type": "Offer",
