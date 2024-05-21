@@ -1,3 +1,4 @@
+import JsonLd from "@/components/reusable/JsonStructured";
 import Course from "@/components/reusable/public/Course";
 import { COURSES } from "@/constants";
 import { Metadata } from "next";
@@ -6,7 +7,12 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
     title: 'Courses | Fr. Porukara CMI College,Champakulam',
-    description: 'Courses offered by Fr. Porukara CMI College,Champakulam'
+    description: 'Courses offered by Fr. Porukara CMI College,Champakulam, Official Website of Porukara CMI Colllege, Champakulam, Kerala, India. Fr Porukara College Admission Opened. Apply for BCA, B.Com, BA and other 4 year UG Programmes. Admissions Open Admissions Open for BCA, BCOM with Finance and Taxation, BCOM with Computer Application, BA English Contact: 9446249412',
+    keywords: `${COURSES.map((course,index)=>{
+        return course.text+', ' ; }) } courses provided by Fr.Porukara College Champakulam, Best Colleges in kuttanad, Best College in Alappuzha,Top 10 colleges in kerala, Top BCA College in Kerala,Top B.Com college in alappuzha, kerala, Fr.Porukara College, CMI College in kerala, Colleges in India,Best Colleges, Porukara, Porukara College, Champakulam Porukara, Courses in Porukara College, Courses provided by Fr.Porukara CMI College, Champakulam`,
+    openGraph: {
+        images: ["https://porukaracollege.in/assets/thumbnail.jpg"]
+    }
 }
 export default function page() {
     return <main>
@@ -54,5 +60,28 @@ export default function page() {
                 </div>
             </div>
         </div>
+        <JsonLd data={{
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+                COURSES.map((course,index)=>{
+                    return {
+                        "@type": "ListItem",
+                        "position": `${index+1}`,
+                        "item": {
+                            "@type": "Course",
+                            "url": `https://www.porukaracollege.in${course.path}`,
+                            "name": `${course.title}`,
+                            "description": `${course.title} course provided by Fr.Porukara CMI College, Gagultha Monastery, Champakulam, Alappuzha, Kerala`,
+                            "provider": {
+                                "@type": "Organization",
+                                "name": "Fr.Porukara College",
+                                "sameAs": "https://www.porukaracolleg.in"
+                            }
+                        }
+                    };
+                })
+            ]
+        }} />
     </main>
 }

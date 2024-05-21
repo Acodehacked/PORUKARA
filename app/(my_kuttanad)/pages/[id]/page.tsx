@@ -1,5 +1,5 @@
 import { getDb2 } from "@/db";
-import { AppShareTable, app_place } from "@/db/schema";
+import { AppShareTable, app_categories, app_place } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -9,6 +9,7 @@ import Categories from "../Categories";
 import Link from "next/link";
 import { BiLink } from "react-icons/bi";
 import { FaStar } from "react-icons/fa";
+import JsonLd from "@/components/reusable/JsonStructured";
 type Props = {
     params: { id: string }
     searchParams: { [key: string]: string | string[] | undefined }
@@ -18,6 +19,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     const { db, connection } = await getDb2();
     var name = "";
     var image: string = "";
+    var yplace:Place | null = null;
+    var category:Category | null= null;
     const share = await db.select().from(AppShareTable).where(eq(AppShareTable.userId, params.id)).limit(1);
     if (share.length > 0) {
         const ShareName = share[0].userName;
@@ -26,14 +29,19 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
             const place = await db.select().from(app_place).where(eq(app_place.id, SharePlace));
             if (place.length > 0) {
                 name = place[0].name;
+                yplace = place;
                 image = `https://mykuttanadu.s3.us-west-1.amazonaws.com/${place[0].images[0]}`;
             }
+        }
+        if(yplace != null){
+            category = await db.select().from(app_categories).where(eq(app_categories.id,yplace[0].app_category_id)).limit(1);
         }
     }
     connection.end();
     return {
         title: `${name} | My Kuttanad App, No.1 Travel App for kuttand`,
         description: 'Discover the world like never before with Kuttand, your all-in-one travel app designed to make your adventures seamless and unforgettable. Whether you\'re planning a weekend getaway or a month-long expedition, Kuttand is your trusty sidekick, providing everything you need from start to finish.',
+        keywords:`top 10 ${category != null ? category[0]?.name : ''} in Kuttanad,top 10 ${category != null ? category[0]?.name : ''} in Alappuzha,${category != null ? category[0]?.name : ''} in Kuttanad,${category != null ? category[0]?.name : ''} in Kuttanad,${name} in Kuttanad, ${name}, Best ${category != null ? category[0]?.name : ''} in Kerala`,
         openGraph: {
             images: [image],
         },
@@ -56,11 +64,18 @@ type Place = {
     longitude: number;
 }[];
 
+type Category = {
+    id: number;
+    name: string | null;
+    type: unknown;
+    image: string;
+}[]
 export default async function Page({ params }: { params: { id: string } }) {
 
     const { db, connection } = await getDb2();
     var place: Place | null = null;
     var ShareName: string = "";
+    var category:Category | null = null;
     var image: string = "";
     const share = await db.select().from(AppShareTable).where(eq(AppShareTable.userId, params.id)).limit(1);
     if (share.length > 0) {
@@ -68,6 +83,9 @@ export default async function Page({ params }: { params: { id: string } }) {
         const SharePlace = share[0].pageId;
         if (share != null) {
             place = await db.select().from(app_place).where(eq(app_place.id, SharePlace));
+        }
+        if(place != null){
+            category = await db.select().from(app_categories).where(eq(app_categories.id,place[0].app_category_id)).limit(1);
         }
     } else {
         return notFound();
@@ -145,5 +163,50 @@ export default async function Page({ params }: { params: { id: string } }) {
             <Image src={'/assets/app/google_play.png'} width={150} height={70} alt="Kuttanad App" />
         </Link>
     </div>
+    {place != null ? <JsonLd data={{
+      "@context": "https://schema.org/",
+      "@type": "ImageObject",
+      "contentUrl": `https://mykuttanadu.s3.us-west-1.amazonaws.com/${place[0].images[0]}`,
+      "license": "https://porukaracollege.in/license",
+      "acquireLicensePage": "https://porukaracollege.in/",
+      "creditText": "My Kuttanad App",
+      "creator": {
+        "@type": "Company",
+        "name": "Fr.Porukara CMI college"
+       },
+      "copyrightNotice": "My Kuttanad App"
+    
+    }} /> : ''}
+    {place != null && category != null && <JsonLd data={{
+      "@context": "https://schema.org/",
+      "@type": "Review",
+      "itemReviewed": {
+        "@type": `${category[0].name}`,
+        "image": `https://mykuttanadu.s3.us-west-1.amazonaws.com/${place[0].images[0]}`,
+        "name":   `${place[0].name}`,
+        "priceRange": "$100",
+        "telephone": "1234567",
+        "address" :{
+          "@type": "PostalAddress",
+          "streetAddress": "Alappuzha",
+          "addressLocality": "Kerala",
+          "addressRegion": "Kerala",
+          "postalCode": "689105",
+          "addressCountry": "IN"
+        }
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.5"
+      },
+      "author": {
+        "@type": "Company",
+        "name": "Fr.Porukara College"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "My Kuttanad App"
+      }
+    }} />}
 </div>
 }
