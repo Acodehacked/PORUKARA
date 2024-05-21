@@ -83,7 +83,7 @@ export default function page() {
                                 "@type": "CourseInstance",
                                 "courseMode": "full-time",
                                 "endDate": "2024-06-01",
-                                "startDate": `${course.duration == '4 years' ? "2028-06-30" : '"2026-06-15"'}`
+                                "startDate": `${course.duration == '4 Year' ? "2028-06-30" : '"2026-06-15"'}`
                             },
                             "offers": {
                                 "@type": "Offer",
