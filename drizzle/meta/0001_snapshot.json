@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "1efc2284-609e-4dfb-9257-5b5c813fa9a9",
-  "prevId": "f09d8ab4-6ead-45c1-9ae6-7a4d9f0d6151",
+  "id": "c9604a02-6b91-42e5-a6a7-6035c4aed345",
+  "prevId": "1efc2284-609e-4dfb-9257-5b5c813fa9a9",
   "tables": {
     "AdminLoginTable": {
       "name": "AdminLoginTable",
@@ -585,6 +585,72 @@
       "compositePrimaryKeys": {
         "QuestionsDb_id": {
           "name": "QuestionsDb_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "webcode_enquiries": {
+      "name": "webcode_enquiries",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "tname": {
+          "name": "tname",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tphone": {
+          "name": "tphone",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tmail": {
+          "name": "tmail",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "t_type": {
+          "name": "t_type",
+          "type": "varchar(300)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tmessage": {
+          "name": "tmessage",
+          "type": "varchar(5000)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "date": {
+          "name": "date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "webcode_enquiries_id": {
+          "name": "webcode_enquiries_id",
           "columns": [
             "id"
           ]
