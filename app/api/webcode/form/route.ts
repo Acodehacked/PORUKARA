@@ -7,6 +7,16 @@ export async function POST(req: Request) {
     const data = await req.json();
     const { db, connection } = await getDb2();
     const id = data.value;
+    const sendMail = async() =>{
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwiSJH0plzPpohCm4Kmuip65mZaLyQspEn3JhPGLIJ7M792PanWTGUdqgpyAP7ydWFx/exec',{
+            method:'post',
+            body: JSON.stringify({
+                name:data.name,
+                phone:data.phone,
+                recipient:data.mail
+            })
+        })
+    } 
     var categories;
     if (data != null) {
         const response = await db.insert(WebcodeFormTable).values({
@@ -17,6 +27,7 @@ export async function POST(req: Request) {
             message:data.message,
         });
         connection.end();
+        sendMail();
         return NextResponse.json({
             data: response,
             error: null
