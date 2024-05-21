@@ -143,7 +143,7 @@ export const WebcodeFormTable = mysqlTable('webcode_enquiries', {
   name: varchar('tname',{length:200}).notNull(),
   phone: varchar('tphone',{length:200}).notNull(),
   email: varchar('tmail',{length:200}).notNull(),
-  type: varchar('t_type',{length:300, enum:['Web Designing','Web Development','Web Application','App Development','Poster Designing','Logo Making']}).notNull(),
+  type: varchar('t_type',{length:300, enum:['Web Designing','Web Development','Web Application','App Development','Poster Designing','Logo Designing']}).notNull(),
   message: varchar('tmessage',{length:5000}).notNull(),
   added_on : timestamp('date').notNull().defaultNow()
 });
