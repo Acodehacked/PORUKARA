@@ -2,7 +2,13 @@ import { Metadata } from "next";
 import React from "react";
 import './globals.css'
 import { Manrope,Bebas_Neue, Rubik, Work_Sans, Poppins } from 'next/font/google'
-
+import type { Viewport } from 'next'
+ 
+export const viewport: Viewport = {
+  width: 500,
+  maximumScale: 1,
+  userScalable: false,
+}
 const manrop = Poppins({ subsets: ['latin'],
 display:'swap',
 weight:["300","400","500","600","700","800","900"]
