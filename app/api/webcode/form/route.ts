@@ -6,9 +6,8 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
     const data = await req.json();
     const { db, connection } = await getDb2();
-    const id = data.value;
-    const sendMail = async() =>{
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyn6esA4BhK4xaAePSfKViXulOZWvswg_vPOj-qiZOwkp83HMKDQMO9Izo_U1u1mVP2/exec',{
+    const sendMail = () =>{
+        fetch('https://script.google.com/macros/s/AKfycbyn6esA4BhK4xaAePSfKViXulOZWvswg_vPOj-qiZOwkp83HMKDQMO9Izo_U1u1mVP2/exec',{
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
@@ -20,7 +19,6 @@ export async function POST(req: Request) {
             })
         });
     } 
-    var categories;
     if (data != null) {
         const response = await db.insert(WebcodeFormTable).values({
             name:data.name,
