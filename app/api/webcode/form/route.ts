@@ -8,14 +8,14 @@ export async function POST(req: Request) {
     const { db, connection } = await getDb2();
     const id = data.value;
     const sendMail = async() =>{
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwiSJH0plzPpohCm4Kmuip65mZaLyQspEn3JhPGLIJ7M792PanWTGUdqgpyAP7ydWFx/exec',{
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzslxOU6iqFlRIvjytFuWh382Z3oR4fgiILZOghe5YYNRv5YhyzrdpjIH-vRJomtMeD/exec',{
             method:'post',
             body: JSON.stringify({
                 name:data.name,
                 phone:data.phone,
                 recipient:data.mail
             })
-        })
+        });
     } 
     var categories;
     if (data != null) {
