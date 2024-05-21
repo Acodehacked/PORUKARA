@@ -9,7 +9,10 @@ export async function POST(req: Request) {
     const id = data.value;
     const sendMail = async() =>{
         const response = await fetch('https://script.google.com/macros/s/AKfycbzslxOU6iqFlRIvjytFuWh382Z3oR4fgiILZOghe5YYNRv5YhyzrdpjIH-vRJomtMeD/exec',{
-            method:'post',
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
                 name:data.name,
                 phone:data.phone,
