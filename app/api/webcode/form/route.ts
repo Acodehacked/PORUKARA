@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const { db, connection } = await getDb2();
     const id = data.value;
     const sendMail = async() =>{
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzslxOU6iqFlRIvjytFuWh382Z3oR4fgiILZOghe5YYNRv5YhyzrdpjIH-vRJomtMeD/exec',{
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyn6esA4BhK4xaAePSfKViXulOZWvswg_vPOj-qiZOwkp83HMKDQMO9Izo_U1u1mVP2/exec',{
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
