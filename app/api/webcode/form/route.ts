@@ -1,7 +1,4 @@
 'use server'
-import { getDb2 } from "@/db";
-import { app_place } from "@/db/schema";
-import { eq, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
