@@ -5,7 +5,7 @@ import { Manrope,Bebas_Neue, Rubik, Work_Sans, Poppins } from 'next/font/google'
 import type { Viewport } from 'next'
  
 export const viewport: Viewport = {
-  width: 500,
+  width: 'device-width',
   maximumScale: 1,
   userScalable: false,
 }
