@@ -22,6 +22,7 @@ export const metadata: Metadata = {
         default: 'Fr. Porukara CMI College of Advanced Studies'
     },
     generator: 'porukaracollege, PorukaraCollege, Porukara Website, porukara, Fr Porukara School, Official Website of Porukara CMI College, Kerala. e college is named after Rev. Fr. Thomas Porukara, a great  and co-founder of the CMI Catholic Religious Congregation. The college is managed by Mount Tabor  and Charitable Society of Gagultha Monastery, Champakulam, CMI Colleges in Kuttanadu, Top College in Kerala and Kuttanadu',
+    keywords: 'Fr. Porukara CMI College, BCA Colleges,Best BCA, B.Com COllege in kerala,Colleges in Kerala,Best Colleges in Kuttanad, Best College in Alappuzha,BCA,B.Com',
     description: 'Official Website of Porukara CMI Colllege, Champakulam, Kerala, India',
     openGraph: {
         type: "website",

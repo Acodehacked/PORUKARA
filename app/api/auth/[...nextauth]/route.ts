@@ -29,14 +29,14 @@ const authOptions = NextAuth({
         let User = {
           id: '',
           name: '',
-          email: ''
+          email: '',
         }
         connection.end();
         if (user.length > 0) {
           User = {
             id: user[0].id.toString(),
             name: user[0].name || "",
-            email: user[0].email || ""
+            email: user[0].email || "",
           };
           if (await compare(credentials?.password || '',user[0].password || 'Unknownpass')) {
             return User;
