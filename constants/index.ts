@@ -581,6 +581,11 @@ export const DEMOEVENTS = [
     {
         title: '',
         desc: '',
+        image: '/assets/m1.jpeg'
+    },
+    {
+        title: '',
+        desc: '',
         image: '/assets/Mukhamukham.jpg'
     },
     {
