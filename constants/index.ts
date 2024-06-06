@@ -43,8 +43,8 @@ export const COURSES = [
         path: '/Course/BCA'
     },
     {
-        title: '*MSW',
-        text: '*MSW',
+        title: 'MSW',
+        text: 'MSW',
         description: '',
         duration: '2 Year',
         image: '',
@@ -53,8 +53,8 @@ export const COURSES = [
         path: '/Course/MSW'
     },
     {
-        title: '*Msc Psychology',
-        text: '*Msc Psychology',
+        title: 'Msc Psychology',
+        text: 'Msc Psychology',
         description: '',
         duration: '2 Year',
         image: '',
@@ -63,8 +63,8 @@ export const COURSES = [
         path: '/Course/MscPsychology'
 
     }, {
-        title: '*Msc Artificial Intelligence (AI)',
-        text: '*Msc Artificial Intelligence (AI)',
+        title: 'Msc Artificial Intelligence (AI)',
+        text: 'Msc Artificial Intelligence (AI)',
         description: '',
         duration: '2 Year',
         image: '',
@@ -73,8 +73,8 @@ export const COURSES = [
         path: '/Course/MscAi'
     },
     {
-        title: '*BSW',
-        text: '*BSW',
+        title: 'BSW',
+        text: 'BSW',
         description: '',
         duration: '4 Year',
         image: '',
@@ -83,8 +83,8 @@ export const COURSES = [
         path: '/Course/BSW'
     },
     {
-        title: '*Bsc Psychology',
-        text: '*Bsc Psychology',
+        title: 'Bsc Psychology',
+        text: 'Bsc Psychology',
         description: '',
         duration: '4 Year',
         image: '',
@@ -92,17 +92,6 @@ export const COURSES = [
         link: '/',
         path: '/Course/BscPsychology'
     },
-    {
-        title: '*BBA',
-        text: '*BBA',
-        description: '',
-        image: '',
-        duration: '4 Year',
-        eligibility: '+2 or Equivalent Course',
-        link: '/',
-        path: '/Course/BBA'
-    },
-
 ]
 export const AddedDeps = [
     {
