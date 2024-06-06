@@ -32,9 +32,6 @@ export default function page() {
                 <div className="px-2 max-w-[100%] md:min-w-[100px] w-full md:max-w-[30%] pt-3">
                     <div className="p-2 sticky top-[6rem] w-full rounded-xl bg-white py-5">
                         <div className="flex flex-col gap-2">
-                            <div className="pb-2 pt-2">
-                                * subject to University Approval
-                            </div>
 
                             {COURSES.map((item, index) => {
                                 return <Link key={index} className="hover:translate-x-1 hover:text-primary transition-all duration-150 p-2 border-b-2 border-b-black/10 font-semibold" href={`#${item?.title}`} >{item?.title}</Link>

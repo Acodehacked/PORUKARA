@@ -37,11 +37,6 @@ export default function Page({ params }: { params: { name: string } }) {
     var otheru = COURSES.filter((item) => item.title != Coursee?.title && item.eligibility == '+2 or Equivalent Course');
     var otherp = COURSES.filter((item) => item.title != Coursee?.title && item.eligibility != '+2 or Equivalent Course');
     return <main className="pt-[200px] pb-[60px] screen">
-        <div className="px-3 pb-1 pt-1 flex justify-center">
-            {Coursee?.title?.includes('*') && <div className="bg-red-600 text-white w-max px-2 py-1 rounded-sm">
-                Course subject to university approval
-            </div>}
-        </div>
         {/* <h2 className="text-[30px]">{params.name}</h2> */}
         <div className="max-w-[850px] w-full mx-auto">
             
