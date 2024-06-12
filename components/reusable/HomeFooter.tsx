@@ -16,8 +16,9 @@ const HomeFooter = () => {
             <div className='p-2 bg-slate-900/20 mt-3 rounded-xl'>
               <Link className='text-link-dark mb-2' href={'https://maps.app.goo.gl/N1eJMUBRXvwBzvay7'} >Locate On Maps</Link>
               <p className='mt-3'>
-                +91-9273873873<br />
-                +91-7389374898<br />
+                0477-2737399<br />
+                +91 9961465063<br />
+                +91 9061062517<br />
                 <Link className='font-medium underline' href={'mailto:porukaracollege@gmail.com'} >porukaracollege@gmail.com</Link>
               </p>
             </div>
