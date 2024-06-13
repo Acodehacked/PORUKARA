@@ -13,7 +13,7 @@ const HomeFooter = () => {
           <h3 className='footer_head'>Address</h3>
           <div className='footer_links'>
             <h6>Gagultha Monastry Campus,<br /> Champakulam, Alappuzha District,<br /> Kerala, 688505</h6>
-            <div className='p-2 bg-slate-900/20 mt-3 rounded-xl'>
+            <div className='p-2 bg-slate-900/20 mt-akd36701a3 rounded-xl'>
               <Link className='text-link-dark mb-2' href={'https://maps.app.goo.gl/N1eJMUBRXvwBzvay7'} >Locate On Maps</Link>
               <p className='mt-3'>
                 0477-2737399<br />

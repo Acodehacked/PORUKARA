@@ -226,7 +226,72 @@ export const ACTIVITIES = [
         path:'/Activities',
         desc: 'Every	parent/Guardian	of	a	student	on	rolls	become	a member of the association. The association takes special interest in the development of the college and renders every possible help to the management and teachers for the smooth running of the college.'
     },
-]
+];
+export const ADDONCOURSES = [
+    {
+        text: 'Certification in AI',
+        description: '',
+        path: '/AddonCourses',
+        category:'computer'
+    },
+    {
+        text: 'Certification in Python',
+        description: '',
+        category:'computer',
+        path: '/AddonCourses',
+    },
+    {
+        text: 'Advanced Excel',
+        description: '',
+        path: '/AddonCourses',
+        category:'computer'
+    },
+    {
+        text: 'Certification in Office Administration',
+        description: '',
+        path: '/AddonCourses',
+    },
+    {
+        text: 'Logistics Management',
+        description: '',
+        path: '/AddonCourses',
+    },
+    {
+        text: 'Certification in Robotics',
+        description: '',
+        path: '/AddonCourses',
+        category:'computer'
+    },
+    {
+        text: 'German',
+        category:'language',
+        description: '',
+        path: '/AddonCourses',
+    },
+    {
+        text: 'Spanish',
+        category:'language',
+        description: '',
+        path: '/AddonCourses',
+    },
+    {
+        text: 'French',
+        description: '',
+        category:'language',
+        path: '/AddonCourses',
+    },
+    {
+        text: 'Spoken English',
+        description: '',
+        category:'language',
+        path: '/AddonCourses',
+    },
+    {
+                text: 'Certificate course in Drone Technology',
+                description: '',
+                path: '/AddonCourses',
+            },
+];
 export const USER_NAVLINKS = [
     {
         text: 'Home',
@@ -321,11 +386,22 @@ export const USER_NAVLINKS = [
         submenu: []
     },
     {
+        text: 'Addon Courses',
+        path: '/AddonCourses',
+        submenu: [
+            ...ADDONCOURSES
+        ]
+    },
+    {
         text: 'Contact',
         path: '/Contact',
         submenu: []
     },
 ];
+
+
+
+
 export const USER_FOOTERLINKS = [
     {
         text: 'Quick Links',
