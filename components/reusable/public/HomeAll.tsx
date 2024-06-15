@@ -54,7 +54,7 @@ const HomeAll = () => {
                 {/* <div className='absolute z-[5] right-0 bottom-[2rem] left-0 flex justify-center gap-2 text-white '> */}
 
                 {/* </div> */}
-                <div className='absolute z-[5] bg-gradient-to-r md:from-foreground/30 md:to-foreground/30  from-foreground/90 to-foreground/40 md:bg-foreground/30 top-0 right-0 bottom-0 left-0'></div>
+                <div className='absolute z-[5] bg-gradient-to-r from-foreground/30 to-foreground/30  md:from-foreground/90 md:to-foreground/40 md:bg-foreground/30 top-0 right-0 bottom-0 left-0'></div>
 
                 <HomeCarousel />
 

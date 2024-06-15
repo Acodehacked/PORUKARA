@@ -623,24 +623,35 @@ export const ADMINSIDEBARLINKS1 = [
 
 export const ADMINSIDEBARLINKS = [
     {
+        onlyDev: false,
         title: 'Dashboard ',
         icon: 'bxs-dashboard',
         link: '/dashboard',
         submenu: []
     },
-    // {
-    //     title: 'Add Questions',
-    //     icon: 'bx-question-mark',
-    //     link: '/AddQuestions',
-    //     submenu: []
-    // },
     {
+        onlyDev: true,
+        title: 'Add Questions',
+        icon: 'bx-question-mark',
+        link: '/AddQuestions',
+        submenu: []
+    },
+    {
+        onlyDev: true,
+        title: 'Questions',
+        icon: 'bx-book-alt',
+        link: '/AdminQuestions',
+        submenu: []
+    },
+    {
+        onlyDev: false,
         title: 'New Questionare',
         icon: 'bxs-book-reader',
         link: '/Questionare',
         submenu: []
     },
     {
+        onlyDev: false,
         title: 'Response Analysis',
         icon: 'bxs-book',
         link: '/Questions',

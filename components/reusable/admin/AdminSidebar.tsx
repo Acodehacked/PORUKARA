@@ -1,3 +1,4 @@
+'use client'
 import { AdminNavbarContext } from '@/components/contexts/AdminNavbarContext'
 import { ADMINSIDEBARLINKS } from '@/constants'
 import { cn } from '@/lib/utils'
@@ -6,15 +7,19 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useContext, useState } from 'react'
 
-const AdminSidebar = () => {
+const AdminSidebar = ({user}:{user?: string | null | undefined }) => {
   const path = usePathname();
-  const navbarctx = useContext(AdminNavbarContext);
+  // const navbarctx = useContext(AdminNavbarContext);
 
   return (
     <div className="flex flex-col gap-3 max-h-[100%] h-full overflow-y-scroll overflow-x-hidden px-3 pb-6 pt-6">{
       ADMINSIDEBARLINKS.map((navlink, index) => {
-
-        return <Link onClick={() => { navbarctx.openNavbar() }} className={cn("py-4 px-3 border-[0.02rem] border-white/20 text-foreground gap-3  flex justify-center flex-col rounded-xl transition-all", path == '/admin'+navlink.link ? 'bg-muted text-foreground' : 'text-white')} href={'/admin'+navlink.link} key={index}>
+        if(navlink.onlyDev){
+          if(user?.toString() != 'abina5448@gmail.com'){
+            return;
+          }
+        }
+        return <Link className={cn("py-4 px-3 border-[0.02rem] border-white/20 text-foreground gap-3  flex justify-center flex-col rounded-xl transition-all", path == '/admin'+navlink.link ? 'bg-muted text-foreground' : 'text-white')} href={'/admin'+navlink.link} key={index}>
           <div className='flex items-center gap-3'>
             <i className={`bx ${navlink.icon} text-[23px]`}></i>
             <span>{navlink.title}</span>

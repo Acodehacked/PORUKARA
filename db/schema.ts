@@ -204,21 +204,43 @@ export const AppShareTable = mysqlTable('app_share',{
   updated_at : timestamp("updated_at").default(sql`CURRENT_TIMESTAMP`),
 });
 
+export const AppPanchayats = mysqlTable('app_panchayats',{
+  id: int('id').primaryKey().autoincrement(),
+  name: varchar('tname',{length:200}),
+},(AppPanchayats) => ({
+  nameIndex: uniqueIndex('name_idx').on(AppPanchayats.name),
+}))
+
 export const app_place = mysqlTable('app_place',{
   id: int('id').primaryKey().autoincrement(),
   app_category_id: int('app_category_id').notNull().references(()=>app_categories.id),
   name: varchar('name',{length:300}).notNull(),
+  place: varchar('place',{length:200}),
+  sub_place: varchar('sub_place',{length:300}).notNull(),
+  panchayatId: int('panchayat_id').notNull().references(()=>AppPanchayats.id),
+  wardNo: int('ward_no').notNull(),
+  address: varchar('address',{length:5000}).notNull(),
   phone: json('phone').$type<string[]>().notNull().default([]),
   email: varchar('email',{length:300}),
   website: text('website'),
-  description: varchar('description',{length:800}),
+  socialLinks: json('social').$type<{
+    type:string,
+    link:string,
+    text:string
+  }[]>().notNull().default([]),
+  description: varchar('description',{length:1000}),
+  additionalData: varchar('additional_data',{length:1000}),
   images: json('images').$type<string[]>().notNull().default([]),
   videos: json('videos').$type<string[]>().notNull().default([]),
   facilities: json('facilities').$type<string[]>().notNull().default([]),
   activities : json('activities').$type<string[]>().notNull().default([]),
+  workingDays: json('working_days').$type<{from:string,to:string}>().notNull().default({from:'Monday',to:'Friday'}),
+  openingTime: json('opening_time').$type<{from:string,to:string}>().notNull().default({from:'9:00am',to:'5:00pm'}),
   nearest_places : json('nearest_places').$type<number[]>().notNull().default([]),
   latitude: int('latitude').notNull().default(0),
-  longitude: int('longitude').notNull().default(0)
+  longitude: int('longitude').notNull().default(0),
+  addedAt: timestamp('added_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
 },(app_place) => ({
   name: uniqueIndex('name_idx').on(app_place.name),
 }))
