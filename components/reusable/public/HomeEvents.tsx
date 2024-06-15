@@ -35,7 +35,7 @@ const HomeEvents = () => {
     return (
         <div className='bg-zinc-200 relative min-h-[500px] flex md:flex-row flex-col pt-[0] mt-[10px] md:mt-0'>
             <div id="latest-events" style={{ scrollSnapMarginTop: '-200px', scrollPaddingTop: '200px' }} className='mt-[-40px] absolute top-[-50px]'></div>
-            <div className='w-full flex flex-col screen-lg overflow-hidden'>
+            <div className='w-full flex flex-col screen px-6 overflow-hidden'>
                 <div className='md:w-[40%] w-full h-full flex flex-col justify-between'>
                     <motion.h2 initial="hidden"
                         whileInView="visible"
@@ -47,11 +47,11 @@ const HomeEvents = () => {
                         }} className='text-foreground text-[50px] font-semibold p-3'>Latest Events</motion.h2>
 
                 </div>
-                <div className='screen-lg modern_scrollbar flex justify-end flex-col pb-6'>
+                <div className='screen modern_scrollbar flex justify-end flex-col pb-6'>
                     <Carousel >
                         <CarouselContent>
                             {DEMOEVENTS.map((item, index) => {
-                                return <CarouselItem key={index} className="lg:basis-1/4 sm:basis:1/2 basis-1/1 cursor-pointer">
+                                return <CarouselItem key={index} className="lg:basis-1/5 sm:basis:1/1.5 basis-1/1.5 cursor-pointer">
                                     <motion.div
                                         initial="hidden"
                                         whileInView="visible"
@@ -60,7 +60,7 @@ const HomeEvents = () => {
                                         variants={{
                                             visible: { opacity: 1, y: 0 },
                                             hidden: { opacity: 0, y: 200 }
-                                        }} key={index} className={`group event_card w-full w-max-[300px] bg-zinc-50 h-[330px] mx-2 mt-2 rounded-xl relative overflow-hidden`}>
+                                        }} key={index} className={`group event_card w-full max-w-[450px] bg-zinc-50 md:h-[330px] h-[270px] mt-2 rounded-sm relative overflow-hidden`}>
                                         <div className="bg absolute group-hover:scale-[1.1] duration-700 transition-all scale-100 top-0 bottom-0 left-0 right-0 z-[1]">
                                             <Image src={item.image} className='object-contain  transition-all duration-500' alt='d' fill={true} />
                                         </div>

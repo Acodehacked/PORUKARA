@@ -23,7 +23,7 @@ export const COURSES = [
         text: 'BA English',
         image: '',
         description: '',
-        specializations:[
+        specializations: [
             "Media Studies",
             "Film Studies"
         ],
@@ -108,122 +108,122 @@ export const AddedDeps = [
 export const HOMECENTERS = [
     {
         text: 'My Prayer Room',
-        image:'prayer',
-        desc:"A serene sanctuary on campus, our inclusive prayer room offers solace to all students, regardless of their background, providing a tranquil space for reflection and rejuvenation during moments of mental strain."
+        image: 'prayer',
+        desc: "A serene sanctuary on campus, our inclusive prayer room offers solace to all students, regardless of their background, providing a tranquil space for reflection and rejuvenation during moments of mental strain."
     },
     {
         image: 'ed',
         text: 'ED Club',
-        desc:"The Entrepreneurship Development (ED) Club at our college fosters a culture of innovation and ambition among students, empowering them to explore their entrepreneurial potential through workshops, networking events, and mentorship opportunities."       
+        desc: "The Entrepreneurship Development (ED) Club at our college fosters a culture of innovation and ambition among students, empowering them to explore their entrepreneurial potential through workshops, networking events, and mentorship opportunities."
     },
     {
         image: 'caps',
         text: 'CAPS- Centre for Academic and Professional Support',
-        desc:"The Academic and Professional Support Centre at our college serves as a cornerstone for student success and teacher empowerment, offering tailored guidance, resources, and workshops to enhance academic performance, career readiness, and personal development."
-        
+        desc: "The Academic and Professional Support Centre at our college serves as a cornerstone for student success and teacher empowerment, offering tailored guidance, resources, and workshops to enhance academic performance, career readiness, and personal development."
+
     }, {
         image: 'ai',
         text: 'Centre for Artificial Intelligence',
-        desc:"At the forefront of innovation, our Artificial Intelligence Center serves as a hub for cutting-edge research, education, and collaboration, driving advancements in AI technology and empowering students to shape the future through hands-on learning and exploration."
+        desc: "At the forefront of innovation, our Artificial Intelligence Center serves as a hub for cutting-edge research, education, and collaboration, driving advancements in AI technology and empowering students to shape the future through hands-on learning and exploration."
     }
     , {
         image: 'health',
         text: 'Centre for Counselling and Health services',
-        desc:"Our Counselling and Health Services Centre provides a confidential and supportive environment for students to address mental health concerns, offering a range of resources, therapy sessions, and wellness programs to promote holistic well-being and academic success."
-        
+        desc: "Our Counselling and Health Services Centre provides a confidential and supportive environment for students to address mental health concerns, offering a range of resources, therapy sessions, and wellness programs to promote holistic well-being and academic success."
+
     }
     , {
         image: 'social',
         text: 'Centre for Social Action',
-        desc:"The Centre for Social Action at our college is a catalyst for positive change, empowering students to engage with pressing societal issues through volunteerism, advocacy, and community outreach programs, fostering a culture of compassion and social responsibility."
-        
+        desc: "The Centre for Social Action at our college is a catalyst for positive change, empowering students to engage with pressing societal issues through volunteerism, advocacy, and community outreach programs, fostering a culture of compassion and social responsibility."
+
     }
     , {
         image: 'charity',
         text: 'Centre for Charity Works',
-        desc:"At our college, the Centre for Charity Works is a beacon of compassion, dedicated to supporting marginalized communities through philanthropic initiatives, fundraising efforts, and volunteer projects, embodying our commitment to creating a more equitable and compassionate society."
+        desc: "At our college, the Centre for Charity Works is a beacon of compassion, dedicated to supporting marginalized communities through philanthropic initiatives, fundraising efforts, and volunteer projects, embodying our commitment to creating a more equitable and compassionate society."
     }
     ,
     , {
         image: 'placement',
         text: 'Centre for Placements and Career counselling & Guidance',
-        desc:"The Centre for Career Counselling, Guidance, and Placements at our college is a dynamic resource hub, providing personalized guidance, skills development workshops, and networking opportunities to empower students in navigating their career paths successfully. Through tailored support and industry connections, we aim to facilitate meaningful career transitions and foster lifelong professional growth."
+        desc: "The Centre for Career Counselling, Guidance, and Placements at our college is a dynamic resource hub, providing personalized guidance, skills development workshops, and networking opportunities to empower students in navigating their career paths successfully. Through tailored support and industry connections, we aim to facilitate meaningful career transitions and foster lifelong professional growth."
     }
     ,
     , {
         image: 'publication',
         text: 'Centre for Publications',
-        desc:"The Centre for Publications, specializing in journals, at our college is a vital platform for scholarly dissemination and academic exchange. Through rigorous peer review and editorial oversight, we curate high-quality publications that contribute to the advancement of knowledge across various disciplines, fostering intellectual dialogue and innovation within our academic community."
-        
+        desc: "The Centre for Publications, specializing in journals, at our college is a vital platform for scholarly dissemination and academic exchange. Through rigorous peer review and editorial oversight, we curate high-quality publications that contribute to the advancement of knowledge across various disciplines, fostering intellectual dialogue and innovation within our academic community."
+
     },
     , {
         image: 'arts',
         text: 'Centre for Arts & Culture',
-        desc:"The Centre for Arts and Culture at our college is a vibrant hub celebrating creativity and diversity.Through exhibitions, various sports and game activities, performances, workshops, and cultural events. we enrich the campus community with opportunities for artistic expression and exploration,fostering a deeper appreciation for the arts and promoting cross-cultural understanding and engagement."
+        desc: "The Centre for Arts and Culture at our college is a vibrant hub celebrating creativity and diversity.Through exhibitions, various sports and game activities, performances, workshops, and cultural events. we enrich the campus community with opportunities for artistic expression and exploration,fostering a deeper appreciation for the arts and promoting cross-cultural understanding and engagement."
     },
     {
         image: 'teacher',
         text: 'Centre for Teacher learning Enhancement',
-        desc:"The Teacher Learning Enhancement Centre at our college is dedicated to fostering continuous professional development among educators. Through workshops, seminars, mentoring, and access to educational resources, we empower teachers to refine their pedagogical skills, stay abreast of the latest teaching methodologies, and create enriching learning experiences for their students."
+        desc: "The Teacher Learning Enhancement Centre at our college is dedicated to fostering continuous professional development among educators. Through workshops, seminars, mentoring, and access to educational resources, we empower teachers to refine their pedagogical skills, stay abreast of the latest teaching methodologies, and create enriching learning experiences for their students."
     },
     {
         image: 'addon',
         text: 'Centre for Addon Courses ',
-        desc:"The Center for Add-on Courses at our college offers supplementary learning opportunities to students, enhancing their academic and professional skills beyond their core curriculum. Through a diverse range of courses, workshops, and certifications, we empower students to broaden their knowledge base, explore new interests, and develop valuable competencies to thrive in their chosen fields."
-        
-        
+        desc: "The Center for Add-on Courses at our college offers supplementary learning opportunities to students, enhancing their academic and professional skills beyond their core curriculum. Through a diverse range of courses, workshops, and certifications, we empower students to broaden their knowledge base, explore new interests, and develop valuable competencies to thrive in their chosen fields."
+
+
     },
     {
         image: 'prism',
         text: 'PRISM ',
-        desc:"Porukara Research, Innovation, and Social Action Mentoring (PRISM) at our college serves as a catalyst for impactful change. Through mentorship, collaboration, and resources, we empower students and faculty to pursue cutting-edge research, develop innovative solutions, and engage in meaningful social action initiatives that address pressing societal challenges, fostering a culture of academic excellence and community impact."
-        
+        desc: "Porukara Research, Innovation, and Social Action Mentoring (PRISM) at our college serves as a catalyst for impactful change. Through mentorship, collaboration, and resources, we empower students and faculty to pursue cutting-edge research, develop innovative solutions, and engage in meaningful social action initiatives that address pressing societal challenges, fostering a culture of academic excellence and community impact."
+
     },
     {
         image: 'kuttanadu',
         text: 'My Kuttanadu ',
-        desc:"The Kuttanadu Community Engagement Centre at our college is dedicated to initiating and coordinating meaningful activities within the local region. Through partnerships with community organizations, grassroots initiatives, and student-led projects, we aim to address the unique needs and challenges of the Kuttanadu area, fostering sustainable development, social cohesion, and positive change within the community."
+        desc: "The Kuttanadu Community Engagement Centre at our college is dedicated to initiating and coordinating meaningful activities within the local region. Through partnerships with community organizations, grassroots initiatives, and student-led projects, we aim to address the unique needs and challenges of the Kuttanadu area, fostering sustainable development, social cohesion, and positive change within the community."
     },
     {
         image: 'nature',
         text: 'Nature Club',
-        desc:"The Nature Club at our college is a vibrant community of environmentally conscious individuals dedicated to promoting appreciation for the natural world. Through outdoor excursions, conservation projects, and educational events, we inspire stewardship and advocate for sustainable practices, fostering a deeper connection with nature and a commitment to environmental conservation among students and faculty alike."
+        desc: "The Nature Club at our college is a vibrant community of environmentally conscious individuals dedicated to promoting appreciation for the natural world. Through outdoor excursions, conservation projects, and educational events, we inspire stewardship and advocate for sustainable practices, fostering a deeper connection with nature and a commitment to environmental conservation among students and faculty alike."
     },
 ];
 export const ACTIVITIES = [
     {
         title: 'National Service Scheme (NSS)',
         text: 'National Service Scheme (NSS)',
-        path:'/Activities/NSS',
-        description:'',
+        path: '/Activities/NSS',
+        description: '',
         desc: 'We have a well organized NSS wing. Students who are interested in public services can join NSS unit of the college.This helps the students to improve their  attitude towards doing	public services.NSS	improves	the	student\'s	self	confi-dence in order to attain a good discipline in their life NSS with a motto \'Not Me, But you’, ‘Healthy Youth for Healthy India\', is a voluntary association of students functions '
     },
     {
         title: 'Women Cell',
         text: 'Women Cell',
-        description:'',
-        path:'/Activities',
+        description: '',
+        path: '/Activities',
         desc: 'The women cell functions for the overall development and empowerment of women community in this college. College conducts events in connection with the women’s day celebrations and this is followed by classes rendered by great personalities.'
     },
     {
         title: 'Placement cell',
         text: 'Placement cell',
-        description:'',
-        path:'/Activities',
+        description: '',
+        path: '/Activities',
         desc: 'A placement cell is functioning to assist students in  preparing for a  better future. The centre provides support to the students through  career counseling, workshops, mock interview training, internships and industrial visits and also on campus placements for jobs '
     },
     {
         title: 'SC/ST Cell Equal Opportunities Cell',
-        description:'',
+        description: '',
         text: 'SC/ST Cell Equal Opportunities Cell',
-        path:'/Activities',
+        path: '/Activities',
         desc: 'This cell monitors various schemes of the Universities and	Government	for	the	welfare	of	the	SC/ST	students.'
     },
     {
         title: 'Parent Teacher Association',
-        description:'',
+        description: '',
         text: 'Parent Teacher Association',
-        path:'/Activities',
+        path: '/Activities',
         desc: 'Every	parent/Guardian	of	a	student	on	rolls	become	a member of the association. The association takes special interest in the development of the college and renders every possible help to the management and teachers for the smooth running of the college.'
     },
 ];
@@ -232,65 +232,79 @@ export const ADDONCOURSES = [
         text: 'Certification in AI',
         description: '',
         path: '/AddonCourses',
-        category:'computer'
+        category: 'computer',
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/ai.jpg'
     },
     {
         text: 'Certification in Python',
         description: '',
-        category:'computer',
+        category: 'computer',
         path: '/AddonCourses',
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/pythonfeature.png'
     },
     {
         text: 'Advanced Excel',
         description: '',
         path: '/AddonCourses',
-        category:'computer'
+        category: 'computer',
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/Advanced-Excel.jpg'
     },
     {
         text: 'Certification in Office Administration',
         description: '',
         path: '/AddonCourses',
+        category: 'resource',
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/office+administration.jpg'
     },
     {
         text: 'Logistics Management',
         description: '',
         path: '/AddonCourses',
+        category: 'resource',
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/logisstics+management.jpg'
     },
     {
         text: 'Certification in Robotics',
         description: '',
         path: '/AddonCourses',
-        category:'computer'
+        category: 'computer',
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/robotics.jpg'
     },
     {
         text: 'German',
-        category:'language',
+        category: 'language',
         description: '',
         path: '/AddonCourses',
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/german.jpg'
     },
     {
         text: 'Spanish',
-        category:'language',
+        category: 'language',
         description: '',
         path: '/AddonCourses',
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/spanish.webp'
     },
     {
         text: 'French',
         description: '',
-        category:'language',
+        category: 'language',
         path: '/AddonCourses',
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/french.jpg'
     },
     {
         text: 'Spoken English',
         description: '',
-        category:'language',
+        category: 'language',
         path: '/AddonCourses',
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/spoken+english.jpg'
     },
     {
-                text: 'Certificate course in Drone Technology',
-                description: '',
-                path: '/AddonCourses',
-            },
+        text: 'Certificate course in Drone Technology',
+        description: '',
+        category: 'computer',
+        path: '/AddonCourses',
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/drone+technology.webp'
+    },
 ];
 export const USER_NAVLINKS = [
     {
@@ -507,22 +521,22 @@ export const GlobalAnimationVariant = {
 }
 export const DEMOANNOUNCEMENTS = [
     {
-        day:'25',
-        month:'April',
-        title:"Admissions Open",
-        description:'Admissions Open for BCA, \nBCOM with Finance and Taxation, \nBCOM with Computer Application, \n BA English \n Contact: 9446249412'
+        day: '25',
+        month: 'April',
+        title: "Admissions Open",
+        description: 'Admissions Open for BCA, \nBCOM with Finance and Taxation, \nBCOM with Computer Application, \n BA English \n Contact: 9446249412'
     },
     {
-        day:'10',
-        month:'May',
-        title:"Know more about 4 year UG Programme",
-        description:'A seminar for students and parents organized with MG University. \n Contact for details: 9961465063'
+        day: '10',
+        month: 'May',
+        title: "Know more about 4 year UG Programme",
+        description: 'A seminar for students and parents organized with MG University. \n Contact for details: 9961465063'
     },
     {
-        day:'1',
-        month:'July',
-        title:"Four Year Programme",
-        description:'Four Year Programme Commences'
+        day: '1',
+        month: 'July',
+        title: "Four Year Programme",
+        description: 'Four Year Programme Commences'
     }
 ]
 export const ADMINSIDEBARLINKS1 = [
@@ -743,34 +757,34 @@ export const EventTypes = [
 ];
 export const FACILITES = [
     {
-        text:'library',
-        title:'Library',
-        description:'Library description',
-        image:'library',
+        text: 'library',
+        title: 'Library',
+        description: 'Library description',
+        image: 'library',
     },
     {
-        text:'computerlab',
-        title:'Computer Lab',
-        description:'Computer Lab description',
-        image:'computerlab',
+        text: 'computerlab',
+        title: 'Computer Lab',
+        description: 'Computer Lab description',
+        image: 'computerlab',
     },
     {
-        text:'canteen',
-        title:'Canteen',
-        description:'Canteen description',
-        image:'canteen',
+        text: 'canteen',
+        title: 'Canteen',
+        description: 'Canteen description',
+        image: 'canteen',
     },
     {
-        text:'seminarhall',
-        title:'Seminar Hall',
-        description:'Seminar Hall description',
-        image:'seminarhall',
+        text: 'seminarhall',
+        title: 'Seminar Hall',
+        description: 'Seminar Hall description',
+        image: 'seminarhall',
     },
     {
-        text:'chapel',
-        title:'Chapel',
-        description:'Chapel description',
-        image:'chapel',
+        text: 'chapel',
+        title: 'Chapel',
+        description: 'Chapel description',
+        image: 'chapel',
     },
-   
+
 ]

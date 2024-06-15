@@ -49,7 +49,7 @@ const HeroPage = () => {
       <div className='md:px-4 py-1 w-full ps-6 flex md:w-[100%] relative flex-col items-center top-0  text-white '>
         <div className='top-0 left-0 w-full px-4 right-0 bottom-0 flex flex-col items-start justify-start absolute z-[5]'>
           <div className='w-full'>
-            <div className='grid grid-cols-4 mb-6 md:max-w-[550px]'>
+            <div className='md:grid flex grid-cols-4 mb-6 md:max-w-[550px]'>
               <div className='flex justify-start gap-2 flex-col items-center p-2'>
                 <Image src={'/assets/jesus.jpg'} className='rounded-full overflow-hidden' width={50} height={50} alt="jesus" />
                 <span className="text-[13px] text-center font-medium sm:block hidden">Our Guiding force</span>
@@ -69,15 +69,15 @@ const HeroPage = () => {
             </div>
           </div>
           <AnimatedText text='Shaping_Futures,- Inspiring_Excellence' className='z-[1] mx-0 mt-2 mb-0 text-start sm:text-[42px] text-white [text-shadow:1px_4px_5px_rgba(0,0,0,0.8)] text-[36px] font-extrabold' />
-          <p className='p-0 m-0 mb-4 sm:text-[24px] font-semibold px-2 text-[20px] text-white/60 text-start z-[1]'>Your Pathway to Advanced Learning and Success.</p>
+          <p className='p-0 m-0 mb-4 sm:text-[24px] font-semibold px-2 text-[18px] text-white/60 text-start z-[1]'>Your Pathway to Advanced Learning and Success.</p>
           <div className='px-5 rounded-md py-3 bg-black/60'>
-            <h2 className="pb-2 text-yellow-200 [text-shhadow:0px_0px_1px_rgba(0,0,0,0.7)] text-[14px]">&gt; &gt; Upcoming Events</h2>
+            <h2 className="pb-2 text-yellow-200 [text-shhadow:0px_0px_1px_rgba(0,0,0,0.7)] md:text-[14px] text-[13px]">&gt; &gt; Upcoming Events</h2>
             <div className='link-footer flex flex-col h-[50px] overflow-hidden ps-2 relative border-t-[0.01rem] border-t-zinc-50/30 text-white gap-1 '>
               <motion.div transition={{ duration: 0.5 }} style={{ marginTop: `${uindex * -50}px` }} className={`h-[${UPCOMING_EVENTS.length * 50}px] transition-all duration-1000`}>
                 {UPCOMING_EVENTS.map((item, index) => {
                   return <div key={index} className="h-[50px] flex gap-2 items-center font-light text-yellow-400">
                     <FaRegNewspaper size={20} />
-                    <p className="text-[20px] " style={{ lineHeight: '20px' }}>{item.text}</p>
+                    <p className="text-[16px] " style={{ lineHeight: '20px' }}>{item.text}</p>
                   </div>
                 })}
               </motion.div>
