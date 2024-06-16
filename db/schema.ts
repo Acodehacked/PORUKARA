@@ -217,7 +217,7 @@ export const app_place = mysqlTable('app_place',{
   name: varchar('name',{length:300}).notNull(),
   place: varchar('place',{length:200}),
   sub_place: varchar('sub_place',{length:300}).notNull(),
-  panchayatId: int('panchayat_id').notNull().references(()=>AppPanchayats.id),
+  panchayatId: int('panchayat_id').notNull(),
   wardNo: int('ward_no').notNull(),
   address: varchar('address',{length:5000}).notNull(),
   phone: json('phone').$type<string[]>().notNull().default([]),

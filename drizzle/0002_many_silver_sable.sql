@@ -16,4 +16,3 @@ ALTER TABLE `app_place` ADD `working_days` json DEFAULT ('{"from":"Monday","to":
 ALTER TABLE `app_place` ADD `opening_time` json DEFAULT ('{"from":"9:00am","to":"5:00pm"}') NOT NULL;--> statement-breakpoint
 ALTER TABLE `app_place` ADD `added_at` timestamp DEFAULT (now());--> statement-breakpoint
 ALTER TABLE `app_place` ADD `updated_at` timestamp DEFAULT (now());--> statement-breakpoint
-ALTER TABLE `app_place` ADD CONSTRAINT `app_place_panchayat_id_app_panchayats_id_fk` FOREIGN KEY (`panchayat_id`) REFERENCES `app_panchayats`(`id`) ON DELETE no action ON UPDATE no action;
