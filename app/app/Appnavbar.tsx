@@ -6,14 +6,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import { BiBuilding, BiCurrentLocation } from 'react-icons/bi'
+import { BiBuilding, BiCurrentLocation, BiSolidDashboard } from 'react-icons/bi'
 
 const Appnavbar = () => {
     const path = usePathname();
   return (
-    <div className="bg-green-700 w-full">
-                <div className="flex flex-row gap-3 screen pt-2 w-full px-3 flex-nowrap overflow-x-scroll hide-scrollbar">
-                    <Appnavbarlink link={'/app/dashboard'} path={path}><LayoutDashboard />App Dashboard</Appnavbarlink>
+    <div className="bg-[#031408] p-2 w-full md:w-[370px] overflow-y-scroll ">
+                <div className="flex flex-col gap-3 screen pt-2 w-full px-3 hide-scrollbar">
+                    <Appnavbarlink link={'/app/dashboard'} path={path}><BiSolidDashboard />App Dashboard</Appnavbarlink>
                     <Appnavbarlink path={path} link='/app/PlaceCategories'><BiCurrentLocation />Place Categories</Appnavbarlink>
                     <Appnavbarlink path={path} link='/app/Places'><BiBuilding />Places</Appnavbarlink>
                 </div>
@@ -39,6 +39,6 @@ const AppLoader = () => {
 
 
 
-export const Appnavbarlink = ({children,title,link,path}:{children:React.ReactNode,title?:string,link:string,path?:string})=>(<Link href={link} className={cn("p-2 cursor-pointer border-[0.03rem] items-center flex gap-2 border-white/20  text-white min-w-[200px]",path==link ? 'bg-white text-green-900' : '')}>{children}{title}</Link>)
+export const Appnavbarlink = ({children,title,link,path}:{children:React.ReactNode,title?:string,link:string,path?:string})=>(<Link href={link} className={cn("py-3 px-3 cursor-pointer border-[0.03rem] rounded-lg items-center flex gap-2 border-white/20  text-white",path==link ? 'bg-white text-green-900' : '')}>{children}{title}</Link>)
 
 export {Appnavbar ,AppLoader};

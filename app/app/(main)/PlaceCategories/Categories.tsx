@@ -52,20 +52,39 @@ const Categories = ({ data }: {
   }, [image])
   return (
     <>
-      <button className='bg-green-600 px-4 py-2 text-white' onClick={() => setAddDialogOpen(true)}>Add Category</button>
+      <div className='flex items-center gap-4 mt-3'>
+        <h5>Top Categories</h5>
+        <button className='bg-green-600 rounded-sm px-4 py-2 text-white' onClick={() => setAddDialogOpen(true)}>Add Category</button>
+      </div>
+      <div className='grid md:grid-cols-4 mt-3 sm:grid-cols-2 grid-cols-2 gap-2 mb-6'>
+        {data.map((category, index) => {
+          return <div key={category.id} className='relative flex h-[70px] bg-white rounded-sm overflow-hidden'>
+            <div className='w-full shadow-black transition-all hover:shadow-md'>
+              {/* <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${category.image}`} className='w-full h-full object-cover' width={200} height={300} alt={category.name || ''} /> */}
+              <h3 className='p-2'>{category.name}</h3>
+            </div>
+            <button className='bg-red-500 text-[14px] absolute bottom-[5px] right-[5px] text-white p-2 rounded-md mt-2' onClick={() => {
+              DeleteCate(category.id);
+            }}><Trash2 size={12} /></button>
+          </div>
+        })}
+      </div>
+      <hr />
 
-      <div className='grid md:grid-cols-4 mt-3 sm:grid-cols-2 grid-cols-1 gap-2'>
+      <div className='flex items-center gap-4 mt-6'>
+        <h5>Main Categories</h5>
+        <button className='bg-green-600 rounded-sm px-4 py-2 text-white' onClick={() => setAddDialogOpen(true)}>Add Category</button>
+      </div>
+
+      <div className='grid md:grid-cols-8 mt-3 sm:grid-cols-2 grid-cols-2 gap-2'>
         {data.map((category, index) => {
           return <div key={category.id} className='relative flex h-[100px] bg-white rounded-sm overflow-hidden'>
-            <div className='w-[100px] me-1'>
-              <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${category.image}`} className='w-full h-full object-cover' width={200} height={300} objectFit='cover' objectPosition='center' alt={category.name || ''} />
+            <div className='w-full'>
+              <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${category.image}`} className='w-full h-full object-cover' width={200} height={300} alt={category.name || ''} />
             </div>
-            <div className='w-full flex justify-start items-center ps-3 font-semibold flex-col'>
-              {category.name}
-            </div>
-            <button className='bg-red-500 text-[14px] absolute bottom-[5px] right-[5px] text-white p-3 rounded-md mt-2' onClick={() => {
+            <button className='bg-red-500 text-[14px] absolute bottom-[5px] right-[5px] text-white p-2 rounded-md mt-2' onClick={() => {
               DeleteCate(category.id);
-            }}><Trash2 /></button>
+            }}><Trash2 size={12} /></button>
           </div>
         })}
       </div>

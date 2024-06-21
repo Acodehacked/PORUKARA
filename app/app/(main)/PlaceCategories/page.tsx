@@ -10,7 +10,7 @@ export default async function Page(){
     const categories = await db.select().from(app_categories).orderBy(app_categories.id);
     connection.end();
     return <main>
-        <h3 className="text-[30px]">Place Catgories</h3>
+        <h3 className="text-[30px]">Place Categories</h3>
         <Categories data={categories} />
     </main>
 }
