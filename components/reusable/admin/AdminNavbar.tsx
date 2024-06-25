@@ -8,13 +8,12 @@ import { cn } from '@/lib/utils'
 import { signOut } from 'next-auth/react'
 import { AdminNavbarContext } from '@/components/contexts/AdminNavbarContext'
 import { BiLink } from 'react-icons/bi'
+import { Session } from 'next-auth'
 
-const AdminNavbar = ({ session }: { session: any }) => {
+const AdminNavbar = ({ session }: { session: Session | null }) => {
 
-    const json = JSON.parse(session.value);
-    console.log(json?.user)
-    var name = json?.user.name;
-    var email = json?.user.email;
+    var name = session?.user?.name;
+    var email = session?.user?.email;
     const navbarctx = useContext(AdminNavbarContext);
     const [menuOpened, setmenuOpened] = useState(false)
     return <div className="p-4 select-none flex justify-between bg-white border-[0.1rem] border-zinc-100 relative z-[10]">

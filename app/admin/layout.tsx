@@ -10,6 +10,10 @@ import AdminNavbar from "@/components/reusable/admin/AdminNavbar";
 import { AdminNavbarProvider } from "@/components/contexts/AdminNavbarContext";
 import { SnackbarContextProvider } from "@/lib/SnackbarProvider";
 import AdminFooter from "@/components/reusable/admin/AdminFooter";
+import { getDb2 } from "@/db";
+import { AdminLoginTable } from "@/db/schema";
+import { eq } from "drizzle-orm";
+import { signOut } from "next-auth/react";
 
 export const metadata: Metadata = {
     title: "Admin | Fr Porukara CMI College | For Advanced Studies",
@@ -21,8 +25,15 @@ export default async function Layout({
 }: {
     children: React.ReactNode;
 }) {
-    const session = getServerSession();
-
+    const {db,connection} = await getDb2();
+    const session = await getServerSession();
+    
+    const user = await db.select().from(AdminLoginTable).where(eq(AdminLoginTable.email,session?.user?.email ?? ''));
+    
+    connection.end();
+    if(user.length == 0){
+        signOut();
+    }
     return (
         <main className="flex max-h-[100vh] flex-col">
             <HomeLoader />
