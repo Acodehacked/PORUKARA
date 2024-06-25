@@ -4,7 +4,9 @@ import { sql } from "drizzle-orm";
 import SurveyForm from "./form";
 import { randomUUID } from "crypto";
 
+const dynamic = 'force-dynamic';
 export default async function Page() {
+
     const { db, connection } = await getDb2();
     const data = await db.select().from(QuestionsDB).orderBy(QuestionsDB.question_no);
     const unique_id = randomUUID();

@@ -7,4 +7,5 @@ export const config = {matcher:[
     '/admin/AddQuestions',
     '/admin/Questionare',
     '/admin/Questions',
+    '/admin/ManageAdmins'
 ]}

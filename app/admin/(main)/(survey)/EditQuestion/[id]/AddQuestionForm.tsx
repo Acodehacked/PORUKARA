@@ -28,7 +28,9 @@ const EditQuestionForm = ({ question }: { question: {
     const snackctx = useContext(SnackbarContext);
 
     useEffect(()=>{
-    setInputValues(question.options_list as object);
+        setInputValues(question.options_list as object);
+        // setInputValues(JSON.parse(question.options_list as string) as unknown as object);
+        console.log(question.options_list)
         setType(question.type);
     },[])
     const handleoptionValue = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
@@ -87,9 +89,11 @@ const EditQuestionForm = ({ question }: { question: {
     }
     for (let i = 0; i < lengthofOptions; i++) {
         var jjtitle = Object.getOwnPropertyDescriptor(inputValues,`optiontitle${i}`)
+        var jjsubtitke = Object.getOwnPropertyDescriptor(inputValues,`optionsubtitle${i}`)
         var jjtype = Object.getOwnPropertyDescriptor(inputValues,`optiontype${i}`)
         row.push(<div key={i} className='p-3 mt-1 flex w-full flex-col px-4'>
             <span>{`Option ${i + 1}`}</span>
+
             <div className='flex w-full'>
                 <input id={`optiontitle${i}`} value={jjtitle?.value} placeholder='Enter value' onChange={handleoptionValue} className='px-4 mt-1 py-2 rounded-l-lg w-full'></input>
                 <select id={`optiontype${i}`} value={jjtype?.value} onChange={handleoptionValue} className='px-4 mt-1 py-2'>
@@ -101,7 +105,7 @@ const EditQuestionForm = ({ question }: { question: {
                     <option value={'checkbox'}>Checkbox</option>
                     <option value={'select_text'}>Select & Text</option>
                 </select>
-                <input id={`optionsubtitle${i}`} onChange={handleoptionValue} placeholder='Enter subtitle' className='px-4 mt-1 py-2 rounded-r-lg w-[100px]'></input>
+                <input id={`optionsubtitle${i}`} value={jjsubtitke?.value} onChange={handleoptionValue} placeholder='Enter subtitle' className='px-4 mt-1 py-2 rounded-r-lg w-[100px]'></input>
             </div>
         </div>);
     }

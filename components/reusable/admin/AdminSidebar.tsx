@@ -19,7 +19,7 @@ const AdminSidebar = ({user}:{user?: string | null | undefined }) => {
             return;
           }
         }
-        return <Link className={cn("py-4 px-3 border-[0.02rem] border-white/20 text-foreground gap-3  flex justify-center flex-col rounded-xl transition-all", path == '/admin'+navlink.link ? 'bg-muted text-foreground' : 'text-white')} href={'/admin'+navlink.link} key={index}>
+        return <Link className={cn("py-4 px-3 border-[0.02rem] hover:bg-black/40  border-white/20 text-foreground gap-3  flex justify-center flex-col rounded-xl transition-all", path == '/admin'+navlink.link ? 'bg-muted text-foreground hover:text-white' : 'text-white ')} href={'/admin'+navlink.link} key={index}>
           <div className='flex items-center gap-3'>
             <i className={`bx ${navlink.icon} text-[23px]`}></i>
             <span>{navlink.title}</span>

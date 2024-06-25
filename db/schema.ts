@@ -32,6 +32,7 @@ export const AdminLoginTable = mysqlTable('AdminLoginTable', {
   id: int('id').primaryKey().autoincrement(),
   name: varchar('name', { length: 256 }).notNull(),
   email: varchar('email', { length: 256 }).notNull(),
+  status: varchar('status', { length: 50,enum:['offline','online'] }).notNull().default('offline'),
   password: varchar('password', { length: 256 }).notNull(),
 }, (AdminLoginTable) => ({
   nameIndex: uniqueIndex('email_idx').on(AdminLoginTable.email),
@@ -155,7 +156,7 @@ export const app_categories = mysqlTable('app_categories',{
   id: int('id').primaryKey().autoincrement(),
   type: customJson('type').notNull(),
   name: varchar('name',{length:300}),
-  image: varchar('image',{length:600}).notNull()
+  image: varchar('image',{length:600}).notNull(),
 },(app_categories) => ({
   nameIndex: uniqueIndex('name_idx').on(app_categories.name),
 }))

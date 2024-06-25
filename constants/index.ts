@@ -631,8 +631,15 @@ export const ADMINSIDEBARLINKS = [
     },
     {
         onlyDev: true,
+        title: 'Manage Admins',
+        icon: 'bxs-user-pin',
+        link: '/ManageAdmins',
+        submenu: []
+    },
+    {
+        onlyDev: true,
         title: 'Add Questions',
-        icon: 'bx-question-mark',
+        icon: 'bx-plus-circle',
         link: '/AddQuestions',
         submenu: []
     },

@@ -12,7 +12,8 @@ async function main() {
             email: 'demo@gmail.com',
             password: password,
         })
-        console.log("Seeded successfully")
+        connection.end();
+        console.log("Seeded successfully");
     })
 } 
 main();

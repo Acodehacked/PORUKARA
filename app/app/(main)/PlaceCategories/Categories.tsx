@@ -9,29 +9,44 @@ import { motion } from 'framer-motion'
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import React, { useContext, useEffect, useState } from 'react'
-import { AddCategory, deleteCategory } from './api';
+import { AddCategory, deleteCategory, deleteTopCategory } from './api';
 import { useRouter } from 'next/navigation';
 import { Trash2 } from 'lucide-react';
 
-const Categories = ({ data }: {
+const Categories = ({ data,topcategories }: {
   data: {
     image: string;
     id: number;
     name: string | null;
-  }[]
+  }[], topcategories: {
+    id: number;
+    name: string | null;
+    image: string;
+    subCategories: number[];
+}[]
 }) => {
   const [image, setimage] = useState<string>('');
   const [name, setname] = useState('');
   const router = useRouter()
   const [AddDialogOpen, setAddDialogOpen] = useState(false);
+  const [dialogType, setDialogType] = useState<"edit"|"add">('add');
   const snackctx = useContext(SnackbarContext);
-  const DeleteCate = async (id: number) => {
+  const DeleteMainCate = async (id: number) => {
     const response = await deleteCategory(id);
     if (response.error == null) {
       snackctx.displayMsg(`Successfully Deleted ${id}`)
       router.refresh()
     }
   }
+  const DeleteTopCate = async (id: number) => {
+    const response = await deleteTopCategory(id);
+    if (response.error == null) {
+      snackctx.displayMsg(`Successfully Deleted ${id}`)
+      router.refresh()
+    }
+  }
+
+
   const handleSubmit = async () => {
     if (name == '') {
       snackctx.displayMsg("please enter a name");
@@ -41,7 +56,7 @@ const Categories = ({ data }: {
       snackctx.displayMsg('Please Upload a image');
       return;
     }
-    const response = await AddCategory(name, image);
+    const response = dialogType == 'add' ? await AddCategory(name, image) : await AddCategory(name, image);
     if (response.error == null) {
       setAddDialogOpen(false);
       router.refresh();
@@ -56,7 +71,7 @@ const Categories = ({ data }: {
         <h5>Top Categories</h5>
         <button className='bg-green-600 rounded-sm px-4 py-2 text-white' onClick={() => setAddDialogOpen(true)}>Add Category</button>
       </div>
-      <div className='grid md:grid-cols-4 mt-3 sm:grid-cols-2 grid-cols-2 gap-2 mb-6'>
+      <div className='grid md:grid-cols-6 mt-3 sm:grid-cols-4 grid-cols-2 gap-2 mb-6'>
         {data.map((category, index) => {
           return <div key={category.id} className='relative flex h-[70px] bg-white rounded-sm overflow-hidden'>
             <div className='w-full shadow-black transition-all hover:shadow-md'>
@@ -64,7 +79,7 @@ const Categories = ({ data }: {
               <h3 className='p-2'>{category.name}</h3>
             </div>
             <button className='bg-red-500 text-[14px] absolute bottom-[5px] right-[5px] text-white p-2 rounded-md mt-2' onClick={() => {
-              DeleteCate(category.id);
+              DeleteMainCate(category.id);
             }}><Trash2 size={12} /></button>
           </div>
         })}
@@ -83,7 +98,7 @@ const Categories = ({ data }: {
               <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${category.image}`} className='w-full h-full object-cover' width={200} height={300} alt={category.name || ''} />
             </div>
             <button className='bg-red-500 text-[14px] absolute bottom-[5px] right-[5px] text-white p-2 rounded-md mt-2' onClick={() => {
-              DeleteCate(category.id);
+              DeleteTopCate(category.id);
             }}><Trash2 size={12} /></button>
           </div>
         })}

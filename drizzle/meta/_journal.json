@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1715864884101,
-      "tag": "0001_bored_strong_guy",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1716265436539,
-      "tag": "0001_yielding_carnage",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1718459175929,
-      "tag": "0002_many_silver_sable",
+      "when": 1719328987766,
+      "tag": "0003_windy_patch",
       "breakpoints": true
     }
   ]
