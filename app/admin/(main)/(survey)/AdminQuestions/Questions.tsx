@@ -4,6 +4,9 @@ import Options from './Options';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { DeleteAllResponses } from './api';
+import { useRouter } from 'next/navigation';
 const QuestionsList = ({ Questions }: {
     Questions: {
         type: "null" | "select" | "text" | "checkbox" | "int" | "yesno" | "havenot" | null;
@@ -17,7 +20,7 @@ const QuestionsList = ({ Questions }: {
     }[],
 
 }) => {
-    // const router = useRouter();
+    const router = useRouter();
     // const [deletedialogOpen, setdeletedialogOpen] = useState(-1);
     const [detailsOpen, setdetailsOpen] = useState(-1);
     const [detailssubOpen, setdetailssubOpen] = useState(-1);
@@ -35,9 +38,16 @@ const QuestionsList = ({ Questions }: {
         setmultipleAnswers([]);
 
     }
+    const handleDelete = async () =>{
+        const response = await DeleteAllResponses();
+        if(response.error == null){
+            router.refresh();
+        }
+    }
     return (
         <div className="flex md:flex-row flex-col w-full items-start relative">
             <div className='w-full flex max-w-[600px] mx-auto flex-col gap-2'>
+                <Button onClick={()=>handleDelete()}>Delete All Responses</Button>
                 <h3>total Questions: <b>{Questions.length}</b></h3>
                 {Questions.map((item, index) => {
                     if (item.option_len != null) {

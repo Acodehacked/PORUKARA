@@ -20,3 +20,13 @@ export async function updatenummber(id: number) {
         error: null
     }
 }
+
+
+export async function DeleteAllResponses() {
+    const {db,connection} = await getDb2();
+    const response = await db.execute(sql`DELETE FROM ClientResponses`);
+    return {
+        message: 'Deleted Successfully',
+        error: null
+    }
+}
