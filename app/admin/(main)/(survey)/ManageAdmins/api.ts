@@ -6,7 +6,6 @@ import { eq, sql } from "drizzle-orm";
 
 export async function AddAdmin(name: string, email: string, password: string) {
     const { db, connection } = await getDb2();
-    var password = '';
     bcrypt.hash(password, 10).then(async (result: string) => {
         password = result || "Abianin";
         const response = await db.insert(AdminLoginTable).values({
