@@ -773,6 +773,57 @@ export const EventTypes = [
     'Events',
     'NSS Event',
 ];
+export const PANCHAYATS = [
+    {
+        id: 1,
+        name: "Champakulam"
+    },
+    {
+        id: 2,
+        name: "Edathua"
+    },
+    {
+        id: 3,
+        name: "Kainakary"
+    },
+    {
+        id: 4,
+        name: "Kavalam"
+    },
+    {
+        id: 5,
+        name: "Muttar"
+    }, 
+    {
+        id: 6,
+        name: "Nedumudi"
+    },
+    {
+        id: 7,
+        name: "Neelamperoor"
+    }, 
+    {
+        id: 8,
+        name: "Pulinkunnoo"
+    }, 
+    {
+        id: 9,
+        name: "Ramankary"
+    }, 
+    {
+        id: 10,
+        name: "Thakazhy"
+    }, 
+    {
+        id: 11,
+        name: "Thalavady"
+    }, 
+    {
+        id: 12,
+        name: "Veliyanad"
+    }
+];
+
 export const FACILITES = [
     {
         text: 'library',

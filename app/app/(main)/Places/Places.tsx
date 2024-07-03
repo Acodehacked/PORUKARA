@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import SnackbarContext from '@/lib/Snackbar-context';
 import { motion } from 'framer-motion'
+import { Loader } from "@googlemaps/js-api-loader"
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import React, { useContext, useEffect, useState } from 'react'
@@ -13,6 +14,9 @@ import { AddPlace, deletePlace } from './api';
 import { useRouter } from 'next/navigation';
 import { Trash2 } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
+import { useDebounce } from '@/lib/utils';
+import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
+import Link from 'next/link';
 
 type PlaceType = {
   id: number;
@@ -36,18 +40,66 @@ type CategoryType = {
   name: string | null;
   image: string;
 }[];
+type Location = google.maps.LatLng | undefined | null;
 
 const Places = ({ data, categories }: {
   data: PlaceType,
   categories: CategoryType
 }) => {
-  const [image, setimage] = useState<string[]>([]);
+
+
+  var map: any;
+  const loader = new Loader({
+    apiKey: "AIzaSyCJPrBoXmSX7jyUzAfwJxoLxnh70fJJwsI",
+    version: "weekly",
+  });
+  loader.load();
+  const [searchname, setsearchname] = useState('');
+  const [searchlocation, setsearchlocation] = useState<Location>(null)
+  let center;
+
+  async function findPlaces() {
+    console.log('in finding')
+    const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+    const request = {
+      textQuery: searchname,
+      fields: ['displayName', 'location', 'businessStatus'],
+      // includedType: 'restaurant',
+      locationBias: { lat: 37.4161493, lng: -122.0812166 },
+      // isOpenNow: true,
+      language: 'en-US',
+      maxResultCount: 8,
+      // minRating: 3.2,
+      region: 'in',
+      useStrictTypeFiltering: false,
+    };
+
+    //@ts-ignore
+    const { places } = await Place.searchByText(request);
+
+    if (places.length) {
+      console.log(places);
+
+      const { LatLngBounds } = await google.maps.importLibrary("core") as google.maps.CoreLibrary;
+      const bounds = new LatLngBounds();
+      setsearchlocation(places[0].location);
+      // Loop through and get all the results.
+      places.forEach((place) => {
+      });
+
+
+    } else {
+      console.log('No results');
+    }
+  }
+
+
   const [filteredList, setfilteredList] = useState<PlaceType>(data);
   const [loading, setloading] = useState(false);
   const [categoryid, setcategoryid] = useState(0);
   const [searchvalue, setsearchvalue] = useState('');
-  const [name, setname] = useState('');
-  const [desc, setdesc] = useState('');
+  
   const router = useRouter()
   const [AddDialogOpen, setAddDialogOpen] = useState(false);
   const snackctx = useContext(SnackbarContext);
@@ -58,29 +110,7 @@ const Places = ({ data, categories }: {
       router.refresh()
     }
   }
-  const handleSubmit = async () => {
-    if (name == '') {
-      snackctx.displayMsg("please enter a name");
-      return;
-    }
-    if (desc == '') {
-      snackctx.displayMsg("please enter a description");
-      return;
-    }
-    if (categoryid == undefined) {
-      snackctx.displayMsg("please select a category");
-      return;
-    }
-    if (image.length == 0) {
-      snackctx.displayMsg('Please Upload a image');
-      return;
-    }
-    const response = await AddPlace(categoryid, name, desc, image);
-    if (response.error == null) {
-      setAddDialogOpen(false);
-      router.refresh();
-    }
-  }
+  
   // useEffect(() => {
   //   setfilteredList(data);
   // }, [])
@@ -101,10 +131,16 @@ const Places = ({ data, categories }: {
       setloading(false);
     });
   }
-  const setData = (data:PlaceType) =>{
-      setfilteredList(data);
-      console.log(data)
+  const setData = (data: PlaceType) => {
+    setfilteredList(data);
+    console.log(data)
   }
+  useEffect(() => {
+    console.log(searchname);
+    findPlaces();
+  }, [searchname]);
+
+
   useEffect(() => {
     if (searchvalue == '') {
       setfilteredList(data);
@@ -116,7 +152,8 @@ const Places = ({ data, categories }: {
       <div className='w-full flex gap-3 md:flex-row flex-col justify-between'>
         <div className='flex flex-col'>
           <h3 className="text-[30px]">Places</h3>
-          <button className='bg-green-600 px-4 py-2 text-white rounded-sm shadow-sm' onClick={() => setAddDialogOpen(true)}>Add Place</button>
+          <Link href={'/app/AddPlace'} className='bg-green-600 px-4 py-2 text-white rounded-sm shadow-sm' >Add Place</Link>
+          
         </div>
         <div>
           <select className='px-4 py-2 rounded-sm' disabled={loading} onChange={(e) => setcategoryid(parseInt(e.currentTarget.value))}>
@@ -125,6 +162,7 @@ const Places = ({ data, categories }: {
               return <option key={index} value={cate.id}>{cate.name}</option>
             })}
           </select>
+          
           {/* <Input placeholder='search here' type='text' value={searchvalue} onChange={(e) => {
             setsearchvalue(e.currentTarget.value)
             setfilteredList(prev => prev.filter(item => item.name.includes(searchvalue)));
@@ -132,7 +170,7 @@ const Places = ({ data, categories }: {
           }} /> */}
         </div>
       </div>
-
+      
       <div className='grid md:grid-cols-4 mt-3 sm:grid-cols-2 grid-cols-1 gap-2'>
         {filteredList.map((place, index) => {
           return <div key={place.id} className='relative flex h-[100px] bg-white rounded-sm overflow-hidden'>
@@ -148,58 +186,18 @@ const Places = ({ data, categories }: {
           </div>
         })}
         {filteredList.length == 0 && loading == true ? <>
-            <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-            <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-            <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-            <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-            <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-            <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-            <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
         </> : ""}
         {filteredList.length == 0 && loading == false ? <>
-            <div className='bg-red-500 text-white rounded-sm w-full h-[100px] flex justify-center items-center'>No places found</div>
+          <div className='bg-red-500 text-white rounded-sm w-full h-[100px] flex justify-center items-center'>No places found</div>
         </> : ""}
       </div>
-      <DialogContainer size={'lg'} open={AddDialogOpen} setOpen={setAddDialogOpen} title='Add Place'>
-        <div className='flex w-full lg:flex-row flex-col items-start'>
-          <div className='flex w-full flex-col'>
-            <div className='px-3 w-full pt-4'>
-              <span className='mt-3 text-[14px]'>Category</span>
-              <select className='px-2 py-2 rounded-sm border-[0.01rem] border-zinc-200 w-full' onChange={(e) => {
-                setcategoryid(parseInt(e.currentTarget.value));
-              }} name='category'>
-                <option>Select Category</option>
-                {categories.map((category, index) => {
-                  return <option key={index} value={category.id}>
-                    {category.name}
-                  </option>
-                })}
-              </select>
-            </div>
-            <div className='px-3 w-full pt-4'>
-              <span className='mt-3 text-[14px]'>Name</span>
-              <Input value={name} onChange={(e) => setname(e.currentTarget.value)} placeholder='Enter name' />
-            </div>
-            <div className='px-3 w-full pt-4'>
-              <span className='mt-3 text-[14px]'>Name</span>
-              <Textarea className='min-h-[100px]' value={desc} onChange={(e) => setdesc(e.currentTarget.value)} placeholder='Enter description' />
-            </div>
-          </div>
-          <div className='px-3 w-full pt-4'>
-            <span className='mt-3 text-[14px]'>Image</span>
-            <div className='flex flex-wrap gap-2 mb-2'>
-              {image.map((img, index) => {
-                return <div key={index} className='max-h-[100px] overflow-hidden rounded-sm'><Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${img}`} alt={''} width={400} height={100} className='h-full w-full max-h-[100px] object-contain' /></div>
-              })}
-              {image.length == 0 ? <span className='text-secondary py-3 px-2 text-[14px]'>no images uploaded!</span> : ''}
-            </div>
-            <UploadImages text={image.length != 0 ? 'ReUpload Image' : ''} onFilesChanged={(file) => setimage(file)} />
-          </div>
-        </div>
-        <div className='flex mt-4 p-3 w-full justify-end'>
-          <Button onClick={handleSubmit} variant={'default'}>Add Place</Button>
-        </div>
-      </DialogContainer>
     </>
   )
 }

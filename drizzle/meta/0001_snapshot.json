@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "c9604a02-6b91-42e5-a6a7-6035c4aed345",
-  "prevId": "1efc2284-609e-4dfb-9257-5b5c813fa9a9",
+  "id": "533ef108-30fb-47d9-95eb-a975af9c92ec",
+  "prevId": "4ac17156-3bac-4e0e-8f4f-c2521a673ff0",
   "tables": {
     "AdminLoginTable": {
       "name": "AdminLoginTable",
@@ -27,6 +27,14 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'offline'"
         },
         "password": {
           "name": "password",
@@ -754,6 +762,14 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "sub_categories": {
+          "name": "sub_categories",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "('[]')"
         }
       },
       "indexes": {
@@ -860,6 +876,29 @@
           "notNull": true,
           "autoincrement": true
         },
+        "paid": {
+          "name": "paid",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "end_date": {
+          "name": "end_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "'2024-07-03'"
+        },
+        "google_location": {
+          "name": "google_location",
+          "type": "varchar(1000)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "app_category_id": {
           "name": "app_category_id",
           "type": "int",
@@ -870,6 +909,48 @@
         "name": {
           "name": "name",
           "type": "varchar(300)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "place": {
+          "name": "place",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sub_place": {
+          "name": "sub_place",
+          "type": "varchar(300)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "panchayat_id": {
+          "name": "panchayat_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ward_no": {
+          "name": "ward_no",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "pincode": {
+          "name": "pincode",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "address": {
+          "name": "address",
+          "type": "varchar(5000)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -891,14 +972,29 @@
         },
         "website": {
           "name": "website",
-          "type": "text",
+          "type": "varchar(100)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
+        "social": {
+          "name": "social",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "('[]')"
+        },
         "description": {
           "name": "description",
-          "type": "varchar(800)",
+          "type": "varchar(1000)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "additional_data": {
+          "name": "additional_data",
+          "type": "varchar(1000)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -935,6 +1031,22 @@
           "autoincrement": false,
           "default": "('[]')"
         },
+        "working_days": {
+          "name": "working_days",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "('{\"from\":\"Monday\",\"to\":\"Friday\"}')"
+        },
+        "opening_time": {
+          "name": "opening_time",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "('{\"from\":\"9:00am\",\"to\":\"5:00pm\"}')"
+        },
         "nearest_places": {
           "name": "nearest_places",
           "type": "json",
@@ -958,6 +1070,22 @@
           "notNull": true,
           "autoincrement": false,
           "default": 0
+        },
+        "added_at": {
+          "name": "added_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(now())"
         }
       },
       "indexes": {
@@ -1078,59 +1206,6 @@
       "compositePrimaryKeys": {
         "app_top_categories_id": {
           "name": "app_top_categories_id",
-          "columns": [
-            "id"
-          ]
-        }
-      },
-      "uniqueConstraints": {}
-    },
-    "app_type_categories": {
-      "name": "app_type_categories",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "int",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": true
-        },
-        "tname": {
-          "name": "tname",
-          "type": "varchar(300)",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "timage": {
-          "name": "timage",
-          "type": "varchar(600)",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "sub_categories": {
-          "name": "sub_categories",
-          "type": "json",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "('[]')"
-        }
-      },
-      "indexes": {
-        "name_idx": {
-          "name": "name_idx",
-          "columns": [
-            "tname"
-          ],
-          "isUnique": true
-        }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {
-        "app_type_categories_id": {
-          "name": "app_type_categories_id",
           "columns": [
             "id"
           ]

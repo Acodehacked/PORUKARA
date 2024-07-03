@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useOnClickOutside } from 'usehooks-ts'
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { BiBuilding, BiCurrentLocation, BiExit, BiLogOut, BiMenu, BiSolidDashboard, BiX } from 'react-icons/bi'
+import { BiAddToQueue, BiBuilding, BiCurrentLocation, BiExit, BiLogOut, BiMenu, BiSolidDashboard, BiX } from 'react-icons/bi'
 import { MyKuttanaduAdminNavbarContext } from '@/components/contexts/MyKuttanaduNavbarContext'
 
 const Appnavbar = () => {
@@ -36,8 +36,10 @@ const Appnavbar = () => {
           </div>
           <div className='flex flex-col px-6 gap-3 mt-4'>
             <Appnavbarlink onClick={handleClick} link={'/app/dashboard'} path={path}><BiSolidDashboard />App Dashboard</Appnavbarlink>
+            <Appnavbarlink onClick={handleClick} path={path} link='/app/TopCategories'><BiCurrentLocation />Top Place Categories</Appnavbarlink>
             <Appnavbarlink onClick={handleClick} path={path} link='/app/PlaceCategories'><BiCurrentLocation />Place Categories</Appnavbarlink>
             <Appnavbarlink onClick={handleClick} path={path} link='/app/Places'><BiBuilding />Places</Appnavbarlink>
+            <Appnavbarlink onClick={handleClick} path={path} link='/app/AddPlace'><BiAddToQueue />Add Place</Appnavbarlink>
           </div>
         </motion.div>
       </motion.div>

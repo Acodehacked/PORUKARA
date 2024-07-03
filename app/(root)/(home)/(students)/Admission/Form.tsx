@@ -13,6 +13,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useContext, useEffect, useRef, useState } from 'react'
 import AddResponse from './api'
+import { sendMail } from '@/app/api/admin/sendMail'
 
 const Form = () => {
     const snackctx = useContext(SnackbarContext);
@@ -43,6 +44,7 @@ const Form = () => {
             })
             if (response.success) {
                 setuploaded(true);
+                sendMail(Email, Name);
             } else {
                 setalready(true);
             }

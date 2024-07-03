@@ -152,14 +152,6 @@ export const WebcodeFormTable = mysqlTable('webcode_enquiries', {
 
 // MY KUTTANADU APP DATABASES
 
-export const app_categories = mysqlTable('app_categories',{
-  id: int('id').primaryKey().autoincrement(),
-  type: customJson('type').notNull(),
-  name: varchar('name',{length:300}),
-  image: varchar('image',{length:600}).notNull(),
-},(app_categories) => ({
-  nameIndex: uniqueIndex('name_idx').on(app_categories.name),
-}))
 export const app_top_categories = mysqlTable('app_top_categories',{
   id: int('id').primaryKey().autoincrement(),
   name: varchar('tname',{length:100}),
@@ -169,14 +161,16 @@ export const app_top_categories = mysqlTable('app_top_categories',{
   nameIndex: uniqueIndex('name_idx').on(app_top_categories.name),
 }))
 
-export const app_type_categories = mysqlTable('app_type_categories',{
+export const app_categories = mysqlTable('app_categories',{
   id: int('id').primaryKey().autoincrement(),
-  name: varchar('tname',{length:300}),
-  image: varchar('timage',{length:600}).notNull(),
+  type: customJson('type').notNull(),
+  name: varchar('name',{length:300}),
+  image: varchar('image',{length:600}).notNull(),
   subSuggestions: json('sub_categories').$type<number[]>().default([]).notNull(),
-},(app_type_categories) => ({
-  nameIndex: uniqueIndex('name_idx').on(app_type_categories.name),
+},(app_categories) => ({
+  nameIndex: uniqueIndex('name_idx').on(app_categories.name),
 }))
+
 
 export const app_sub_suggesstions = mysqlTable('app_sub_categories',{
   id: int('id').primaryKey().autoincrement(),
@@ -205,25 +199,22 @@ export const AppShareTable = mysqlTable('app_share',{
   updated_at : timestamp("updated_at").default(sql`CURRENT_TIMESTAMP`),
 });
 
-export const AppPanchayats = mysqlTable('app_panchayats',{
-  id: int('id').primaryKey().autoincrement(),
-  name: varchar('tname',{length:200}),
-},(AppPanchayats) => ({
-  nameIndex: uniqueIndex('name_idx').on(AppPanchayats.name),
-}))
-
 export const app_place = mysqlTable('app_place',{
   id: int('id').primaryKey().autoincrement(),
+  paid: boolean('paid').notNull().default(false),
+  endDate: date('end_date').default(new Date()),
+  googleLocation: varchar('google_location',{length:1000}).notNull(),
   app_category_id: int('app_category_id').notNull().references(()=>app_categories.id),
   name: varchar('name',{length:300}).notNull(),
-  place: varchar('place',{length:200}),
+  place: int('place').notNull(),
   sub_place: varchar('sub_place',{length:300}).notNull(),
-  panchayatId: int('panchayat_id').notNull(),
-  wardNo: int('ward_no').notNull(),
+  panchayatId: int('panchayat_id'),
+  wardNo: int('ward_no'),
+  pinCode: int('pincode'),
   address: varchar('address',{length:5000}).notNull(),
   phone: json('phone').$type<string[]>().notNull().default([]),
   email: varchar('email',{length:300}),
-  website: text('website'),
+  website: varchar('website',{length:100}),
   socialLinks: json('social').$type<{
     type:string,
     link:string,
