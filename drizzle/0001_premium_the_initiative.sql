@@ -1,6 +1,5 @@
 ALTER TABLE `app_place` MODIFY COLUMN `working_days` json;--> statement-breakpoint
 ALTER TABLE `app_place` MODIFY COLUMN `opening_time` json;--> statement-breakpoint
-ALTER TABLE `app_place` ADD `paid` boolean DEFAULT false NOT NULL;--> statement-breakpoint
 ALTER TABLE `app_place` ADD `period` int DEFAULT 0 NOT NULL;--> statement-breakpoint
 ALTER TABLE `app_place` ADD `end_date` date DEFAULT '2024-07-10';--> statement-breakpoint
 ALTER TABLE `app_place` ADD `google_location` varchar(1000) NOT NULL;--> statement-breakpoint
