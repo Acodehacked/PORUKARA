@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "533ef108-30fb-47d9-95eb-a975af9c92ec",
+  "id": "f661bd70-c7b9-431e-ac6f-4d2248b510b1",
   "prevId": "4ac17156-3bac-4e0e-8f4f-c2521a673ff0",
   "tables": {
     "AdminLoginTable": {
@@ -884,13 +884,21 @@
           "autoincrement": false,
           "default": false
         },
+        "period": {
+          "name": "period",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
         "end_date": {
           "name": "end_date",
           "type": "date",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'2024-07-03'"
+          "default": "'2024-07-10'"
         },
         "google_location": {
           "name": "google_location",
@@ -915,7 +923,7 @@
         },
         "place": {
           "name": "place",
-          "type": "int",
+          "type": "varchar(300)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -1035,17 +1043,15 @@
           "name": "working_days",
           "type": "json",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "('{\"from\":\"Monday\",\"to\":\"Friday\"}')"
+          "notNull": false,
+          "autoincrement": false
         },
         "opening_time": {
           "name": "opening_time",
           "type": "json",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "('{\"from\":\"9:00am\",\"to\":\"5:00pm\"}')"
+          "notNull": false,
+          "autoincrement": false
         },
         "nearest_places": {
           "name": "nearest_places",

@@ -41,6 +41,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
                         <div className="w-full bg-zinc-300">
                             <div className=" flex justify-between screen px-4 py-5">
                                 <span>2024 &copy; all rights reserved by Fr.Porukara CMI College</span>
+                                <span>Developed by Abin Kattady</span>
                             </div>
                         </div>
                     </article>

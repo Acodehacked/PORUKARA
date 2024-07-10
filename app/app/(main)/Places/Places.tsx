@@ -1,25 +1,23 @@
 'use client'
-import DialogContainer from '@/components/reusable/admin/DialogContainer';
-import UploadImage from '@/components/reusable/admin/UploadImage';
-import UploadImages from '@/components/reusable/admin/UploadImages'
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import SnackbarContext from '@/lib/Snackbar-context';
-import { motion } from 'framer-motion'
-import { Loader } from "@googlemaps/js-api-loader"
-import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import React, { useContext, useEffect, useState } from 'react'
-import { AddPlace, deletePlace } from './api';
+import { deletePlace } from './api';
 import { useRouter } from 'next/navigation';
-import { Trash2 } from 'lucide-react';
-import { Textarea } from '@/components/ui/textarea';
-import { useDebounce } from '@/lib/utils';
-import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
+import { Edit2, Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import { ENV } from '@/constants/places';
+import { GetAllCategories } from '../(api)/Categories';
+import { GetAllPlaces } from '../(api)/Places';
+import { BiSolidStar, BiStar } from 'react-icons/bi';
 
 type PlaceType = {
   id: number;
+  paid: boolean;
+  paidPeriod: number;
+  endDate: Date | null;
+  googleLocation: string;
   app_category_id: number;
   name: string;
   phone: string[];
@@ -29,6 +27,7 @@ type PlaceType = {
   images: string[];
   videos: string[];
   facilities: unknown;
+  address: string,
   activities: unknown;
   nearest_places: number[];
   latitude: number;
@@ -36,9 +35,10 @@ type PlaceType = {
 }[];
 type CategoryType = {
   id: number;
-  type: unknown;
   name: string | null;
+  type: unknown;
   image: string;
+  subSuggestions: number[];
 }[];
 type Location = google.maps.LatLng | undefined | null;
 
@@ -48,58 +48,18 @@ const Places = ({ data, categories }: {
 }) => {
 
 
-  var map: any;
-  const loader = new Loader({
-    apiKey: "AIzaSyCJPrBoXmSX7jyUzAfwJxoLxnh70fJJwsI",
-    version: "weekly",
-  });
-  loader.load();
   const [searchname, setsearchname] = useState('');
+  const [mainData, setmainData] = useState<PlaceType>(data);
+  const [mainCategories, setmainCategories] = useState<CategoryType>(categories);
   const [searchlocation, setsearchlocation] = useState<Location>(null)
   let center;
 
-  async function findPlaces() {
-    console.log('in finding')
-    const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
-    const request = {
-      textQuery: searchname,
-      fields: ['displayName', 'location', 'businessStatus'],
-      // includedType: 'restaurant',
-      locationBias: { lat: 37.4161493, lng: -122.0812166 },
-      // isOpenNow: true,
-      language: 'en-US',
-      maxResultCount: 8,
-      // minRating: 3.2,
-      region: 'in',
-      useStrictTypeFiltering: false,
-    };
 
-    //@ts-ignore
-    const { places } = await Place.searchByText(request);
-
-    if (places.length) {
-      console.log(places);
-
-      const { LatLngBounds } = await google.maps.importLibrary("core") as google.maps.CoreLibrary;
-      const bounds = new LatLngBounds();
-      setsearchlocation(places[0].location);
-      // Loop through and get all the results.
-      places.forEach((place) => {
-      });
-
-
-    } else {
-      console.log('No results');
-    }
-  }
-
-
-  const [filteredList, setfilteredList] = useState<PlaceType>(data);
+  const [filteredList, setfilteredList] = useState<PlaceType>(mainData);
   const [loading, setloading] = useState(false);
   const [categoryid, setcategoryid] = useState(0);
   const [searchvalue, setsearchvalue] = useState('');
-  
+
   const router = useRouter()
   const [AddDialogOpen, setAddDialogOpen] = useState(false);
   const snackctx = useContext(SnackbarContext);
@@ -107,10 +67,22 @@ const Places = ({ data, categories }: {
     const response = await deletePlace(id);
     if (response.error == null) {
       snackctx.displayMsg(`Successfully Deleted ${id}`)
-      router.refresh()
     }
+    handlerefresh();
   }
-  
+
+  const handlerefresh = async () => {
+    setloading(true);
+    var res = await GetAllCategories();
+    setmainCategories(res.data)
+    var res2 = await GetAllPlaces();
+    if (res2.data != null) {
+      setmainData(res2.data)
+    }
+    setloading(false);
+    router.refresh()
+
+  }
   // useEffect(() => {
   //   setfilteredList(data);
   // }, [])
@@ -135,64 +107,89 @@ const Places = ({ data, categories }: {
     setfilteredList(data);
     console.log(data)
   }
-  useEffect(() => {
-    console.log(searchname);
-    findPlaces();
-  }, [searchname]);
 
 
   useEffect(() => {
     if (searchvalue == '') {
-      setfilteredList(data);
+      setfilteredList(mainData);
     }
   }, [searchvalue])
 
   return (
     <>
       <div className='w-full flex gap-3 md:flex-row flex-col justify-between'>
-        <div className='flex flex-col'>
+        <div className='flex items-center gap-3'>
           <h3 className="text-[30px]">Places</h3>
-          <Link href={'/app/AddPlace'} className='bg-green-600 px-4 py-2 text-white rounded-sm shadow-sm' >Add Place</Link>
-          
+          <Link href={'/app/AddPlace'} className='bg-primary px-4 py-2 text-white rounded-full shadow-sm' >Add Place</Link>
         </div>
-        <div>
-          <select className='px-4 py-2 rounded-sm' disabled={loading} onChange={(e) => setcategoryid(parseInt(e.currentTarget.value))}>
+        <div className='flex items-center'>
+          <select className='px-4 py-2 rounded-l-xl' disabled={loading} onChange={(e) => setcategoryid(parseInt(e.currentTarget.value))}>
             <option value={0}>All</option>
             {categories.map((cate, index) => {
               return <option key={index} value={cate.id}>{cate.name}</option>
             })}
           </select>
-          
-          {/* <Input placeholder='search here' type='text' value={searchvalue} onChange={(e) => {
+          <Input className='rounded-none rounded-r-xl' placeholder='search here' type='text' value={searchvalue} onChange={(e) => {
             setsearchvalue(e.currentTarget.value)
             setfilteredList(prev => prev.filter(item => item.name.includes(searchvalue)));
             console.log(e.currentTarget.value)
-          }} /> */}
+          }} />
         </div>
       </div>
-      
-      <div className='grid md:grid-cols-4 mt-3 sm:grid-cols-2 grid-cols-1 gap-2'>
+      <div>
+        <span className='text-zinc-500 ps-3 py-2 my-2 font-semibold text-[20px]'>Total : {filteredList.length} results</span>
+      </div>
+      <div className='grid md:grid-cols-6 mt-3 sm:grid-cols-2 grid-cols-1 gap-2'>
         {filteredList.map((place, index) => {
-          return <div key={place.id} className='relative flex h-[100px] bg-white rounded-sm overflow-hidden'>
-            <div className='w-[100px] me-1'>
-              <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${place.images[0]}`} className='w-full h-full object-cover' width={200} height={300} objectFit='cover' objectPosition='center' alt={place.name || ''} />
+          var vid = '';
+          mainCategories.forEach((cat) => {
+            if (cat.id == place.app_category_id) {
+              vid = cat.name ?? '';
+            }
+          })
+          return <div key={place.id} className='relative flex flex-col bg-white rounded-xl overflow-hidden shadow-xl'>
+            <div className='w-full me-1'>
+              {ENV == 'local' ? <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${(JSON.parse(place.images as unknown as string))[0]}`} className='w-full h-[130px] object-cover' width={200} height={300} alt={place.name || ''} /> : <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${place.images[0]}`} className='w-full h-[130px] object-cover' width={200} height={300} objectFit='cover' objectPosition='center' alt={place.name || ''} />}
             </div>
-            <div className='w-full flex justify-center items-center ps-3 font-semibold flex-col'>
-              {place.name}
+            <div className='absolute top-1 right-1 flex items-start'>
+              <div className='rounded-full bg-white flex items-center gap-1 px-2 py-1'>
+                <BiSolidStar size={10} className='text-yellow-400' />
+                <span className='text-[10px] font-bold'>4.3/5</span>
+              </div>
             </div>
-            <button className='bg-red-500 text-[14px] absolute bottom-[5px] right-[5px] text-white p-3 rounded-md mt-2' onClick={() => {
-              DeleteCate(place.id);
-            }}><Trash2 /></button>
+            <div className='px-3 pt-3 flex flex-col'>
+              <div className='flex gap-2 items-center'>
+                <span className='bg-primary text-white px-3 py-1 rounded-full text-[10px]'>
+                  {vid != '' && <span>
+                    {vid}
+                  </span>}
+                </span>
+                {place.paid && <span className='bg-yellow-500 text-white me-auto px-3 py-1 rounded-full text-[10px]'>
+                  paid
+                </span>}
+              </div>
+              <h3 className='text-zinc-900 text-[20px] mt-1'>{place.name.length > 25 ? `${place.name.substring(0, 20)}...` : place.name}</h3>
+              <h3 className='text-zinc-500 text-[12px]'>{place.address.length > 40 ? `${place.address.substring(0, 40)}...` : place.address}</h3>
+
+            </div>
+            <div className='flex gap-2 p-2 justify-end'>
+              <Link href={`/app/Place/${place.id}`} className='text-zin-900-500 hover:bg-zinc-200 bg-zinc-50 p-2 rounded-md' onClick={() => {
+
+              }}><Edit2 size={13} /></Link>
+              <button className='text-red-500 hover:bg-zinc-200 bg-zinc-50 p-2 rounded-md' onClick={() => {
+                DeleteCate(place.id);
+              }}><Trash2 size={13} /></button>
+            </div>
           </div>
         })}
         {filteredList.length == 0 && loading == true ? <>
-          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
-          <div className='bg-zinc-300 rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 animate-pulse rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 animate-pulse rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 animate-pulse rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 animate-pulse rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 animate-pulse rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 animate-pulse rounded-sm w-full h-[100px]'></div>
+          <div className='bg-zinc-300 animate-pulse rounded-sm w-full h-[100px]'></div>
         </> : ""}
         {filteredList.length == 0 && loading == false ? <>
           <div className='bg-red-500 text-white rounded-sm w-full h-[100px] flex justify-center items-center'>No places found</div>

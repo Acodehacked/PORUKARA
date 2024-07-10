@@ -99,10 +99,10 @@ const Categories = ({ data, subSuggestions }: {
       snackctx.displayMsg("please enter a name");
       return;
     }
-    if (userCategorylist.length == 0) {
-      snackctx.displayMsg("please select atleast one suggestion");
-      return;
-    }
+    // if (userCategorylist.length == 0) {
+    //   snackctx.displayMsg("please select atleast one suggestion");
+    //   return;
+    // }
     if (image == '') {
       snackctx.displayMsg('Please Upload a image');
       return;
@@ -215,7 +215,7 @@ const Categories = ({ data, subSuggestions }: {
           <Input value={name} onChange={(e) => setname(e.currentTarget.value)} placeholder='Enter name' />
         </div>
         <div className='px-3 w-full pt-4'>
-          <span className='mt-3 text-[14px]'>Categories</span>
+          <span className='mt-3 text-[14px]'>Suggesstions</span>
           <div className='border-[0.01rem] relative border-zinc-200 flex gap-1 flex-wrap p-2 rounded-sm'>
             {userCategorylist.map((itemnumber, index) => {
               var c1: SubSuggestions | null = {
@@ -230,7 +230,7 @@ const Categories = ({ data, subSuggestions }: {
                 setuserCategorylist((prev) => prev.filter((item) => item != itemnumber));
               }} size={20} /></span>
             })}
-            <input className='min-w-[200px] ps-2' value={searchcategory} onChange={(e) => setsearchcategory(e.currentTarget.value)} placeholder='Enter category' />
+            <input className='min-w-[200px] ps-2' value={searchcategory} onChange={(e) => setsearchcategory(e.currentTarget.value)} placeholder='Enter Suggesstions' />
             {searchcategory != '' && <div className='bg-green-800 rounded-b-xl no-scrollbar shadow-lg cursor-pointer flex flex-col w-full p-1 absolute z-[9999] left-0 top-full max-h-[250px] overflow-y-scroll '>
               {filteredCategorylist.map((filtered, index) => {
                 return <div key={index} onClick={() => {
@@ -239,7 +239,7 @@ const Categories = ({ data, subSuggestions }: {
                   setsearchcategory('')
                 }} className='px-3 py-1 w-full text-white hover:bg-black/40'><span>{filtered.name}</span></div>
               })}
-              {filteredCategorylist.length == 0 && <span className='text-white p-2'>no category found!</span>}
+              {filteredCategorylist.length == 0 && <span className='text-white p-2'>no Suggesstions found!</span>}
             </div>}
           </div>
         </div>
