@@ -45,7 +45,7 @@ export async function AddNewPlace({ cat_id, formData, image, location, subSugges
         }
     }catch (e){
         return {
-            message: 'Already Added!',
+            message: 'Already Added!'+e,
             error: 'Already'
         }
     }
