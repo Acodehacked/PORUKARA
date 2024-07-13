@@ -66,7 +66,7 @@ function generateOTP({ length }: { length: number }) {
 
     return OTP;
 }
-export async function SendVerificationMail({ mail, code }: { mail?: string, code?: string }) {
+async function SendVerificationMail({ mail, code }: { mail?: string, code?: string }) {
 
     let transporter = nodemailer.createTransport({
         host: "smtp-relay.brevo.com",
