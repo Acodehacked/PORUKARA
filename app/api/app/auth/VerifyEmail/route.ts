@@ -1,17 +1,18 @@
-'use server'
 import nodemailer from 'nodemailer'
 import { getDb2 } from "@/db"
 import { app_logintable } from "@/db/schema";
-import { eq } from "drizzle-orm";
-import { NextResponse } from 'next/server';
+import { eq, param } from "drizzle-orm";
+import { NextResponse,NextRequest } from 'next/server';
+import Email from 'next-auth/providers/email';
 
-export async function GET(request: Request) {
-    
+export async function GET(request: NextRequest) {
     try {
-        const { searchParams } = new URL(request.url)
-        const id = searchParams.get('email')
+        // const { searchParams } = new URL(request.url)
+        // const id = searchParams.get('email')
+        const searchParams = request.nextUrl.searchParams;
+    const email = searchParams.get('email');
         const { db, connection } = await getDb2();
-        const response = await db.select().from(app_logintable).where(eq(app_logintable.email, `${id}`));
+        const response = await db.select().from(app_logintable).where(eq(app_logintable.email, `${email}`));
         var Mainresponse = {};
         if (response.length > 0) {
             Mainresponse = {
