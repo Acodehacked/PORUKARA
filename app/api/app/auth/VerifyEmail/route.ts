@@ -10,11 +10,11 @@ import { NextResponse } from 'next/server';
 import { error } from 'console';
 
 export async function GET(request: Request) {
-    const { searchParams } = new URL(request.url)
-    const id = searchParams.get('email')
-    const { db, connection } = await getDb2();
-
+    
     try {
+        const { searchParams } = new URL(request.url)
+        const id = searchParams.get('email')
+        const { db, connection } = await getDb2();
         const response = await db.select().from(app_logintable).where(eq(app_logintable.email, `${id}`));
         var Mainresponse = {};
         if (response.length > 0) {
