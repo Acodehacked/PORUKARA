@@ -3,14 +3,19 @@ import { getDb2 } from "@/db"
 import { app_logintable } from "@/db/schema";
 import { eq, param } from "drizzle-orm";
 import { NextResponse,NextRequest } from 'next/server';
-import Email from 'next-auth/providers/email';
+import qs from 'qs';
 
+export const dynamic = 'force-dynamic'
 export async function GET(request: NextRequest) {
     try {
+        const rawParams = request.url.split('?')[1];
+      const params = qs.parse(rawParams);
+
+      const email = params['email'];
         // const { searchParams } = new URL(request.url)
         // const id = searchParams.get('email')
-        const searchParams = request.nextUrl.searchParams;
-    const email = searchParams.get('email');
+        // const searchParams = request.nextUrl.searchParams;
+    // const email = searchParams.get('email');
         const { db, connection } = await getDb2();
         const response = await db.select().from(app_logintable).where(eq(app_logintable.email, `${email}`));
         var Mainresponse = {};
