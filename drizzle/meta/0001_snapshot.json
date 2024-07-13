@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "f661bd70-c7b9-431e-ac6f-4d2248b510b1",
+  "id": "24cfdfe0-3d0b-4c64-b04f-00cfcdcd5c29",
   "prevId": "4ac17156-3bac-4e0e-8f4f-c2521a673ff0",
   "tables": {
     "AdminLoginTable": {
