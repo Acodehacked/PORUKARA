@@ -20,9 +20,10 @@ export async function GET(request: NextRequest) {
         const response = await db.select().from(app_logintable).where(eq(app_logintable.email, `${email}`));
         var Mainresponse = {};
         if (response.length > 0) {
+            const otp = generateOTP({ length: 5 });
             Mainresponse = {
                 status: 'success',
-                otp: '',
+                otp: otp,
                 data: {
                     name: response[0].name,
                     email: response[0].email,
@@ -30,7 +31,6 @@ export async function GET(request: NextRequest) {
                 },
                 error: false
             }
-            const otp = generateOTP({ length: 5 });
             SendVerificationMail({
                 mail: response[0].email,
                 code: otp
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
                 status: 'not found',
                 data: null,
                 otp: '',
-                error: false
+                error: true
             }
         }
         connection.end();
