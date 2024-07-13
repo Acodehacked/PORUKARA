@@ -6,6 +6,7 @@ import * as crypto from 'crypto';
 import { app_logintable } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { Code } from 'lucide-react';
+import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
@@ -49,7 +50,7 @@ export async function GET(request: Request) {
         }
     }
 
-    return Response.json(Mainresponse)
+    return NextResponse.json(Mainresponse)
 }
 
 
@@ -77,10 +78,9 @@ async function SendVerificationMail({mail,code}:{mail?: string, code?: string}) 
                     }
                 </style>
             </head><body>
-            <img src="https://porukaracollege.in/app/app_logo.png"  width="100px"  /><h3></h3>
+            <img src="https://porukaracollege.in/assets/app/app_logo.png"  width="60px"  /><h3></h3>
             
-            <h1>Hi ${mail},</h1>
-            <br>
+            <p>Hi ${mail},</p>
             <p>Greetings from My Kuttanad App</p>
             <br>
             <h2>Your Verification Code is ${code ?? ''}</h2>
@@ -89,13 +89,12 @@ async function SendVerificationMail({mail,code}:{mail?: string, code?: string}) 
             <br>
             <p>If you didn't request this code, you can safely ignore this mail. Someone else might have typed your mail address by mistake.</p>
             <br>
-            <p>2024 all rights reserved &copy; mykuttanad</p>
             <br>
             <br>
             <br>
             <p>Thanks, My Kuttanad App Developer</p>
             <p>Abin Antony Kattady</p>
-            <p>&middot; <br></p>
+            <p>2024 all rights reserved &copy; mykuttanad</p>
             </body></html>`,
         });
         console.log('sent : ' + info.messageId)
