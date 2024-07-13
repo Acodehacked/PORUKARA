@@ -36,13 +36,13 @@ export async function GET(request: NextRequest) {
                 code: otp
             })
         } else {
-            await db.insert(app_logintable).values({
-                name: 'Abin Antony',
-                email: 'abina5448@gmail.com',
-                mobile: '+919048741910',
-                categories: [],
-                device_name: 'realme 10'
-            })
+            // await db.insert(app_logintable).values({
+            //     name: 'Abin Antony',
+            //     email: 'abina5448@gmail.com',
+            //     mobile: '+919048741910',
+            //     categories: [],
+            //     device_name: 'realme 10'
+            // })
 
             Mainresponse = {
                 status: 'not found',
