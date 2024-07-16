@@ -4,6 +4,7 @@ dotenv.config();
 export default defineConfig({
   schema: "./db/schema.ts",
   out: "./drizzle",
+  dialect: 'mysql',
   breakpoints: true,
   dbCredentials: ({
       user: "root" ?? '',
