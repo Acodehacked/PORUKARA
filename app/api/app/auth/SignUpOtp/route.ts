@@ -16,43 +16,17 @@ export async function GET(request: NextRequest) {
         // const id = searchParams.get('email')
         // const searchParams = request.nextUrl.searchParams;
     // const email = searchParams.get('email');
-        const { db, connection } = await getDb2();
-        const response = await db.select().from(app_logintable).where(eq(app_logintable.email, `${email}`));
         var Mainresponse = {};
-        if (response.length > 0) {
             const otp = generateOTP({ length: 5 });
             Mainresponse = {
                 status: 'success',
                 otp: otp,
-                data: {
-                    id: `${response[0].id.toString()}`,
-                    name: `${response[0].username}`,
-                    email: response[0].email,
-                    phone: response[0].mobile
-                },
                 error: false
             }
             SendVerificationMail({
-                mail: `${response[0].email}`,
+                mail: `${email}`,
                 code: otp
             })
-        } else {
-            // await db.insert(app_logintable).values({
-            //     name: 'Abin Antony',
-            //     email: 'abina5448@gmail.com',
-            //     mobile: '+919048741910',
-            //     categories: [],
-            //     device_name: 'realme 10'
-            // })
-
-            Mainresponse = {
-                status: 'not found',
-                data: null,
-                otp: '',
-                error: true
-            }
-        }
-        connection.end();
         return NextResponse.json(Mainresponse)
     }
     catch(e){

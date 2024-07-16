@@ -2,62 +2,38 @@ import nodemailer from 'nodemailer'
 import { getDb2 } from "@/db"
 import { app_logintable } from "@/db/schema";
 import { eq, param } from "drizzle-orm";
-import { NextResponse,NextRequest } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import qs from 'qs';
 
 export const dynamic = 'force-dynamic'
 export async function GET(request: NextRequest) {
+    const { db, connection } = await getDb2();
     try {
-        const rawParams = request.url.split('?')[1];
-      const params = qs.parse(rawParams);
+        const data = await request.json();
+        const name: String = data.name;
+        const email: String = data.email;
+        const phone: String = data.phone;
+        const device: String = data.device;
+        const list: number[] = data.userCategories as number[];
 
-      const email = params['email'];
-        // const { searchParams } = new URL(request.url)
-        // const id = searchParams.get('email')
-        // const searchParams = request.nextUrl.searchParams;
-    // const email = searchParams.get('email');
-        const { db, connection } = await getDb2();
-        const response = await db.select().from(app_logintable).where(eq(app_logintable.email, `${email}`));
-        var Mainresponse = {};
-        if (response.length > 0) {
-            const otp = generateOTP({ length: 5 });
-            Mainresponse = {
-                status: 'success',
-                otp: otp,
-                data: {
-                    id: `${response[0].id.toString()}`,
-                    name: `${response[0].username}`,
-                    email: response[0].email,
-                    phone: response[0].mobile
-                },
-                error: false
-            }
-            SendVerificationMail({
-                mail: `${response[0].email}`,
-                code: otp
-            })
-        } else {
-            // await db.insert(app_logintable).values({
-            //     name: 'Abin Antony',
-            //     email: 'abina5448@gmail.com',
-            //     mobile: '+919048741910',
-            //     categories: [],
-            //     device_name: 'realme 10'
-            // })
+        const result = await db.insert(app_logintable).values({
+            username: `${name}`,
+            mobile: `${phone}`,
+            email: `${phone}`,
+            device_name: `${device}`,
+            categories: list
+        }).$returningId();
 
-            Mainresponse = {
-                status: 'not found',
-                data: null,
-                otp: '',
-                error: true
-            }
-        }
         connection.end();
-        return NextResponse.json(Mainresponse)
-    }
-    catch(e){
         return NextResponse.json({
-            error:e
+            status: 'success',
+            id: result[0].id,
+            error: null
+        })
+    }
+    catch (e) {
+        return NextResponse.json({
+            error: e
         })
     }
 }
@@ -85,7 +61,7 @@ async function SendVerificationMail({ mail, code }: { mail?: string, code?: stri
     });
 
     // send mail with defined transport object
-    setTimeout(async ()=>{
+    setTimeout(async () => {
         let info = await transporter.sendMail({
             from: 'porukaracollege@gmail.com', // sender address
             to: [`${mail}`, 'porukaracollege@gmail.com'], // list of receivers
@@ -117,39 +93,5 @@ async function SendVerificationMail({ mail, code }: { mail?: string, code?: stri
                 </body></html>`,
         });
         console.log('sent : ' + info.messageId)
-    },400);
+    }, 400);
 }
-
-
-
-
-
- 
-// async function getCookieData() {
-//   return new Promise((resolve) =>
-//     setTimeout(() => {
-//       // cookies will be called outside of the async context, causing a build-time error
-//       resolve(cookies().getAll())
-//     }, 1000)
-//   )
-// }
- 
-// export default async function Page() {
-//   const cookieData = await getCookieData()
-//   return <div>Hello World</div>
-// }
-
- 
-// async function getCookieData() {
-//   const cookieData = cookies().getAll()
-//   return new Promise((resolve) =>
-//     setTimeout(() => {
-//       resolve(cookieData)
-//     }, 1000)
-//   )
-// }
- 
-// export default async function Page() {
-//   const cookieData = await getCookieData()
-//   return <div>Hello World</div>
-// }

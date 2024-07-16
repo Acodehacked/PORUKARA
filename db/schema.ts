@@ -181,11 +181,11 @@ export const app_sub_suggesstions = mysqlTable('app_sub_categories',{
 
 export const app_logintable = mysqlTable('app_logintable', {
   id: int('id').primaryKey().autoincrement(),
-  name: varchar('name', { length: 256 }).notNull(),
-  email: varchar('email', { length: 256 }).notNull(),
+  username: varchar('name', { length: 256 }).notNull(),
+  email: varchar('email', { length: 256 }),
   mobile: varchar('mobile', { length: 100 }).notNull(),
   device_name: varchar('device_name', { length: 256 }).notNull(),
-  categories: customJson('categories',).notNull(),
+  categories: json('categories').$type<number[]>().default([]).notNull(),
   login_at: timestamp("login_at").default(sql`CURRENT_TIMESTAMP`),
 }, (app_logintable) => ({
   emailIndex: uniqueIndex('email_idx').on(app_logintable.email),
