@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
                 status: 'success',
                 otp: otp,
                 data: {
-                    id: `${response[0].id.toString()}`,
+                    id: `${response[0].id}`,
                     name: `${response[0].username}`,
                     email: response[0].email,
                     phone: response[0].mobile
