@@ -16,27 +16,34 @@ export async function POST(request: NextRequest) {
         const device: String = data.device;
         const list: number[] = data.userCategories as number[];
 
-        const result = await db.insert(app_logintable).values({
-            username: `${name}`,
-            mobile: `${phone}`,
-            email: `${phone}`,
-            device_name: `${device}`,
-            categories: list
-        }).$returningId();
-
-        connection.end();
-        return NextResponse.json({
-            status: 'success',
-            user: {
-                id: result[0].id,
+        try {
+            const result = await db.insert(app_logintable).values({
+                username: `${name}`,
                 mobile: `${phone}`,
-                email: `${phone}`,
+                email: `${email}`,
                 device_name: `${device}`,
-                name: `${name}`,
+                categories: list
+            }).$returningId();
+            connection.end();
+            return NextResponse.json({
+                status: 'success',
+                user: {
+                    id: result[0].id,
+                    mobile: `${phone}`,
+                    email: `${phone}`,
+                    device_name: `${device}`,
+                    name: `${name}`,
 
-            },
-            error: null
-        })
+                },
+                error: null
+            })
+        } catch (e) {
+            return NextResponse.json({
+                status: 'already',
+                user: null,
+                error: null
+            })
+        }
     }
     catch (e) {
         return NextResponse.json({
