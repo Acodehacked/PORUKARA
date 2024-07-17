@@ -27,7 +27,14 @@ export async function POST(request: NextRequest) {
         connection.end();
         return NextResponse.json({
             status: 'success',
-            id: result[0].id,
+            user: {
+                id: result[0].id,
+                mobile: `${phone}`,
+                email: `${phone}`,
+                device_name: `${device}`,
+                name: `${name}`,
+
+            },
             error: null
         })
     }
