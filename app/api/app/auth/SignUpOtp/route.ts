@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 import { getDb2 } from "@/db"
-import { app_logintable } from "@/db/schema";
+import { app_logintable, app_top_categories } from "@/db/schema";
 import { eq, param } from "drizzle-orm";
 import { NextResponse,NextRequest } from 'next/server';
 import qs from 'qs';
@@ -10,24 +10,39 @@ export async function GET(request: NextRequest) {
     try {
         const rawParams = request.url.split('?')[1];
       const params = qs.parse(rawParams);
-
+    //   const topcategories: {
+    //     id: number;
+    //     name: string | null;
+    //     image: string;
+    //     subCategories: number[];
+    // }[]
       const email = params['email'];
-        // const { searchParams } = new URL(request.url)
-        // const id = searchParams.get('email')
-        // const searchParams = request.nextUrl.searchParams;
-    // const email = searchParams.get('email');
-        var Mainresponse = {};
-            const otp = generateOTP({ length: 5 });
-            Mainresponse = {
-                status: 'success',
-                otp: otp,
-                error: false
-            }
-            SendVerificationMail({
-                mail: `${email}`,
-                code: otp
-            })
-        return NextResponse.json(Mainresponse)
+      const {db,connection} = await getDb2();
+      const response = await db.select().from(app_logintable).where(eq(app_logintable.email,`${email}`));
+      const topcategories = await db.select().from(app_top_categories);
+      var Mainresponse = {};
+      const otp = generateOTP({ length: 5 });
+      if(response.length > 0){
+        Mainresponse = {
+            status: 'existing',
+            otp: '',
+            error: false,
+            topcategories:topcategories
+        }
+      }else{
+        Mainresponse = {
+            status: 'success',
+            otp: `${otp}`,
+            error: false,
+            topcategories:topcategories
+        }
+        SendVerificationMail({
+            mail: `${email}`,
+            code: otp
+        })
+      }
+      connection.end();
+        return NextResponse.json(Mainresponse);
     }
     catch(e){
         return NextResponse.json({
