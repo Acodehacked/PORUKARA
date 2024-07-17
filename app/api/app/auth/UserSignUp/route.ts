@@ -6,7 +6,7 @@ import { NextResponse, NextRequest } from 'next/server';
 import qs from 'qs';
 
 export const dynamic = 'force-dynamic'
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
     const { db, connection } = await getDb2();
     try {
         const data = await request.json();
