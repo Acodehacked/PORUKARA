@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
         const email: String = data.email;
         const phone: String = data.phone;
         const device: String = data.device;
-        const list: number[] = data.userCategories as number[];
+        // const list: number[] = data.userCategories as number[];
 
         try {
             const result = await db.insert(app_logintable).values({
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
                 mobile: `${phone}`,
                 email: `${email}`,
                 device_name: `${device}`,
-                categories: list
+                categories: []
             }).$returningId();
             connection.end();
             return NextResponse.json({
@@ -33,7 +33,6 @@ export async function POST(request: NextRequest) {
                     email: `${phone}`,
                     device_name: `${device}`,
                     name: `${name}`,
-
                 },
                 error: null
             })
