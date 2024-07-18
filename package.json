@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:gen": "drizzle-kit generate:mysql",
+    "db:gen": "drizzle-kit generate",
     "db:migrate": "npx tsx ./db/migrate.ts",
     "db:up": "drizzle-kit up:mysql",
     "db:push": "drizzle-kit push:mysql",

@@ -1,0 +1,1 @@
+ALTER TABLE `app_place` ADD `rating` decimal(2,1) DEFAULT 0 NOT NULL;--> statement-breakpoint

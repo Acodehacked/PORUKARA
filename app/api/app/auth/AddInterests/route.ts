@@ -10,37 +10,32 @@ export async function POST(request: NextRequest) {
     const { db, connection } = await getDb2();
     try {
         const data = await request.json();
-        const name: String = data.name;
-        const email: String = data.email;
-        const phone: String = data.phone;
-        const device: String = data.device;
-        // const list: number[] = data.userCategories as number[];
+        const id: string = data.id;
+        const list: number[] = data.userCategories as number[];
 
         try {
-            const result = await db.insert(app_logintable).values({
-                username: `${name}`,
-                mobile: `${phone}`,
-                email: `${email}`,
-                device_name: `${device}`,
-                categories: []
-            }).$returningId();
-            connection.end();
-            return NextResponse.json({
-                status: 'success',
-                user: {
-                    id:`${result[0].id}`,
-                    mobile: `${phone}`,
-                    email: `${email}`,
-                    device_name: `${device}`,
-                    name: `${name}`,
-                },
-                error: null
-            })
+            const response = await db.select().from(app_logintable).where(eq(app_logintable.id, parseInt(id)));
+            if (response.length > 0) {
+                const re = await db.update(app_logintable).set({
+                    categories: list,
+                }).where(eq(app_logintable.id, parseInt(id)));
+                connection.end();
+                return NextResponse.json({
+                    status: 'success',
+                    error: null
+                });
+            } else {
+                return NextResponse.json({
+                    status: 'notfound',
+                    error: true
+                });
+            }
+
         } catch (e) {
             return NextResponse.json({
                 status: 'already',
                 user: null,
-                error: null
+                error: true
             })
         }
     }
