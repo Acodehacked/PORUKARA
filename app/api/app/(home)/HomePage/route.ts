@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
 import { getDb2 } from "@/db"
 import { app_categories, app_logintable, app_place, app_top_categories } from "@/db/schema";
-import { arrayContains, desc, eq, gt, param } from "drizzle-orm";
+import { arrayContains, desc, eq, gt, inArray, param } from "drizzle-orm";
 import { NextResponse,NextRequest } from 'next/server';
 import qs from 'qs';
 import CheckUser from '../../auth/checkUser';
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
         if(error == true){
             connection.end();
             Mainresponse = {
-                status: 'success',
+                status: 'error',
                 error:true,
                 topcategories:[],
                 categories:[],
@@ -26,17 +26,24 @@ export async function GET(request: NextRequest) {
                 sponsored_places:[],
             }
         }else{
-            // db.select().from(app_categories).where(arrayContains(
-                // app_categories.
-            // )
+            var interest_places = [];
+            var interest_categories:number[] = [];
+            user?.categories.forEach(async (cat,index)=> {
+                
+                const ry = await db.select().from(app_top_categories).where(eq(app_top_categories.id,cat));
+                if(ry.length > 0){
+                    ry[0].subCategories.forEach((mcate)=>{
+                        interest_categories.push(mcate);
+                    })
+                }
+                // interest_categories.push()
+            })
             const topcate = await db.select().from(app_top_categories);
             const categ = await db.select().from(app_categories).limit(50);
             const top_places = await db.select().from(app_place).where(gt(app_place.rating,4)).limit(10);
             const recently_places = await db.select().from(app_place).orderBy(desc(app_place.id)).limit(10);
-            const interest_places = await db.select().from(app_place).where(arrayContains(
-                app_categories.id,db.select({
-                    id : app_top_categories.subCategories
-                }).from(app_top_categories))).limit(10);
+            interest_places = await db.select().from(app_place).where(inArray(
+                app_place.app_category_id,interest_categories)).limit(10);
             const sponsor_places = await db.select().from(app_place).where(eq(
                 app_place.paid,
                 true
