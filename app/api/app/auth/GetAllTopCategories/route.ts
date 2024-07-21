@@ -1,37 +1,43 @@
 import nodemailer from 'nodemailer'
 import { getDb2 } from "@/db"
-import { app_logintable } from "@/db/schema";
+import { app_logintable, app_top_categories } from "@/db/schema";
 import { eq, param } from "drizzle-orm";
-import { NextResponse, NextRequest } from 'next/server';
+import { NextResponse,NextRequest } from 'next/server';
 import qs from 'qs';
 
 export const dynamic = 'force-dynamic'
-export async function POST(request: NextRequest) {
-    const { db, connection } = await getDb2();
+export async function GET(request: NextRequest) {
     try {
-        const data = await request.json();
-        const name: String = data.name;
-        const device: String = data.device;
-        // const list: number[] = data.userCategories as number[];
+        const rawParams = request.url.split('?')[1];
+      const params = qs.parse(rawParams);
 
+      const name = params['name'];
+      const device = params['device_name'];
+        const { db, connection } = await getDb2();
+        const topcategories = await db.select({
+            id:app_top_categories.id,
+            name:app_top_categories.name
+        }).from(app_top_categories);
         const result = await db.insert(app_logintable).values({
             username: `${name}`,
-            mobile:``,
-            email:null,
-            device_name:`${device}`,
-            categories:[]
+            mobile: ``,
+            email: ``,
+            device_name: `${device}`,
+            categories: []
         }).$returningId();
-
         connection.end();
         return NextResponse.json({
             status: 'success',
-            id: result[0].id,
-            error: null
-        })
+            id:result[0].id,
+            topcategories:topcategories,
+            error: false
+        });
     }
-    catch (e) {
+    catch(e){
         return NextResponse.json({
-            error: e
+            error:true,
+            statue:'error',
+            id:0,
         })
     }
 }
@@ -59,7 +65,7 @@ async function SendVerificationMail({ mail, code }: { mail?: string, code?: stri
     });
 
     // send mail with defined transport object
-    setTimeout(async () => {
+    setTimeout(async ()=>{
         let info = await transporter.sendMail({
             from: 'porukaracollege@gmail.com', // sender address
             to: [`${mail}`, 'porukaracollege@gmail.com'], // list of receivers
@@ -91,5 +97,39 @@ async function SendVerificationMail({ mail, code }: { mail?: string, code?: stri
                 </body></html>`,
         });
         console.log('sent : ' + info.messageId)
-    }, 400);
+    },400);
 }
+
+
+
+
+
+ 
+// async function getCookieData() {
+//   return new Promise((resolve) =>
+//     setTimeout(() => {
+//       // cookies will be called outside of the async context, causing a build-time error
+//       resolve(cookies().getAll())
+//     }, 1000)
+//   )
+// }
+ 
+// export default async function Page() {
+//   const cookieData = await getCookieData()
+//   return <div>Hello World</div>
+// }
+
+ 
+// async function getCookieData() {
+//   const cookieData = cookies().getAll()
+//   return new Promise((resolve) =>
+//     setTimeout(() => {
+//       resolve(cookieData)
+//     }, 1000)
+//   )
+// }
+ 
+// export default async function Page() {
+//   const cookieData = await getCookieData()
+//   return <div>Hello World</div>
+// }

@@ -49,6 +49,7 @@ export async function GET(request: NextRequest) {
                 true
             )).orderBy(desc(app_place.id)).limit(10);
 
+            connection.end();
             Mainresponse = {
                 status: 'success', //string
                 topcategories:topcate, //List<topCategoryModel>
