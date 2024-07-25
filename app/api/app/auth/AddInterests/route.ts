@@ -18,15 +18,20 @@ export async function POST(request: NextRequest) {
             if (response.length > 0) {
                 const re = await db.update(app_logintable).set({
                     categories: list,
-                }).where(eq(app_logintable.id, parseInt(id)));
-                connection.end();
-                return NextResponse.json({
-                    status: 'success',
-                    error: null
+                }).where(eq(app_logintable.id, parseInt(id))).then(async () =>  {
+                    const user = await db.select().from(app_logintable).where(eq(app_logintable.id, parseInt(id)));
+                    connection.end();
+                    return NextResponse.json({
+                        status: 'success',
+                        user: user,
+                            error: false
+                    });
                 });
+
             } else {
                 return NextResponse.json({
                     status: 'notfound',
+                    user:null,
                     error: true
                 });
             }
