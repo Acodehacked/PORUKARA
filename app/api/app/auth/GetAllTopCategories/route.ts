@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
         const result = await db.insert(app_logintable).values({
             username: `${name}`,
             mobile: ``,
-            email: ``,
+            email: null,
             device_name: `${device}`,
             categories: []
         }).$returningId();
@@ -36,6 +36,7 @@ export async function GET(request: NextRequest) {
     catch(e){
         return NextResponse.json({
             error:true,
+            msg:e,
             statue:'error',
             id:0,
         })
