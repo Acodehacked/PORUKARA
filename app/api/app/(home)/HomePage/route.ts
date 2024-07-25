@@ -10,7 +10,8 @@ export const dynamic = 'force-dynamic'
 export async function GET(request: NextRequest) {
         const rawParams = request.url.split('?')[1];
       const params = qs.parse(rawParams);
-      const {db,connection} = await getDb2();
+      try{
+        const {db,connection} = await getDb2();
       var Mainresponse = {};
       const userid:string = params['id'] as string;
       const {error,user} = await CheckUser(userid);
@@ -63,6 +64,13 @@ export async function GET(request: NextRequest) {
         }
      
         return NextResponse.json(Mainresponse);
+      }catch(e){
+        NextResponse.json({
+            error:true,
+            message:e,
+            data:'error'
+        });
+      }
 }
 
 function generateOTP({ length }: { length: number }) {
