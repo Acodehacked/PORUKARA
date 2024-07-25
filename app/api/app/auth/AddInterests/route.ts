@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
         } catch (e) {
             return NextResponse.json({
                 status: 'already',
+                message:e,
                 user: null,
                 error: true
             })
