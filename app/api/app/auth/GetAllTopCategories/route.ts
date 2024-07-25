@@ -14,10 +14,7 @@ export async function GET(request: NextRequest) {
       const name = params['name'];
       const device = params['device_name'];
         const { db, connection } = await getDb2();
-        const topcategories = await db.select({
-            id:app_top_categories.id,
-            name:app_top_categories.name
-        }).from(app_top_categories);
+        const topcategories = await db.select().from(app_top_categories);
         const result = await db.insert(app_logintable).values({
             username: `${name}`,
             mobile: ``,
