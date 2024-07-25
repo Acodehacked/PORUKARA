@@ -11,30 +11,29 @@ export async function POST(request: NextRequest) {
     try {
         const data = await request.json();
         const id: string = data.id;
+        const device: string = data.device;
+        const name: string = data.name;
         const list: number[] = data.userCategories as number[];
 
         try {
-            const response = await db.select().from(app_logintable).where(eq(app_logintable.id, parseInt(id)));
-            if (response.length > 0) {
-                const re = await db.update(app_logintable).set({
-                    categories: list,
-                }).where(eq(app_logintable.id, parseInt(id))).then(async () =>  {
-                    const user = await db.select().from(app_logintable).where(eq(app_logintable.id, parseInt(id)));
-                    connection.end();
-                    return NextResponse.json({
-                        status: 'success',
-                        user: user,
-                            error: false
-                    });
-                });
-
-            } else {
-                return NextResponse.json({
-                    status: 'notfound',
-                    user:null,
-                    error: true
-                });
-            }
+            const result = await db.insert(app_logintable).values({
+                username: `${name}`,
+                mobile: ``,
+                email: null,
+                device_name: `${device}`,
+                categories: list
+            }).$returningId();
+            connection.end();
+            return NextResponse.json({
+                status: 'success',
+                user: {
+                    id:result[0].id,
+                    name: name,
+                    device_name: device,
+                    categories: list
+                },
+                error: false
+            });
 
         } catch (e) {
             return NextResponse.json({

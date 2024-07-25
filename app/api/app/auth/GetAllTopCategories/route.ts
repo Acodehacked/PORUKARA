@@ -15,17 +15,17 @@ export async function GET(request: NextRequest) {
       const device = params['device_name'];
         const { db, connection } = await getDb2();
         const topcategories = await db.select().from(app_top_categories);
-        const result = await db.insert(app_logintable).values({
-            username: `${name}`,
-            mobile: ``,
-            email: null,
-            device_name: `${device}`,
-            categories: []
-        }).$returningId();
+        // const result = await db.insert(app_logintable).values({
+        //     username: `${name}`,
+        //     mobile: ``,
+        //     email: null,
+        //     device_name: `${device}`,
+        //     categories: []
+        // }).$returningId();
         connection.end();
         return NextResponse.json({
             status: 'success',
-            id:result[0].id,
+            id:0,
             topcategories:topcategories,
             error: false
         });
