@@ -10,7 +10,6 @@ export async function POST(request: NextRequest) {
     const { db, connection } = await getDb2();
     try {
         const data = await request.json();
-        const id: string = data.id;
         const device: string = data.device;
         const name: string = data.name;
         const list: number[] = data.userCategories as number[];
@@ -27,7 +26,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({
                 status: 'success',
                 user: {
-                    id:result[0].id,
+                    id:`${result[0].id}`,
                     name: name,
                     device_name: device,
                     categories: list
