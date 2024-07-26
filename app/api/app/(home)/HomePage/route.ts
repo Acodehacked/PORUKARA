@@ -30,10 +30,12 @@ export async function GET(request: NextRequest) {
                 }else{
                     var interest_places = [];
                     var interest_categories:number[] = [];
-                    var oneliny = JSON.parse(user?.categories as unknown as string);
+                    // var oneliny = JSON.parse(user?.categories as unknown as string);
+                    var oneliny = user?.categories as number[];
                     const ry = await db.select().from(app_top_categories).where(inArray(app_top_categories.id,oneliny));
                     ry.forEach(async (cat,index)=> {
-                        var subcate = JSON.parse(cat?.subCategories as unknown as string);
+                        // var subcate = JSON.parse(cat?.subCategories as unknown as string);
+                        var subcate = cat?.subCategories as number[];
                         subcate.forEach((mcate:number)=>{
                                 interest_categories.push(mcate);
                             });
