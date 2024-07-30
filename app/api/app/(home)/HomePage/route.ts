@@ -14,6 +14,7 @@ export async function GET(request: NextRequest) {
             const {db,connection} = await getDb2();
             var Mainresponse = {};
               const userid:string = params['id'] as string;
+              const panchayat:string | undefined = params['panchayat'] as string | undefined;
               const {error,user} = await CheckUser(userid);
             //   return NextResponse.json(user);
                 if(error == true){
@@ -30,21 +31,24 @@ export async function GET(request: NextRequest) {
                 }else{
                     var interest_places = [];
                     var interest_categories:number[] = [];
+                    var mustvisit_places = [];
                     // var oneliny = JSON.parse(user?.categories as unknown as string);
                     var oneliny = user?.categories as number[];
                     const ry = await db.select().from(app_top_categories).where(inArray(app_top_categories.id,oneliny));
                     ry.forEach(async (cat,index)=> {
-                        // var subcate = JSON.parse(cat?.subCategories as unknown as string);
                         var subcate = cat?.subCategories as number[];
                         subcate.forEach((mcate:number)=>{
                                 interest_categories.push(mcate);
                             });
                     })
-                    // return NextResponse.json(interest_categories);
-                    // return NextResponse.json(JSON.parse(user?.categories as unknown as string))
+
+
                     const topcate = await db.select().from(app_top_categories);
                     const categ = await db.select().from(app_categories).limit(50);
-                    const top_places = await db.select().from(app_place).where(gt(app_place.rating,4.0)).limit(10);
+                    const top_places = await db.select().from(app_place).orderBy(desc(app_place.rating)).limit(15);
+                    if(panchayat != undefined){
+                        mustvisit_places = await db.select().from(app_place).where(eq(app_place.panchayatId,parseInt(panchayat))).limit(10);
+                    }
                     const recently_places = await db.select().from(app_place).orderBy(desc(app_place.id)).limit(10);
                     interest_places = await db.select().from(app_place).where(inArray(
                         app_place.app_category_id,interest_categories)).limit(10);
@@ -62,6 +66,7 @@ export async function GET(request: NextRequest) {
                         recently_added:recently_places, //List<PlaceModel>
                         interest_places:interest_places,//List<PlaceModel>
                         sponsored_places:sponsor_places,//List<PlaceModel>
+                        mustvisit_places:sponsor_places,//List<PlaceModel>
                         error: false,
                     }
                 }
