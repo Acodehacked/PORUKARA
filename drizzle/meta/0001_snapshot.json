@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "64e030f5-318b-42cc-b0a0-fea5ce99bfbc",
+  "id": "494c0b42-561c-4441-8fe8-6083d7f05dc7",
   "prevId": "4ac17156-3bac-4e0e-8f4f-c2521a673ff0",
   "tables": {
     "AdminLoginTable": {
@@ -899,7 +899,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'2024-07-18'"
+          "default": "'2024-08-02'"
         },
         "google_location": {
           "name": "google_location",
@@ -914,6 +914,14 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "app_sub_suggestions": {
+          "name": "app_sub_suggestions",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "('[]')"
         },
         "name": {
           "name": "name",

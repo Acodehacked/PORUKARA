@@ -11,14 +11,14 @@ import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation';
-import { Trash2 } from 'lucide-react';
+import { Loader2, Trash2 } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { cn, useDebounce } from '@/lib/utils';
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import { PANCHAYATS } from '@/constants';
 import { PLACESKUTTANAD, SOCIAL_TYPES } from '@/constants/places';
 import { RadioItem } from '@radix-ui/react-dropdown-menu';
-import { BiArrowBack, BiChevronLeft, BiChevronRight, BiDetail, BiRefresh, BiX } from 'react-icons/bi';
+import { BiArrowBack, BiChevronLeft, BiChevronRight, BiDetail, BiLoaderCircle, BiRefresh, BiX } from 'react-icons/bi';
 import { Select } from '@/components/ui/select';
 import { IoPhonePortraitOutline } from "react-icons/io5";
 import { MdOutlinePaid } from "react-icons/md";
@@ -26,7 +26,7 @@ import { GetAllCategories } from '../(api)/Categories';
 import { GetAllSuggestions } from '../(api)/SubSuggestions';
 import { FaFacebook, FaInstagram, FaLink, FaTelegram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { AddFormData } from '@/constants/types';
-import { AddNewPlace } from './api';
+import { AddNewPlace, getSubSuggestionsByCategory } from './api';
 import Link from 'next/link';
 
 type Location = google.maps.LatLng | undefined | null;
@@ -140,13 +140,12 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
         text: ''
     });
     const [searchsuggestion, setsearchsuggestion] = useState('');
-    const [mainsuggestions, setmainsuggestions] = useState<SubSuggestions[]>(suggestions);
     const [mainCategories, setmainCategories] = useState<Category[]>(categories);
     const [paidDurn, setpaidDurn] = useState<number>(0);
-    const [filteredCategorylist, setfilteredCategorylist] = useState<SubSuggestions[]>([]);
 
     const [searchname, setsearchname] = useState('');
     const [categoryid, setcategoryid] = useState(0);
+    const [mainsuggestions, setmainsuggestions] = useState<SubSuggestions[]>(suggestions);
     const [placesuggesttionlist, setplacesuggesttionlist] = useState<number[]>([]);
     const [image, setimage] = useState<string[]>([]);
     const snackctx = useContext(SnackbarContext);
@@ -158,10 +157,12 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
 
     const router = useRouter();
     const [searchfaciltiy, setsearchfaciltiy] = useState('');
-
+    useEffect(() => {
+        console.log(categoryid)
+        setmainsubsugg();
+    }, [categoryid]);
 
     useEffect(() => {
-        setfilteredCategorylist([]);
         if (searchsuggestion == '') { return; }
         var categorylist: SubSuggestions[] = [];
         mainsuggestions.forEach(item => {
@@ -172,19 +173,25 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
                 }
             }
         });
-        setfilteredCategorylist(categorylist);
     }, [searchsuggestion])
     let center;
 
+
+
+    const setmainsubsugg = async () => {
+        setmainsuggestions([]);
+        var dta = await getSubSuggestionsByCategory(categoryid);
+        setmainsuggestions(dta.data);
+        console.log(dta.data);
+    }
     const handlerefresh = async () => {
         setloading(true);
         var res = await GetAllCategories();
-        setmainCategories(res.data)
-        var res2 = await GetAllSuggestions();
-        setmainsuggestions(res2.data)
+        setmainCategories(res.data);
+        // setmainsuggestions(res2.data)
         setloading(false);
         console.log(res)
-        console.log(res2);
+        // console.log(res2);
         snackctx.displayMsg('Data fetched successfully');
         router.refresh()
     }
@@ -278,6 +285,7 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
         const response = await AddNewPlace({
             cat_id: categoryid,
             formData: MainFormData,
+            subSuggestions: placesuggesttionlist,
             image: image,
             location: searchlocation,
             maplocation: searchname
@@ -453,13 +461,17 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
                             <Button onClick={handleSubmit} variant={'destructive'} className='flex items-center gap-3' size={'lg'}>Add Place <BiChevronRight /></Button>
                         </div>
                         <h3 className=' text-zinc-700 px-4 py-2 text-[25px] flex items-center gap-2 mt-4'><BiDetail /> Main Details</h3>
+                        <div className='px-3 w-full pt-4'>
+                            <span className='mt-3 text-[14px]'>Title <span className='text-secondary text-[12px]'>shown in app</span></span>
+                            <Input value={MainFormData.name ?? ''} onChange={(e) => setMainFormData(props => ({ ...props, name: `${e.target?.value}` }))} placeholder='Enter name' />
+                        </div>
                         <div className='flex gap-2 md:flex-row flex-col px-3 w-full pt-1'>
                             <div className='flex w-full flex-col'>
                                 <span className='mt-3 text-[14px]'>Category</span>
                                 <select className='px-2 py-2 rounded-sm border-[0.01rem] border-zinc-200 w-full' onChange={(e) => {
                                     setcategoryid(parseInt(e.currentTarget.value));
                                 }} name='category'>
-                                    <option>Select Category</option>
+                                    <option value={0}>Select Category</option>
                                     {mainCategories.map((category, index) => {
                                         return <option key={index} value={category.id}>
                                             {category.name}
@@ -468,13 +480,13 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
                                 </select>
                             </div>
                         </div>
-                        <div className='px-3 w-full pt-4'>
-                            <span className='mt-3 text-[14px]'>Title <span className='text-secondary text-[12px]'>shown in app</span></span>
-                            <Input value={MainFormData.name ?? ''} onChange={(e) => setMainFormData(props => ({ ...props, name: `${e.target?.value}` }))} placeholder='Enter name' />
-                        </div>
+
                         <div className='px-3 w-full pt-4'>
                             <span className='mt-3 text-[14px]'>Suggestions</span>
                             <div className='border-[0.01rem] relative border-zinc-200 bg-white flex gap-1 flex-wrap p-2 rounded-sm'>
+                                {mainsuggestions.length == 0 && categoryid != 0 && <div className='w-full flex justify-center items-center px-4 py-6'>
+                                    <Loader2 size={30} className='text-green-800 animate-spin' />
+                                </div>}
                                 {placesuggesttionlist.map((itemnumber, index) => {
                                     var c1: SubSuggestions | null = {
                                         name: '', id: 0
@@ -488,17 +500,19 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
                                         setplacesuggesttionlist((prev) => prev.filter((item) => item != itemnumber));
                                     }} size={20} /></span>
                                 })}
-                                <input className='min-w-[200px] ps-2' value={searchsuggestion} onChange={(e) => setsearchsuggestion(e.currentTarget.value)} placeholder='Enter suggestion' />
-                                {searchsuggestion != '' && <div className='bg-green-800 rounded-b-xl no-scrollbar shadow-lg cursor-pointer flex flex-col w-full p-1 absolute z-[9999] left-0 top-full max-h-[250px] overflow-y-scroll '>
-                                    {filteredCategorylist.map((filtered, index) => {
-                                        return <div key={index} onClick={() => {
-                                            setplacesuggesttionlist((props) => [...props, filtered.id]);
-                                            setfilteredCategorylist([])
-                                            setsearchsuggestion('')
-                                        }} className='px-3 py-1 w-full text-white hover:bg-black/40'><span>{filtered.name}</span></div>
+                                {placesuggesttionlist.length > 0 && <span className='h-[1px] bg-zinc-500 w-full my-2'></span>}
+                                <div className='flex flex-wrap gap-1 w-full'>
+                                    {mainsuggestions.map((sug, index) => {
+                                        if (placesuggesttionlist.includes(sug.id)) {
+                                            return '';
+                                        }
+                                        return <div key={index}
+                                            onClick={() => {
+                                                setplacesuggesttionlist((props) => [...props, sug.id]);
+                                                setsearchsuggestion('')
+                                            }} className='px-3 cursor-pointer py-1 rounded-full text-green border-[0.01rem] border-green-700 hover:bg-black/40'><span>{sug.name}</span></div>
                                     })}
-                                    {filteredCategorylist.length == 0 && <span className='text-white p-2'>no suggestions found!</span>}
-                                </div>}
+                                </div>
                             </div>
                         </div>
                         <div className='flex flex-row gap-3 px-3 w-full pt-2'>

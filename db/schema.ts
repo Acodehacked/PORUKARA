@@ -207,6 +207,7 @@ export const app_place = mysqlTable('app_place',{
   endDate: date('end_date').default(new Date()),
   googleLocation: varchar('google_location',{length:1000}).notNull(),
   app_category_id: int('app_category_id').notNull().references(()=>app_categories.id),
+  app_sub_suggestions: json('app_sub_suggestions').notNull().$type<number[]>().default([]),
   name: varchar('name',{length:300}).notNull(),
   place: varchar('place',{length:300}).notNull(),
   sub_place: varchar('sub_place',{length:300}).notNull(),
