@@ -70,7 +70,7 @@ export async function getSubSuggestionsByCategory(id:number){
     const result = await db.select().from(app_categories).where(eq(app_categories.id,id));
 
     
-    const subsuggestions = ENV != 'live' ? result[0].subSuggestions as object : JSON.parse(result[0].subSuggestions as unknown as string);
+    const subsuggestions = ENV == 'live' ? result[0].subSuggestions as object : JSON.parse(result[0].subSuggestions as unknown as string);
     const re = await db.select().from(app_sub_suggesstions).where(inArray(app_sub_suggesstions.id,subsuggestions));
     connection.end();
     return {

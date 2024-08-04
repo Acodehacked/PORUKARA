@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
 import { getDb2 } from "@/db"
 import { app_categories, app_logintable, app_place, app_top_categories } from "@/db/schema";
-import { arrayContains, desc, eq, gt, inArray, param } from "drizzle-orm";
+import { arrayContains, asc, desc, eq, gt, inArray, or, param } from "drizzle-orm";
 import { NextResponse,NextRequest } from 'next/server';
 import qs from 'qs';
 import CheckUser from '../../auth/checkUser';
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
             const {db,connection} = await getDb2();
             var Mainresponse = {};
               const userid:string = params['id'] as string;
-              const panchayat:string | undefined = params['panchayat'] as string | undefined;
+              const place:string | undefined = params['place'] as string | undefined;
               const {error,user} = await CheckUser(userid);
             //   return NextResponse.json(user);
                 if(error == true){
@@ -27,11 +27,12 @@ export async function GET(request: NextRequest) {
                         top_places:[],
                         interest_places:[],
                         sponsored_places:[],
+                        mustvisit_places: []
                     }
                 }else{
                     var interest_places = [];
                     var interest_categories:number[] = [];
-                    var mustvisit_places = [];
+                    var mustvisit_places : typeof app_place.$inferSelect [] = [];
                     // var oneliny = JSON.parse(user?.categories as unknown as string);
                     var oneliny = user?.categories as number[];
                     const ry = await db.select().from(app_top_categories).where(inArray(app_top_categories.id,oneliny));
@@ -46,8 +47,10 @@ export async function GET(request: NextRequest) {
                     const topcate = await db.select().from(app_top_categories);
                     const categ = await db.select().from(app_categories).limit(50);
                     const top_places = await db.select().from(app_place).orderBy(desc(app_place.rating)).limit(15);
-                    if(panchayat != undefined){
-                        mustvisit_places = await db.select().from(app_place).where(eq(app_place.panchayatId,parseInt(panchayat))).limit(10);
+                    if(place != undefined && place != ''){
+                        mustvisit_places = await db.select().from(app_place).where(or(eq(app_place.place,place),eq(app_place.sub_place,place))).limit(10);
+                    }else{
+                        mustvisit_places = await db.select().from(app_place).orderBy(asc(app_place.place),asc(app_place.sub_place)).limit(10);
                     }
                     const recently_places = await db.select().from(app_place).orderBy(desc(app_place.id)).limit(10);
                     interest_places = await db.select().from(app_place).where(inArray(
@@ -66,7 +69,7 @@ export async function GET(request: NextRequest) {
                         recently_added:recently_places, //List<PlaceModel>
                         interest_places:interest_places,//List<PlaceModel>
                         sponsored_places:sponsor_places,//List<PlaceModel>
-                        mustvisit_places:sponsor_places,//List<PlaceModel>
+                        mustvisit_places:mustvisit_places,//List<PlaceModel>
                         error: false,
                     }
                 }

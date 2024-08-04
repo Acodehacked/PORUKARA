@@ -33,7 +33,8 @@ export const metadata: Metadata = {
         images: ["https://porukaracollege.in/assets/thumbnail.jpg"],
     }
 }
-export default function RootLayout({children}:{children:React.ReactNode}){
+export const dynamic = 'force-dynamic'; 
+export default async function RootLayout({children}:{children:React.ReactNode}){
     return (<html lang="en">
         <body className={`${bebas.className} ${manrop.className}`}>
             {children}
