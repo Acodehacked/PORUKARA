@@ -149,7 +149,13 @@ const Categories = ({ data, subSuggestions }: {
       <div className='flex items-center gap-4 mt-3'>
         <BiRefresh className={cn('rounded-full p-1 hover:bg-zinc-400', loading ? 'animate-spin' : '')} size={38} onClick={!loading ? handlerefresh : () => { }} />
         <h5 className='text-[35px]'>Main Categories</h5>
-        <button className='bg-green-600 rounded-sm px-4 py-2 text-white' onClick={() => setAddDialogOpen(true)}>Add Category</button>
+        <button className='bg-green-600 rounded-sm px-4 py-2 text-white' onClick={() =>{ 
+          setname('');
+          setimage('');
+          setuserCategorylist([]);
+          setids(0);
+    setDialogType('add');
+          setAddDialogOpen(true)}}>Add Category</button>
       </div>
       <div className='w-full flex md:flex-row flex-col gap-3'>
         <div className='grid w-full md:grid-cols-5 mt-3 sm:grid-cols-4 grid-cols-2 gap-2 mb-6'>
