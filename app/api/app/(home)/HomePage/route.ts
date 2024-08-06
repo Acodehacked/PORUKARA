@@ -22,6 +22,7 @@ export async function GET(request: NextRequest) {
                     Mainresponse = {
                         status: 'error',
                         error:true,
+                        locations:[],
                         topcategories:[],
                         categories:[],
                         top_places:[],
@@ -45,6 +46,9 @@ export async function GET(request: NextRequest) {
 
 
                     const topcate = await db.select().from(app_top_categories);
+                    const loc = await db.selectDistinct({
+                        location: app_place.place
+                    }).from(app_place).orderBy(desc(app_place.place)).limit(15);
                     const categ = await db.select().from(app_categories).limit(50);
                     const top_places = await db.select().from(app_place).orderBy(desc(app_place.rating)).limit(15);
                     if(place != undefined && place != ''){
@@ -63,6 +67,7 @@ export async function GET(request: NextRequest) {
                     connection.end();
                     Mainresponse = {
                         status: 'success', //string
+                        location: loc,
                         topcategories:topcate, //List<topCategoryModel>
                         categories:categ, //List<CategoryModel>
                         top_places:top_places, //List<PlaceModel>

@@ -1,17 +1,23 @@
 import { getDb2 } from "@/db";
 import { app_categories, app_place } from "@/db/schema";
+import qs from 'qs';
 import { desc, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import CheckUser from "../auth/checkUser";
 
-async function POST(req: Request) {
+async function GET(request: Request) {
 
     try {
-        const data = await req.json();
-        const getid = data['id'] as string;
+        
+        const rawParams = request.url.split('?')[1];
+        const params = qs.parse(rawParams);
+        const id = params['id'] as string;
+        const getid = params['place_id'] as string;
         const { db, connection } = await getDb2();
+        const {error,user} = await CheckUser(id);
         const places = await db.select().from(app_place).where(eq(app_place.app_category_id, parseInt(getid)));
         connection.end();
-        if (data != null) {
+        if (error != null) {
             if(places.length > 0){
                 return NextResponse.json({
                     status: 'success',
@@ -33,4 +39,4 @@ async function POST(req: Request) {
 }
 
 
-export { POST }
+export { GET }
