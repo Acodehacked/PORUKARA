@@ -16,17 +16,26 @@ export async function POST(request: NextRequest) {
         const filterSuggesstions: number[] | undefined | null = data.userCategories as number[] | undefined;
         var mainresult;
         try {
-           const result = await db.select().from(app_place).where(panchayat != null && panchayat != undefined ? and(eq(app_place.id,parseInt(id)),eq(app_place.panchayatId,parseInt(panchayat ?? '0'))) : eq(app_place.id,parseInt(id)));
+            var list: typeof app_place.$inferSelect[] = [];
+           const result = await db.select().from(app_place).where(panchayat != null && panchayat != undefined ? and(eq(app_place.id,parseInt(panchayat)),eq(app_place.panchayatId,parseInt(panchayat ?? '0'))) : eq(app_place.id,parseInt(id)));
             connection.end();
             
             if(filterSuggesstions != null && filterSuggesstions != undefined){
                 result.forEach(place => {
-                    // if(place.)
+                    var t = false;
+                    filterSuggesstions.forEach((item)=>{
+                        if(place.app_sub_suggestions.includes(item)){
+                            t=true;
+                        }
+                    });
+                    if(t){
+                        list.push(place);
+                    }
                 });
             }
             return NextResponse.json({
                 status: 'success',
-                data: result,
+                data: list,
                 error: false
             });
 
