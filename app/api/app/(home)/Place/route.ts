@@ -41,14 +41,7 @@ export async function GET(request: NextRequest) {
 // review: varchar('review',{length:3000}).notNull(),
 // rating: decimal('rating',{precision:2,scale:1}).$type<number>().notNull().default(0.0),
 
-               const reviews = await db.select({
-                    id: Review.id,
-                    name: app_logintable.username,
-                    review: Review.review,
-                    rating: Review.rating,
-                    date: Review.addedAt
-               }).from(Review)
-               .leftJoin(Review, eq(Review.userId, app_logintable.id))
+               const reviews = await db.select().from(Review)
                .where(eq(Review.placeId,parseInt(place_id)))
                 .orderBy(asc(Review.id));
                 const reviewsd = await db.select({
