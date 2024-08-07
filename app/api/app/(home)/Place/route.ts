@@ -41,18 +41,13 @@ export async function GET(request: NextRequest) {
 // review: varchar('review',{length:3000}).notNull(),
 // rating: decimal('rating',{precision:2,scale:1}).$type<number>().notNull().default(0.0),
 
-               const reviews = await db.select({
-                    id: Review.id,
-                    placeid: Review.placeId,
-                    userid: app_logintable.id,
-                    username: app_logintable.username,
-                    email: app_logintable.email,
-                    avgrating: avg(Review.rating),
-                    addedat: Review.addedAt,
-                    status: Review.status,
-                    reviewtext: Review.review,
-               }).from(Review)
+               const reviews = await db.select().from(Review)
                .leftJoin(Review, eq(Review.userId, app_logintable.id))
+               .where(eq(Review.placeId,parseInt(place_id)))
+                .orderBy(asc(Review.id));
+                const reviewsd = await db.select({
+                    avg: avg(Review.rating)
+                }).from(Review)
                .where(eq(Review.placeId,parseInt(place_id)))
                 .orderBy(asc(Review.id));
 
@@ -60,13 +55,16 @@ export async function GET(request: NextRequest) {
                 
                 return NextResponse.json({
                     status: 'success',
-                    data: reviews,
+                    data: {
+                        reviews :reviews,
+                        average: reviewsd
+                    },
                     error: false
                 });
     
             } catch (e) {
                 return NextResponse.json({
-                    status: 'error',
+                    status: 'error while getting data',
                     message:e,
                     error: true
                 })
