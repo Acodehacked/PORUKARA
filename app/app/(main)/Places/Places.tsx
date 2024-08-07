@@ -30,8 +30,8 @@ type PlaceType = {
   address: string,
   activities: unknown;
   nearest_places: number[];
-  latitude: number;
-  longitude: number;
+  latitude: string;
+  longitude: string;
 }[];
 type CategoryType = {
   id: number;

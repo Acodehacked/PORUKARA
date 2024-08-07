@@ -60,8 +60,8 @@ type Place = {
     facilities: string[];
     activities: string[];
     nearest_places: number[];
-    latitude: number;
-    longitude: number;
+    latitude: string;
+    longitude: string;
 }[];
 
 type Category = {
