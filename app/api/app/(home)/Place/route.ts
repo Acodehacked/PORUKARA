@@ -53,7 +53,7 @@ export async function GET(request: NextRequest) {
                     reviewtext: Review.review,
                }).from(Review)
                .leftJoin(Review, eq(Review.userId, app_logintable.id))
-               .groupBy(Review.rating)
+               .where(eq(Review.placeId,parseInt(place_id)))
                 .orderBy(asc(Review.id));
 
                 connection.end();
