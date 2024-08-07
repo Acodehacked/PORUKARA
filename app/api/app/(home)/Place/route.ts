@@ -1,12 +1,22 @@
 import nodemailer from 'nodemailer'
 import { getDb2 } from "@/db"
-import { app_logintable, app_place, Review, reviewRelations } from "@/db/schema";
+import { app_activities, app_logintable, app_place, Review, reviewRelations } from "@/db/schema";
 import { and, asc, avg, eq, InferSelectModel, param, sql } from "drizzle-orm";
 import { NextResponse, NextRequest } from 'next/server';
 import qs from 'qs';
 import CheckUser from '../../auth/checkUser';
 
 export const dynamic = 'force-dynamic'
+type exportPlacereview = {
+    id: number;
+    userId: number | null;
+    username: string,
+    placeId: number;
+    review: string;
+    rating: number;
+    status: "added" | "processing" | "verified" | "removed" | null;
+    addedAt: Date | null;
+}[];
 export async function GET(request: NextRequest) {
     try {
         const rawParams = request.url.split('?')[1];
@@ -40,10 +50,34 @@ export async function GET(request: NextRequest) {
 // placeId: int('place_id').notNull(),
 // review: varchar('review',{length:3000}).notNull(),
 // rating: decimal('rating',{precision:2,scale:1}).$type<number>().notNull().default(0.0),
-
-               const reviews = await db.select().from(Review)
+            var reviews:exportPlacereview = [];
+               const resul = await db.select().from(Review)
                .where(eq(Review.placeId,parseInt(place_id)))
                 .orderBy(asc(Review.id));
+                const users = await db.select().from(app_logintable).orderBy(app_logintable.id);
+
+                resul.forEach((item,inde)=>{
+                    users.forEach((us)=>{
+                        if(item.userId == us.id){
+                            reviews.push({
+                                id: item.id,
+                                userId: us.id,
+                                username: us.username,
+                                placeId: item.placeId,
+                                review: item.review,
+                                rating: item.rating,
+                                status: item.status,
+                                addedAt: item.addedAt
+                            });
+                        }
+                    })
+                });
+
+                await db.insert(app_activities).values({
+                    user_id: parseInt(userid),
+                    type: 'page',
+                    value: `${place_id}`
+                });
                 const reviewsd = await db.select({
                     avg: avg(Review.rating)
                 }).from(Review)
@@ -56,7 +90,7 @@ export async function GET(request: NextRequest) {
                     status: 'success',
                     data: {
                         reviews :reviews,
-                        average: reviewsd
+                        average: reviewsd[0].avg
                     },
                     error: false
                 });
