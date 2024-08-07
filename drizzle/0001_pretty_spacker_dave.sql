@@ -1,2 +1,0 @@
-ALTER TABLE `app_place` MODIFY COLUMN `latitude` varchar(100) NOT NULL DEFAULT '0.00';--> statement-breakpoint
-ALTER TABLE `app_place` MODIFY COLUMN `longitude` varchar(100) NOT NULL DEFAULT '0.00';--> statement-breakpoint

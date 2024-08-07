@@ -1,1 +1,0 @@
-ALTER TABLE `app_place` ADD `app_sub_suggestions` json DEFAULT ('[]') NOT NULL;--> statement-breakpoint

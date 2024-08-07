@@ -4,6 +4,7 @@ import {
   date,
   datetime,
   decimal,
+  double,
   int,
   json,
   mysqlEnum,
@@ -261,3 +262,16 @@ export const AppCategoryRelations = relations(app_categories, ({ many }) => ({
   app_place: many(app_place),
 }));
 
+export const Review = mysqlTable('app_review_table', {
+  id: serial('id').primaryKey(),
+  userId: int('user_id').references(() => app_logintable.id),
+  placeId: int('place_id').notNull(),
+  review: varchar('review',{length:3000}).notNull(),
+  rating: decimal('rating',{precision:2,scale:1}).$type<number>().notNull().default(0.0),
+  status: text('status',{enum:['added','processing','verified','removed']}),
+  addedAt: timestamp('added_at').defaultNow(),
+});
+
+export const reviewRelations = relations(Review, ({ one }) => ({
+  user: one(app_logintable),
+}));
