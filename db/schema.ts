@@ -233,8 +233,8 @@ export const app_place = mysqlTable('app_place',{
   workingDays: json('working_days').$type<{from:string,to:string} | null>(),
   openingTime: json('opening_time').$type<{from:string,to:string}| null>(),
   nearest_places : json('nearest_places').$type<number[]>().notNull().default([]),
-  latitude: int('latitude').notNull().default(0),
-  longitude: int('longitude').notNull().default(0),
+  latitude: varchar('latitude',{length:100}).notNull().default('0.00'),
+  longitude: varchar('longitude',{length:100}).notNull().default('0.00'),
   addedAt: timestamp('added_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
 },(app_place) => ({

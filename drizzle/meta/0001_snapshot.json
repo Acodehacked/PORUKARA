@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "494c0b42-561c-4441-8fe8-6083d7f05dc7",
+  "id": "c09e04bb-55a4-4f29-840c-3890486e114f",
   "prevId": "4ac17156-3bac-4e0e-8f4f-c2521a673ff0",
   "tables": {
     "AdminLoginTable": {
@@ -899,7 +899,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'2024-08-02'"
+          "default": "'2024-08-07'"
         },
         "google_location": {
           "name": "google_location",
@@ -1080,19 +1080,19 @@
         },
         "latitude": {
           "name": "latitude",
-          "type": "int",
+          "type": "varchar(100)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": 0
+          "default": "'0.00'"
         },
         "longitude": {
           "name": "longitude",
-          "type": "int",
+          "type": "varchar(100)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": 0
+          "default": "'0.00'"
         },
         "added_at": {
           "name": "added_at",

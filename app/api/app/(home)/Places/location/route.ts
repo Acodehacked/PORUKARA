@@ -8,7 +8,6 @@ import CheckUser from '../../../auth/checkUser';
 
 export const dynamic = 'force-dynamic'
 export async function GET(request: NextRequest) {
-    const { db, connection } = await getDb2();
     try {
         
         const rawParams = request.url.split('?')[1];

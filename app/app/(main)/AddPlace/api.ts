@@ -37,8 +37,8 @@ export async function AddNewPlace({ cat_id, formData, image, location, subSugges
             openingTime: formData.openingHours,
             images: image,
             nearest_places: [],
-            latitude: formData.latitude,
-            longitude: formData.longitude
+            latitude: `${formData.latitude}`,
+            longitude: `${formData.longitude}`
         });
         connection.end();
         return {
