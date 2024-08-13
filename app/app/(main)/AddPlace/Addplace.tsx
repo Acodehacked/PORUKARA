@@ -639,6 +639,7 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
                                                 }
                                             }))}
                                             className='outline-none bg-white px-3 py-2 rounded-xl '>
+                                            <option value="">--select--</option>
                                             <option value="Sun">Sunday</option>
                                             <option value="Mon">Monday</option>
                                             <option value="Tue">Tuesday</option>
@@ -660,6 +661,7 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
                                                 }
                                             }))}
                                             className='outline-none bg-white px-3 py-2 rounded-xl '>
+                                            <option value="">--select--</option>
                                             <option value="Sun">Sunday</option>
                                             <option value="Mon">Monday</option>
                                             <option value="Tue">Tuesday</option>

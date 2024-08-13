@@ -2,9 +2,10 @@
 import { AddFormData } from "@/constants/types";
 import { getDb2 } from "@/db";
 import { app_place } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
 type Location = google.maps.LatLng | undefined | null;
-export async function AddNewPlace({id, cat_id, formData, image, subSuggestions, maplocation }: {id:number, cat_id: number, formData: AddFormData, image: string[], subSuggestions?: number[], maplocation: string }) {
+export async function EditPlace({id, cat_id, formData, image, subSuggestions, maplocation }: {id:number, cat_id: number, formData: AddFormData, image: string[], subSuggestions?: number[], maplocation: string }) {
     const { db, connection } = await getDb2();
     try {
         await db.update(app_place).set({
@@ -33,7 +34,7 @@ export async function AddNewPlace({id, cat_id, formData, image, subSuggestions, 
             nearest_places: [],
             latitude: `${formData.latitude}`,
             longitude: `${formData.longitude}`
-        });
+        }).where(eq(app_place.id,id));
         connection.end();
         return {
             message: 'Edited Successfully',

@@ -27,7 +27,7 @@ import { AddFormData } from '@/constants/types';
 import Link from 'next/link';
 import { getSubSuggestionsByCategory } from '../../AddPlace/api';
 import { GetAllCategories } from '../../(api)/Categories';
-import { AddNewPlace } from './api';
+import { EditPlace } from './api';
 import { app_place } from '@/db/schema';
 
 type Location = google.maps.LatLng | undefined | null;
@@ -287,7 +287,7 @@ export const Place = ({ id, categories, topcategories, suggestions ,place }: {
 
         }
         setloading(true)
-        const response = await AddNewPlace({
+        const response = await EditPlace({
             id: id,
             cat_id: categoryid,
             formData: MainFormData,
@@ -644,6 +644,7 @@ export const Place = ({ id, categories, topcategories, suggestions ,place }: {
                                                 }
                                             }))}
                                             className='outline-none bg-white px-3 py-2 rounded-xl '>
+                                            <option value="">--select--</option>
                                             <option value="Sun">Sunday</option>
                                             <option value="Mon">Monday</option>
                                             <option value="Tue">Tuesday</option>
