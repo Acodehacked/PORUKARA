@@ -181,7 +181,7 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
     const setmainsubsugg = async () => {
         setmainsuggestions([]);
         var dta = await getSubSuggestionsByCategory(categoryid);
-        setmainsuggestions(dta.data);
+        setmainsuggestions(dta.data ?? []);
         console.log(dta.data);
     }
     const handlerefresh = async () => {
@@ -355,8 +355,8 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
                     <div className='w-full relative'>
                         <Input placeholder='search place' value={searchname} onChange={(e) => {
                             setsearchname(e.currentTarget?.value)
-                        }} onKeyUp={()=>{
-                            setgmapopen(false);
+                        }} onKeyDown={()=>{
+                            setgmapopen(true);
                         }} />
                         {gmaplist.length > 0 && gmapopen && <div className='absolute bg-white top-full w-full p-1 flex flex-col z-[9]'>
                             {gmaplist.map((item, index) => {

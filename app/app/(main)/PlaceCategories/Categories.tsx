@@ -158,7 +158,7 @@ const Categories = ({ data, subSuggestions }: {
           setAddDialogOpen(true)
         }}>Add Category</button>
       </div>
-      <div className='w-full flex md:flex-row flex-col gap-3'>
+      <div className='w-full flex md:flex-row flex-col items-start gap-3'>
         <div className='grid w-full md:grid-cols-5 mt-3 sm:grid-cols-4 grid-cols-2 gap-2 mb-6'>
           {mainCategories.map((category, index) => {
             return <div key={category.id} className='relative items-center flex h-[70px] bg-white rounded-sm overflow-hidden'>
