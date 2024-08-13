@@ -27,6 +27,6 @@ export type AddFormData = {
         from: string,
         to: string
     } | null,
-    latitude:number,
-    longitude:number
+    latitude:string,
+    longitude:string
 }

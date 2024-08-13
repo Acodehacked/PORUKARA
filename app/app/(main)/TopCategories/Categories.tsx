@@ -108,7 +108,7 @@ const Categories = ({ data, topcategories }: {
       return;
     }
     setloading(true)
-    const response = dialogType == 'add' ? await AddTopCategory(name, image, userCategorylist) : await EditTopCategory(ids,name, image,userCategorylist);
+    const response = dialogType == 'add' ? await AddTopCategory(name, image, userCategorylist) : await EditTopCategory(ids, name, image, userCategorylist);
     if (response.error == null) {
       setAddDialogOpen(false);
       handlerefresh();
@@ -130,7 +130,13 @@ const Categories = ({ data, topcategories }: {
       <div className='flex items-center gap-4 mt-3'>
         <BiRefresh className={cn('rounded-full p-1 hover:bg-zinc-400', loading ? 'animate-spin' : '')} size={38} onClick={!loading ? handlerefresh : () => { }} />
         <h5 className='text-[35px]'>Top Categories</h5>
-        <button className='bg-green-600 rounded-sm px-4 py-2 text-white' onClick={() => setAddDialogOpen(true)}>Add Category</button>
+        <button className='bg-green-600 rounded-sm px-4 py-2 text-white' onClick={() => {
+          setname('');
+          setDialogType('add');
+          setimage('');
+          setuserCategorylist([]);
+          setAddDialogOpen(true)
+        }}>Add Category</button>
       </div>
       <div className='grid md:grid-cols-6 mt-3 sm:grid-cols-4 grid-cols-2 gap-2 mb-6'>
         {topmainCategories.map((category, index) => {

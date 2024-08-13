@@ -22,12 +22,13 @@ import { BiArrowBack, BiChevronLeft, BiChevronRight, BiDetail, BiLoaderCircle, B
 import { Select } from '@/components/ui/select';
 import { IoPhonePortraitOutline } from "react-icons/io5";
 import { MdOutlinePaid } from "react-icons/md";
-import { GetAllCategories } from '../(api)/Categories';
-import { GetAllSuggestions } from '../(api)/SubSuggestions';
 import { FaFacebook, FaInstagram, FaLink, FaTelegram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { AddFormData } from '@/constants/types';
-import { AddNewPlace, getSubSuggestionsByCategory } from './api';
 import Link from 'next/link';
+import { getSubSuggestionsByCategory } from '../../AddPlace/api';
+import { GetAllCategories } from '../../(api)/Categories';
+import { AddNewPlace } from './api';
+import { app_place } from '@/db/schema';
 
 type Location = google.maps.LatLng | undefined | null;
 
@@ -42,7 +43,8 @@ type SubSuggestions = {
     id: number;
     name: string | null;
 };
-export const AddPlace = ({ categories, topcategories, suggestions }: {
+export const Place = ({ id, categories, topcategories, suggestions ,place }: {
+    id:number,
     categories: {
         id: number;
         type: unknown;
@@ -59,7 +61,8 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
     suggestions: {
         id: number;
         name: string | null;
-    }[]
+    }[],
+    place : typeof app_place.$inferSelect
 }) => {
     var map: any;
     var YPlace: google.maps.places.Place;
@@ -99,7 +102,7 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
             const bounds = new LatLngBounds();
             setsearchlocation(places[0].location);
             setMainFormData((prev) => ({
-                ...prev, latitude: `${places[0].location?.lat()}` ?? 0, longitude: `${places[0].location?.lng()}` ?? 0
+                ...prev, latitude: `${places[0].location?.lat()}` ?? '', longitude: `${places[0].location?.lng()}` ?? ''
             }))
             // Loop through and get all the results.
 
@@ -108,27 +111,28 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
         }
     }
 
+    //
     const [MainFormData, setMainFormData] = useState<AddFormData>({
-        paid: false,
-        paidPeriod: 0,
-        endDate: new Date(),
-        name: '',
-        place: '',
-        description: '',
-        sub_place: '',
-        panchayatId: 0,
-        wardNo: null,
-        pinCode: null,
-        address: '',
-        email: '',
-        phone: [],
-        facilities: [],
-        workingDays: null,
-        openingHours: null,
-        website: null,
-        socialLinks: [],
-        latitude: '0',
-        longitude: '0'
+        paid: place.paid,
+        paidPeriod: place.paidPeriod,
+        endDate: place.endDate ?? new Date(),
+        name: place.name,
+        place: place.place,
+        description: place.description ?? '',
+        sub_place: place.sub_place,
+        panchayatId: place.panchayatId ?? 0,
+        wardNo: place.wardNo,
+        pinCode: place.pinCode,
+        address: place.address,
+        email: place.email ?? '',
+        phone: place.phone,
+        facilities: place.facilities,
+        workingDays: place.workingDays,
+        openingHours: place.openingTime,
+        website: place.website,
+        socialLinks: place.socialLinks,
+        latitude: place.latitude,
+        longitude: place.longitude
     })
     const [addsociallink, setaddsociallink] = useState<{
         type: string,
@@ -143,11 +147,11 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
     const [mainCategories, setmainCategories] = useState<Category[]>(categories);
     const [paidDurn, setpaidDurn] = useState<number>(0);
 
-    const [searchname, setsearchname] = useState('');
-    const [categoryid, setcategoryid] = useState(0);
+    const [searchname, setsearchname] = useState(place.googleLocation);
+    const [categoryid, setcategoryid] = useState(place.app_category_id);
     const [mainsuggestions, setmainsuggestions] = useState<SubSuggestions[]>(suggestions);
-    const [placesuggesttionlist, setplacesuggesttionlist] = useState<number[]>([]);
-    const [image, setimage] = useState<string[]>([]);
+    const [placesuggesttionlist, setplacesuggesttionlist] = useState<number[]>(place.app_sub_suggestions);
+    const [image, setimage] = useState<string[]>(place.images);
     const snackctx = useContext(SnackbarContext);
     const [searchlocation, setsearchlocation] = useState<Location>(null);
     const [gmaplist, setgmaplist] = useState<google.maps.places.Place[]>([]);
@@ -157,6 +161,7 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
 
     const router = useRouter();
     const [searchfaciltiy, setsearchfaciltiy] = useState('');
+
     useEffect(() => {
         console.log(categoryid)
         setmainsubsugg();
@@ -283,11 +288,11 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
         }
         setloading(true)
         const response = await AddNewPlace({
+            id: id,
             cat_id: categoryid,
             formData: MainFormData,
             subSuggestions: placesuggesttionlist,
             image: image,
-            location: searchlocation,
             maplocation: searchname
         });
         if (response.error != null) {
@@ -364,7 +369,7 @@ export const AddPlace = ({ categories, topcategories, suggestions }: {
                                     setsearchlocation(item.location)
                                     setgmapopen(false);
                                     setMainFormData((prev) => ({
-                                        ...prev, latitude: `${item.location?.lat()}`, longitude: `${item.location?.lng()}`
+                                        ...prev, latitude: `${item.location?.lat()}` ?? '', longitude: `${item.location?.lng()}` ?? ''
                                     }))
                                     setsearchname(item.displayName ?? '')
                                     setgmaplist([]);
