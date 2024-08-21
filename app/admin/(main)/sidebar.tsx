@@ -11,6 +11,7 @@ import { Session } from 'next-auth';
 
 export const Sidebar = ({session,children}:{session: Session | null,children:React.ReactNode}) => {
     const navbarctx = useContext(AdminNavbarContext);
+    
 
     return <>
         <motion.div className={cn("max-w-[300px] w-full sm:relative fixed top-0 bottom-0 transition-all z-[30]", navbarctx.isDisplayed ? 'left-0 w-full md:shadow-none shadow-[0px_0px_500px_rgba(0,0,0,0.3)]' : 'md:w-full w-0 md:left-0 left-[-100%] ')}>

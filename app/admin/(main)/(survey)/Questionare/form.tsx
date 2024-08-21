@@ -77,7 +77,7 @@ const SurveyForm = ({id, MainData, gene_id }: {
                 </div>
                 {/* Multiple Choice */}
                 {ptype?.value == 'checkbox' ? <input value={`${ptitle?.value}`} id={`${index}optionvalue${i}`} name={`${item.question_no}optionvalue${i}`} type='checkbox' /> : ''}
-                {psub?.value != undefined ? <input value={0} min={0} type="number" name={`${item.question_no}optionvalue${i}M`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`${psub?.value}`} step='0.01'  /> : ''}
+                {psub?.value != undefined ? <input min={0} type="number" name={`${item.question_no}optionvalue${i}M`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`${psub?.value}`} step='0.01'  /> : ''}
                 {/* Single Choice */}
                 {ptype?.value == 'select' ? <input value={`${ptitle?.value}`} id={`${index}optionvalue${i}`} name={`${item.question_no}optionvalue`} type='radio' required /> : ''}
                 {ptype?.value == 'review' ? <div className="w-full flex gap-2 flex-wrap">
@@ -89,7 +89,7 @@ const SurveyForm = ({id, MainData, gene_id }: {
                   })}
                 </div> : ''}
               </div>
-              {ptype?.value == 'number' ? <input type="number" value={0} min={0} name={`${item.question_no}optionvalue${i}`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`enter value for question ${item.title}`}></input> : ''}
+              {ptype?.value == 'number' ? <input type="number" min={0} name={`${item.question_no}optionvalue${i}`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`enter value for question ${item.title}`}></input> : ''}
               {ptype?.value == 'text' ? <input type="text" name={`${item.question_no}optionvalue${i}`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`enter value for question ${ptitle?.value}`}></input> : ''}
               {/* select_text */}
               {ptype?.value == 'select_text' ? <input type="text" name={`${item.question_no}optionvalueM`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`enter value for question ${ptitle?.value}`}></input> : ''}
@@ -99,7 +99,7 @@ const SurveyForm = ({id, MainData, gene_id }: {
         return <div key={index} className="input-box mal flex flex-col items-start left-primary shadow-lg bg-white my-4 px-3 py-3">
           {item.required ? <h3 className="bg-red-600 text-white px-1 py-1 text-[8px] rounded-sm">*required</h3> : ''}
           <h3 className="text-[16px] font-regular flex mt-2 mal">{item.question_no}.{item.title}</h3>
-          {item.type == 'int' ? <input required={item.required ? true : false} type="number" value={0} min={0} name={`${item.question_no}response`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`enter value for question ${item.title}`}></input> : ''}
+          {item.type == 'int' ? <input required={item.required ? true : false} type="number" min={0} name={`${item.question_no}response`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`enter value for question ${item.title}`}></input> : ''}
           {item.type == 'text' ? <input required={item.required ? true : false} type="text" name={`${item.question_no}response`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`enter value for question ${item.title}`}></input> : ''}
           {/* {item.type != "int" && item.type != 'text' ? <input required type="text" name={`response${index}`} hidden className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`enter value for question ${item.title}`}></input> : ''} */}
           {item.type == 'havenot' ? <div className="flex gap-2 mt-2">
