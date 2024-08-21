@@ -1,0 +1,1 @@
+ALTER TABLE `ClientResponses` ADD `admin_id` varchar(300) NOT NULL;

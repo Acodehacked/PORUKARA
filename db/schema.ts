@@ -131,6 +131,7 @@ export const QuestionsDB = mysqlTable('QuestionsDb', {
 export const ClientResponses = mysqlTable('ClientResponses', {
   id: int('id').primaryKey().autoincrement(),
   gen_id: varchar('generated_id',{length:300}).notNull(),
+  author_id: varchar('admin_id',{length:300}).notNull(),
   status: varchar('status', { length: 20, enum: ['started', 'progress', 'completed']}),
   responses: json('responses').notNull(),
   added_on : date('date')

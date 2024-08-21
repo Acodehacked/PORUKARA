@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "c09e04bb-55a4-4f29-840c-3890486e114f",
-  "prevId": "4ac17156-3bac-4e0e-8f4f-c2521a673ff0",
+  "id": "9e431650-9064-4996-ae72-dc044b6326e4",
+  "prevId": "30f23d88-5918-41e7-b8fc-efefe9ffb5f6",
   "tables": {
     "AdminLoginTable": {
       "name": "AdminLoginTable",
@@ -262,6 +262,13 @@
         "generated_id": {
           "name": "generated_id",
           "type": "varchar(300)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "admin_id": {
+          "name": "admin_id",
+          "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -600,6 +607,87 @@
       },
       "uniqueConstraints": {}
     },
+    "app_review_table": {
+      "name": "app_review_table",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "place_id": {
+          "name": "place_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "review": {
+          "name": "review",
+          "type": "varchar(3000)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "rating": {
+          "name": "rating",
+          "type": "decimal(2,1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "added_at": {
+          "name": "added_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "app_review_table_user_id_app_logintable_id_fk": {
+          "name": "app_review_table_user_id_app_logintable_id_fk",
+          "tableFrom": "app_review_table",
+          "tableTo": "app_logintable",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "app_review_table_id": {
+          "name": "app_review_table_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
     "webcode_enquiries": {
       "name": "webcode_enquiries",
       "columns": {
@@ -899,7 +987,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'2024-08-07'"
+          "default": "'2024-08-21'"
         },
         "google_location": {
           "name": "google_location",

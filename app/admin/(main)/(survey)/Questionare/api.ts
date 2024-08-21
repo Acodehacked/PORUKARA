@@ -13,6 +13,7 @@ export default async function AddResponse(formdata: FormData, gen_id: string) {
     try{
         const response = await db.insert(ClientResponses).values({
             gen_id: gen_id,
+            author_id: 'abina5448@gmail.com',
             responses: json,
             status: 'completed',
             added_on: new Date()

@@ -10,7 +10,8 @@ import Image from "next/image";
 import { BiLoaderCircle } from "react-icons/bi";
 import { CheckCircle2Icon } from "lucide-react";
 
-const SurveyForm = ({ MainData, gene_id }: {
+const SurveyForm = ({id, MainData, gene_id }: {
+  id:string,
   MainData: {
     title: string;
     type: "null" | "select" | "text" | "checkbox" | "int" | "yesno" | "havenot" | null;

@@ -658,7 +658,7 @@ export const ADMINSIDEBARLINKS = [
         submenu: []
     },
     {
-        onlyDev: false,
+        onlyDev: true,
         title: 'Response Analysis',
         icon: 'bxs-book',
         link: '/Questions',
