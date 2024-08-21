@@ -32,7 +32,7 @@ const QuestionsList = ({ Questions, Responses }: {
     const [deletedialogOpen, setdeletedialogOpen] = useState(-1);
     const [detailsOpen, setdetailsOpen] = useState(-1);
     const [detailssubOpen, setdetailssubOpen] = useState(-1);
-    
+
     const [multipleAnswers, setmultipleAnswers] = useState<string[]>([]);
     const DeleteEvent = async () => {
         const response = await deleteQuestion(deletedialogOpen);
@@ -48,7 +48,7 @@ const QuestionsList = ({ Questions, Responses }: {
             setdeletedialogOpen(-1)
             router.refresh();
         } else {
-            
+            alert('error');
         }
     }
     const SetDetailsPage = (quesno: number, option: number) => {
@@ -185,7 +185,7 @@ const QuestionsList = ({ Questions, Responses }: {
                                 if (otype?.value == 'checkbox') {
                                     var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue${i}`);
                                     let adev = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue${i}M`);
-                                    if(!Number.isNaN(adev?.value) && adev != undefined){
+                                    if (!Number.isNaN(adev?.value) && adev != undefined) {
                                         average = average + parseInt(adev?.value);
                                     }
                                     if (value != undefined) {
@@ -270,11 +270,11 @@ const QuestionsList = ({ Questions, Responses }: {
                             <div className="border-blue-300 rounded-full px-3 py-1 text-[10px] mt-2 text-zinc-600 border-[0.01rem]">{item.type}</div>
                             <div className='flex gap-2'>
                                 {item.required ? <div className="border-blue-300 rounded-full px-3 py-1 text-[10px] mt-2 text-zinc-600 border-[0.01rem]">Required</div> : ''}
-                                <Button variant={'destructive'} onClick={()=>{
+                                <Button variant={'destructive'} onClick={() => {
                                     setdeletedialogOpen(item.question_no);
                                     DeleteEvent();
                                 }} size={'icon'}><Trash2Icon className='text-white' /></Button>
-                                <Button variant={'outline'} onClick={()=>{
+                                <Button variant={'outline'} onClick={() => {
                                     AddNumber(item.question_no)
                                 }} size={'icon'}><PlusCircle className='' /></Button>
                             </div>
@@ -297,7 +297,7 @@ const QuestionsList = ({ Questions, Responses }: {
                     <div className='h-full mt-2 flex flex-col p-2 gap-1 max-h-[90vh] overflow-y-scroll'>
                         {multipleAnswers.map((item, index) => {
                             return <div key={index} className='p-2 bg-zinc-50 rounded-sm'>
-                                {index+1}. {item}
+                                {index + 1}. {item}
                             </div>
                         })}
                     </div>
