@@ -2,9 +2,12 @@
 import { useState } from 'react';
 import Options from './Options';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronRight, X } from 'lucide-react';
+import { ChevronRight, PlusCircle, Trash2Icon, X } from 'lucide-react';
 import { BiX } from 'react-icons/bi';
 import { Advent_Pro } from 'next/font/google';
+import { Button } from '@/components/ui/button';
+import { deleteQuestion, updatenummber } from './api';
+import { useRouter } from 'next/navigation';
 const QuestionsList = ({ Questions, Responses }: {
     Questions: {
         type: "null" | "select" | "text" | "checkbox" | "int" | "yesno" | "havenot" | null;
@@ -25,20 +28,29 @@ const QuestionsList = ({ Questions, Responses }: {
     }[]
 }) => {
     console.log(Responses)
-    // const router = useRouter();
-    // const [deletedialogOpen, setdeletedialogOpen] = useState(-1);
+    const router = useRouter();
+    const [deletedialogOpen, setdeletedialogOpen] = useState(-1);
     const [detailsOpen, setdetailsOpen] = useState(-1);
     const [detailssubOpen, setdetailssubOpen] = useState(-1);
+    
     const [multipleAnswers, setmultipleAnswers] = useState<string[]>([]);
-    // const DeleteEvent = async () => {
-    //     const response = await deleteQuestion(deletedialogOpen);
-    //     if (response?.error == null) {
-    //         setdeletedialogOpen(-1)
-    //         router.refresh();
-    //     } else {
-
-    //     }
-    // }
+    const DeleteEvent = async () => {
+        const response = await deleteQuestion(deletedialogOpen);
+        if (response?.error == null) {
+            setdeletedialogOpen(-1)
+            router.refresh();
+            alert('deleted successfully');
+        }
+    }
+    const AddNumber = async (item: number) => {
+        const response = await updatenummber(item);
+        if (response?.error == null) {
+            setdeletedialogOpen(-1)
+            router.refresh();
+        } else {
+            
+        }
+    }
     const SetDetailsPage = (quesno: number, option: number) => {
         setmultipleAnswers([]);
         console.log(`${Questions[quesno].question_no}${option}`)
@@ -258,12 +270,13 @@ const QuestionsList = ({ Questions, Responses }: {
                             <div className="border-blue-300 rounded-full px-3 py-1 text-[10px] mt-2 text-zinc-600 border-[0.01rem]">{item.type}</div>
                             <div className='flex gap-2'>
                                 {item.required ? <div className="border-blue-300 rounded-full px-3 py-1 text-[10px] mt-2 text-zinc-600 border-[0.01rem]">Required</div> : ''}
-                                {/* <Button variant={'destructive'} onClick={()=>{
+                                <Button variant={'destructive'} onClick={()=>{
                                     setdeletedialogOpen(item.question_no);
+                                    DeleteEvent();
                                 }} size={'icon'}><Trash2Icon className='text-white' /></Button>
                                 <Button variant={'outline'} onClick={()=>{
                                     AddNumber(item.question_no)
-                                }} size={'icon'}><PlusCircle className='' /></Button> */}
+                                }} size={'icon'}><PlusCircle className='' /></Button>
                             </div>
                         </div>
                         <div className="ps-3 w-full flex flex-col mt-3">
