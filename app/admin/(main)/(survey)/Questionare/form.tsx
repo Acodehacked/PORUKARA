@@ -73,13 +73,13 @@ const SurveyForm = ({id, MainData, gene_id }: {
               <div className="flex flex-wrap gap-3 ">
                 <div className="w-full mal">
                   <b>{alp[i]}</b>.
-                  {ptitle?.value}<span className="text-red-600">&nbsp;{ptype?.value == 'select_text' ? <input value={`${ptitle?.value}`} id={`${index}optionvalue${i}`} name={`${item.question_no}optionvalue`} type='radio' required /> : ''}</span>
+                  {ptitle?.value}<span className="text-red-600">&nbsp;{ptype?.value == 'select_text' ? <input value={`${ptitle?.value}`} id={`${index}optionvalue${i}`} name={`${item.question_no}optionvalue`} type='radio' required={item.required} /> : ''}</span>
                 </div>
                 {/* Multiple Choice */}
                 {ptype?.value == 'checkbox' ? <input value={`${ptitle?.value}`} id={`${index}optionvalue${i}`} name={`${item.question_no}optionvalue${i}`} type='checkbox' /> : ''}
                 {psub?.value != undefined ? <input min={0} type="number" name={`${item.question_no}optionvalue${i}M`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`${psub?.value}`} step='0.01'  /> : ''}
                 {/* Single Choice */}
-                {ptype?.value == 'select' ? <input value={`${ptitle?.value}`} id={`${index}optionvalue${i}`} name={`${item.question_no}optionvalue`} type='radio' required /> : ''}
+                {ptype?.value == 'select' ? <input value={`${ptitle?.value}`} id={`${index}optionvalue${i}`} name={`${item.question_no}optionvalue`} type='radio' required={item.required} /> : ''}
                 {ptype?.value == 'review' ? <div className="w-full flex gap-2 flex-wrap">
                   {reviews.map((rv, ri) => {
                     return <label key={ri} htmlFor={`${index}optionvalue${i}${ri}`} className="flex gap-2 mt-2 px-4 py-2">
