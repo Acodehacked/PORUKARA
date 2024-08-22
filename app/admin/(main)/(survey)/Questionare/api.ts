@@ -16,6 +16,7 @@ export default async function AddResponse(id:string,formdata: FormData, gen_id: 
             author_id: id,
             responses: json,
             status: 'completed',
+            added_on: new Date(),
         })
         connection.end();
         return {

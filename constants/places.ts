@@ -1,4 +1,4 @@
-export const ENV:'local'|'live' = 'live';
+export const ENV:'local'|'live' = 'local';
 
 export const PLACESKUTTANAD = [
     "Muttar",

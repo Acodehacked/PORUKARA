@@ -4,17 +4,15 @@ import AnimatedText from "@/components/reusable/public/AnimatedText";
 import DashboardCard from "@/components/reusable/public/DashboardCard";
 import { getDb2 } from "@/db";
 import { ClientResponses, QuestionsDB } from "@/db/schema";
-import { eq } from "drizzle-orm";
-import en from 'javascript-time-ago/locale/en'
-import TimeAgo from "javascript-time-ago"
-
+import { desc, eq } from "drizzle-orm";
+import moment from 'moment-timezone';
 
 export const dynamic = "force-dynamic";
 export default async function page() {
-    TimeAgo.addDefaultLocale(en)
-    const timeAgo = new TimeAgo('en-US')
+    moment().tz("Asia/Kolkata").format();
+
     const { db, connection } = await getDb2();
-    const Responses = await db.select().from(ClientResponses).where(eq(ClientResponses.status, 'completed'));
+    const Responses = await db.select().from(ClientResponses).where(eq(ClientResponses.status, 'completed')).orderBy(desc(ClientResponses.added_on)).limit(25);
     const Questions = await db.select().from(QuestionsDB);
     connection.end();
     return <main className="flex flex-col">
@@ -32,17 +30,16 @@ export default async function page() {
                 <DashboardCard className='md:col-span-3 flex flex-col gap-1'>
                     <span className="mb-2">Responses</span>
                     {Responses.length > 0 && Responses.map((response, index) => {
-                        if(index > 10){
-                            return;
-                        }
-                        const d = new Date(response.added_on.toUTCString() ?? '');
-                        d.setHours(d.getHours() - 5.5);
                         return <div key={index} className="p-2 w-full rounded-sm text-[15px] bg-black/5 px-3 flex justify-between">
                             <div>
                             <span className="text-[10px]">{response.gen_id}</span>
                             <h2>{response.author_id}</h2>
                             </div>
-                            <span>{timeAgo.format(d)}</span>
+                            {/* {new Date().toLocaleString('en-US',{
+                                timeZone:'Asia/Kolkata'})} */}
+                            {/* {response.added_on.toUTCString()} */}
+                            <span>{`${moment(`${response.added_on.toLocaleString('en-US',{
+                                timeZone:'Asia/Kolkata'})}`).fromNow()}`}</span>
                         </div>
                     })}
                     {Responses.length == 0 ? <span>No responses Recorded</span> : ''}
