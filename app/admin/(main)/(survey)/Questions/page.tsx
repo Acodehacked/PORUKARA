@@ -1,6 +1,8 @@
 import {  getDb2 } from "@/db"
 import { ClientResponses, QuestionsDB } from "@/db/schema";
 import QuestionsList from "./Questions";
+import { Button } from "@/components/ui/button";
+import { ExportExcel } from "./api";
 
 export const dynamic = "force-dynamic";
 export default async function Page() {
@@ -8,10 +10,12 @@ export default async function Page() {
     const Questions = await db.select().from(QuestionsDB).orderBy(QuestionsDB.question_no);
     const Responses = await db.select().from(ClientResponses).orderBy(ClientResponses.id);
     connection.end();
+    
     return <main>
         <div className="flex">
             <div className="w-full">
-                <div className="flex flex-col mt-3 items-start gap-3">
+                <div className="flex   flex-col mt-3 items-start gap-3">
+                    
                     <QuestionsList Responses={Responses} Questions={Questions} />
                 </div>
             </div>

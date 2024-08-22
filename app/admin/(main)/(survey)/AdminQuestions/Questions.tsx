@@ -5,9 +5,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { DeleteAllResponses } from './api';
+import { CloseSurvey, DeleteAllResponses, GetPermission, OpenSurvey } from './api';
 import { useRouter } from 'next/navigation';
-const QuestionsList = ({ Questions }: {
+import { AdminLoginTable } from '@/db/schema';
+import { cn } from '@/lib/utils';
+import { BiLoaderAlt } from 'react-icons/bi';
+import { Close } from '@radix-ui/react-dialog';
+const QuestionsList = ({ Questions, Admins }: {
+    Admins: typeof AdminLoginTable.$inferSelect,
     Questions: {
         type: "null" | "select" | "text" | "checkbox" | "int" | "yesno" | "havenot" | null;
         id: number;
@@ -23,32 +28,60 @@ const QuestionsList = ({ Questions }: {
     const router = useRouter();
     // const [deletedialogOpen, setdeletedialogOpen] = useState(-1);
     const [detailsOpen, setdetailsOpen] = useState(-1);
+    const [loading, setloading] = useState(false);
+    const [permission, setpermission] = useState(Admins.permission);
     const [detailssubOpen, setdetailssubOpen] = useState(-1);
     const [multipleAnswers, setmultipleAnswers] = useState<string[]>([]);
-    // const DeleteEvent = async () => {
-    //     const response = await deleteQuestion(deletedialogOpen);
-    //     if (response?.error == null) {
-    //         setdeletedialogOpen(-1)
-    //         router.refresh();
-    //     } else {
+    const OpenEvent = async () => {
+        setloading(true)
+        const response = await OpenSurvey();
+        if (response?.error == null) {
+            router.refresh();
+        }
+        setloading(false);
+        GetAllData()
 
-    //     }
-    // }
+    }
+    const GetAllData = async () => {
+        const response = await GetPermission();
+        setpermission(response);
+    }
+    const CloseEvent = async () => {
+        setloading(true)
+        const response = await CloseSurvey();
+        if (response?.error == null) {
+            router.refresh();
+        }
+        setloading(false);
+        GetAllData()
+    }
     const SetDetailsPage = (quesno: number, option: number) => {
         setmultipleAnswers([]);
 
     }
-    const handleDelete = async () =>{
+    const handleDelete = async () => {
         const response = await DeleteAllResponses();
-        if(response.error == null){
+        if (response.error == null) {
             router.refresh();
         }
     }
     return (
         <div className="flex md:flex-row flex-col w-full items-start relative">
             <div className='w-full flex max-w-[600px] mx-auto flex-col gap-2'>
-                <Button onClick={()=>handleDelete()}>Delete All Responses</Button>
-                <h3>total Questions: <b>{Questions.length}</b></h3>
+                <div className='flex justify-between p-2 w-full items-center'>
+                    <h3>total Questions: <b>{Questions.length}</b></h3>
+                    <Button className='w-auto' onClick={() => handleDelete()}>Delete All Responses</Button>
+                </div>
+                <div className={cn('bg-green-400 items-center flex justify-between rounded-xl text-black w-full p-3', permission == false ? 'bg-red-500 text-white' : '')}>
+                    <span>{permission ? 'Web Survey is Open Now' : 'Web survey is closed Now'}</span>
+                    <Button onClick={()=>{
+                        if(permission){
+                            CloseEvent();
+                        }else{
+                            OpenEvent();
+                        }
+                    }} className='bg-white text-black px-4 py-2 rounded-sm hover:bg-zinc-200'>{permission ? 'Stop Survey' : 'Start Survey'}</Button>
+                </div>
                 {Questions.map((item, index) => {
                     if (item.option_len != null) {
                         const len = item.option_len || 0;
@@ -99,7 +132,13 @@ const QuestionsList = ({ Questions }: {
                     </div>
                 </motion.div>}
             </AnimatePresence>
-
+            <AnimatePresence>
+                {loading && <motion.div initial={{ opacity: 0, pointerEvents: 'none' }} animate={{ opacity: 1, pointerEvents: 'all' }} className='fixed z-[100] bg-black/30 left-0 right-0 bottom-0 top-0 flex items-center justify-center'>
+                    {loading && <motion.div initial={{ opacity: 0, pointerEvents: 'none' }} animate={{ opacity: 1, pointerEvents: 'all' }} className='bg-white p-6 rounded-xl '>
+                        <BiLoaderAlt className='text-[40px] animate-spin ease-in-out' />
+                    </motion.div>}
+                </motion.div>}
+            </AnimatePresence>
         </div>
     )
 }

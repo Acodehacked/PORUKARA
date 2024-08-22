@@ -1,1 +1,0 @@
-ALTER TABLE `ClientResponses` MODIFY COLUMN `date` timestamp NOT NULL DEFAULT (now());

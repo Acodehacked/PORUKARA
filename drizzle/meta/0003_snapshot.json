@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "56e3a735-2198-46cb-96f7-800d4c26513a",
-  "prevId": "2af60e42-7aa3-495f-a948-4aa690955b28",
+  "id": "b91dbb8f-964b-4e4f-b9e4-02263c8a31c8",
+  "prevId": "60937dd0-9cc9-4343-bfec-ead72fc707bb",
   "tables": {
     "AdminLoginTable": {
       "name": "AdminLoginTable",
@@ -588,13 +588,6 @@
             "title"
           ],
           "isUnique": true
-        },
-        "q_noindex": {
-          "name": "q_noindex",
-          "columns": [
-            "question_no"
-          ],
-          "isUnique": true
         }
       },
       "foreignKeys": {},
@@ -988,7 +981,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'2024-08-21'"
+          "default": "'2024-08-22'"
         },
         "google_location": {
           "name": "google_location",

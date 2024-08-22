@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1724219299395,
-      "tag": "0002_public_wrecker",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1724261740039,
-      "tag": "0001_smooth_romulus",
+      "when": 1724317236580,
+      "tag": "0004_swift_abomination",
       "breakpoints": true
     }
   ]

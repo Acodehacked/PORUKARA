@@ -13,14 +13,18 @@ import { FaTrashAlt } from "react-icons/fa"
 import { BiLoaderAlt, BiLoaderCircle } from 'react-icons/bi';
 import { useRouter } from 'next/navigation';
 
-export const Submitted = ({ responses }: {
+export const Submitted = ({ responses,permission }: {
+    permission: boolean,
     responses: typeof ClientResponses.$inferSelect[]
 }) => {
     TimeAgo.addDefaultLocale(en)
+
+    const timeAgo = new TimeAgo('en-US')
+    console.log(responses)
+    console.log(permission)
     const router = useRouter();
     const [loading, setloading] = useState(false);
     const snackctx = useContext(SnackbarContext);
-    const timeAgo = new TimeAgo('en-US')
     const deleteReponses = async (id: number) => {
         const c = confirm('Do you really want to delete this response. It can\'t be undo again!');
         if (c) {
@@ -38,6 +42,8 @@ export const Submitted = ({ responses }: {
             var respon = ENV == 'live' ? item.responses as object : JSON.parse(item.responses as unknown as string) as object;
             var name = Object.getOwnPropertyDescriptor(respon, '1optionvalue0');
             var add = Object.getOwnPropertyDescriptor(respon, '1optionvalue1');
+            const d = new Date(item.added_on.toISOString() ?? '');
+                        d.setHours(d.getHours() - 5.5);
             return <div className="bg-white p-2 rounded-xl border-[0.01rem] border-zinc-400" key={index}>
                 <div className="flex gap-2 items-center">
                     <span>{index + 1}.  </span>
@@ -45,8 +51,9 @@ export const Submitted = ({ responses }: {
                         <h3 className="text-[18px] p-0 m-0">{name?.value != undefined ? name.value : '-none-'}</h3>
                         <h3 className="text-[12px] m-0 p-0 ">{add?.value != undefined ? add.value : '-none-'}</h3>
                     </div>
-                    <span className="ms-auto">{timeAgo.format(new Date(item.added_on.toISOString() ?? ''))}</span>
-                    <button className="p-2 hover:bg-zinc-200 text-red-800" onClick={() => deleteReponses(item.id)}><FaTrashAlt /></button>
+                    <span className="ms-auto">{timeAgo.format(d)}</span>
+                    {permission == true && <button className="p-2 hover:bg-zinc-200 text-red-800" onClick={() => deleteReponses(item.id)}><FaTrashAlt /></button>}
+                    
                 </div>
             </div>
         })}

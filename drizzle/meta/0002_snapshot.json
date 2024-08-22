@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "2af60e42-7aa3-495f-a948-4aa690955b28",
-  "prevId": "9e431650-9064-4996-ae72-dc044b6326e4",
+  "id": "60937dd0-9cc9-4343-bfec-ead72fc707bb",
+  "prevId": "2af60e42-7aa3-495f-a948-4aa690955b28",
   "tables": {
     "AdminLoginTable": {
       "name": "AdminLoginTable",
@@ -289,21 +289,14 @@
         },
         "date": {
           "name": "date",
-          "type": "date",
+          "type": "timestamp",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
         }
       },
-      "indexes": {
-        "gen_idx": {
-          "name": "gen_idx",
-          "columns": [
-            "generated_id"
-          ],
-          "isUnique": true
-        }
-      },
+      "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {
         "ClientResponses_id": {
@@ -987,7 +980,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'2024-08-21'"
+          "default": "'2024-08-22'"
         },
         "google_location": {
           "name": "google_location",

@@ -2,17 +2,22 @@
 import { Button } from "@/components/ui/button";
 import { useContext, useEffect, useRef, useState } from "react";
 import AddResponse from "./api";
+const { uuid } = require('uuidv4');
 import SnackbarContext from "@/lib/Snackbar-context";
 import { useRouter } from "next/navigation";
 import { uploadFile } from "@/db/aws";
-import { AnimatePresence,motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { BiLoaderCircle } from "react-icons/bi";
-import { CheckCircle2Icon } from "lucide-react";
+import { CheckCircle2Icon, ChevronUp } from "lucide-react";
 import { ENV } from "@/constants/places";
+import { randomUUID } from "crypto";
+import Link from "next/link";
+import { GetPermission } from "../AdminQuestions/api";
 
-const SurveyForm = ({id, MainData, gene_id }: {
-  id:string,
+const SurveyForm = ({ id, MainData, gene_id,allowed }: {
+  allowed:boolean,
+  id: string,
   MainData: {
     title: string;
     type: "null" | "select" | "text" | "checkbox" | "int" | "yesno" | "havenot" | null;
@@ -26,6 +31,8 @@ const SurveyForm = ({id, MainData, gene_id }: {
 }) => {
   const snackctx = useContext(SnackbarContext);
   const router = useRouter();
+  const [permission, setpermission] = useState(allowed);
+  const [generatedId, setgeneratedId] = useState(gene_id);
   const [uploading, setuploading] = useState(false);
   const [uploaded, setuploaded] = useState(false);
   const ref = useRef<HTMLFormElement>(null);
@@ -36,9 +43,18 @@ const SurveyForm = ({id, MainData, gene_id }: {
     });
   }, []);
 
+  const RefreshGeneratedId = () => {
+    const unique_id = uuid();
+    GetAllData();
+    setgeneratedId(unique_id)
+  }
+  const GetAllData = async () => {
+    const response = await GetPermission();
+    setpermission(response);
+}
   const handlesubmit = async (data: FormData) => {
     setuploading(true);
-    const response = await AddResponse(id,data, gene_id);
+    const response = await AddResponse(id, data, generatedId);
     if (response.success) {
       snackctx.displayMsg('Response Added');
       setuploading(false);
@@ -54,7 +70,11 @@ const SurveyForm = ({id, MainData, gene_id }: {
     }
   }
   return <>
-    <form ref={ref} className="w-full max-w-[600px] mx-auto" action={handlesubmit}>
+  {permission  ? <form ref={ref} className="w-full max-w-[600px] mx-auto" action={handlesubmit}>
+      <div className="flex flex-col md:flex-row md:justify-between justify-center items-center">
+        <h2 className="text-[11px] text-center md:m-0 mb-1" >id: {generatedId}</h2>
+        <Button variant={'outline'} type="button" onClick={() => RefreshGeneratedId()}>Regenerate Id</Button>
+      </div>
       {MainData.map((item, index) => {
         let options = ENV == 'live' ? MainData[index].options_list as unknown as object : JSON.parse(MainData[index].options_list as string);
         let rows = [];
@@ -77,7 +97,7 @@ const SurveyForm = ({id, MainData, gene_id }: {
                 </div>
                 {/* Multiple Choice */}
                 {ptype?.value == 'checkbox' ? <input value={`${ptitle?.value}`} id={`${index}optionvalue${i}`} name={`${item.question_no}optionvalue${i}`} type='checkbox' /> : ''}
-                {psub?.value != undefined ? <input min={0} type="number" name={`${item.question_no}optionvalue${i}M`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`${psub?.value}`} step='0.01'  /> : ''}
+                {psub?.value != undefined ? <input min={0} type="number" name={`${item.question_no}optionvalue${i}M`} className="px-4 py-2 mt-2 w-full rounded-sm bg-zinc-50 border-[0.01rem] border-zinc-500" placeholder={`${psub?.value}`} step='0.01' /> : ''}
                 {/* Single Choice */}
                 {ptype?.value == 'select' ? <input value={`${ptitle?.value}`} id={`${index}optionvalue${i}`} name={`${item.question_no}optionvalue`} type='radio' required={item.required} /> : ''}
                 {ptype?.value == 'review' ? <div className="w-full flex gap-2 flex-wrap">
@@ -131,15 +151,26 @@ const SurveyForm = ({id, MainData, gene_id }: {
       <div className="mt-5 px-5">
         <Button className="">Submit</Button>
       </div>
-    </form>
+      <div>
+        <Link href={'#home'} className="text-zinc-800 bg-white px-3 py-2 rounded-sm border-[0.01rem] border-zinc-400 fixed bottom-[20px] z-[99] right-[35px]" >
+          <ChevronUp size={30} />
+        </Link>
+      </div>
+    </form> : <div className="flex min-h-[70vh] flex-col justify-start items-center gap-1">
+        <Image alt="Porukara college Logo" src={'/assets/logo-gold.png'} height={100} width={100} />
+        <h4 className="text-[25px] text-center font-semibold">Web Survey is now Closed</h4>
+        <span className="text-[15px] mb-3 text-center">You Cannot submit / open this survey right now. It will open soon!</span>
+        <Button onClick={()=>GetAllData()} variant={'outline'}>Refresh</Button>
+      </div>}
+    
     <AnimatePresence>
       {
         uploading && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='bg-black/50 fixed top-0 bottom-0 left-0 right-0 px-5 flex items-center justify-center z-[9999]'>
           <div className='max-w-[500px] min-h-[150px] justify-center w-full flex flex-col items-center rounded-xl bg-white px-3 py-2 '>
-              <div className='w-full flex flex-col items-center gap-2'>
-                <BiLoaderCircle size={50} className="text-primary animate-spin ease-in-out" />
-                <h2 className="mt-3 mb-2">Please wait</h2>
-              </div>
+            <div className='w-full flex flex-col items-center gap-2'>
+              <BiLoaderCircle size={50} className="text-primary animate-spin ease-in-out" />
+              <h2 className="mt-3 mb-2">Please wait</h2>
+            </div>
           </div>
         </motion.div>
       }
@@ -148,10 +179,10 @@ const SurveyForm = ({id, MainData, gene_id }: {
       {
         uploaded && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='bg-black/50 fixed top-0 bottom-0 left-0 right-0 px-5 flex items-center justify-center z-[9999]'>
           <div className='max-w-[500px] min-h-[150px] justify-center w-full flex flex-col items-center rounded-sm bg-white px-3 py-4'>
-              <div className='w-full flex flex-col items-center gap-2'>
-                <CheckCircle2Icon size={50} className="text-green-500" />
-                <h2 className="text-center text-green-800 font-semibold mt-4">Questionare Submitted Successfully</h2>
-                <span className="text-center text-[13px] mb-4 text-zinc-500">id: {gene_id}</span>
+            <div className='w-full flex flex-col items-center gap-2'>
+              <CheckCircle2Icon size={50} className="text-green-500" />
+              <h2 className="text-center text-green-800 font-semibold mt-4">Questionare Submitted Successfully</h2>
+              <span className="text-center text-[13px] mb-4 text-zinc-500">id: {gene_id}</span>
             </div>
           </div>
         </motion.div>

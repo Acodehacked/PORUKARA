@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react';
 import Options from './Options';
+import * as XLSX from 'xlsx'
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronRight, PlusCircle, Trash2Icon, X } from 'lucide-react';
 import TimeAgo from 'javascript-time-ago'
@@ -8,7 +9,7 @@ import en from 'javascript-time-ago/locale/en'
 import { BiX } from 'react-icons/bi';
 import { Advent_Pro } from 'next/font/google';
 import { Button } from '@/components/ui/button';
-import { deleteQuestion, updatenummber } from './api';
+import { deleteQuestion, ExportExcel, updatenummber } from './api';
 import { useRouter } from 'next/navigation';
 import { ENV } from '@/constants/places';
 const QuestionsList = ({ Questions, Responses }: {
@@ -35,23 +36,9 @@ const QuestionsList = ({ Questions, Responses }: {
     const [deletedialogOpen, setdeletedialogOpen] = useState(-1);
     const [detailsOpen, setdetailsOpen] = useState(-1);
     const [detailssubOpen, setdetailssubOpen] = useState(-1);
-
+    // "{"optiontitle0":"name","optiontype0":"text","optiontitle1":"house name","optiontype1":"text"}"
     TimeAgo.addDefaultLocale(en)
-    // "{"1optionvalue0":"fff",
-    // "1optionvalue1":"erfre1",
-    // "5optionvalue":"മുസ്ലിം",
-    // "7response":"34321",
-    // "8response":"rgbgf",
-    // "9optionvalue":"mattullava",
-    // "9optionvalueM":"fbr",
-    // "10response":"ഉണ്ട്",
-    // "11optionvalue0":"SDA",
-    // "12optionvalue0M":"",
-    // "12optionvalue1":"bike",
-    // "12optionvalue1M":"33",
-    // "16optionvalue0M":"",
-    // "16optionvalue1":"kozhi",
-    // "16optionvalue1M":"23"}"
+
     const [multipleAnswers, setmultipleAnswers] = useState<string[]>([]);
     const DeleteEvent = async () => {
         const response = await deleteQuestion(deletedialogOpen);
@@ -60,6 +47,69 @@ const QuestionsList = ({ Questions, Responses }: {
             router.refresh();
             alert('deleted successfully');
         }
+    }
+    const downloadData = async () => {
+        const { data } = await ExportExcel();
+        var exportjson: any[] = [];
+        var colno = 2;
+        var headers: string[] = [
+            'Sl No.',
+            'Surveyor'
+        ];
+        Questions.forEach((question, index) => {
+            if (question.type == 'yesno' || question.type == 'havenot') {
+                colno++;
+                headers.push(question.title);
+            } else {
+                if ((question?.option_len ?? 0) > 0) {
+                    var otion = ENV == 'live' ? question.options_list as object : JSON.parse(question.options_list as unknown as string) as object;
+
+                    var opttype = Object.getOwnPropertyDescriptor(otion, `optiontype0`);
+                    if (opttype?.value == 'select') {
+                        colno++;
+                        headers.push(question.title);
+                    } else {
+                        for (var y = 0; y < (question?.option_len ?? 0); y++) {
+                            var opttype = Object.getOwnPropertyDescriptor(otion, `optiontype${y}`);
+
+                            if (y == 0) {
+
+                            }
+                        }
+                    }
+                } else {
+                    colno++;
+                }
+            }
+            // var options = ENV == 'live' ? question
+        })
+        data.forEach((reponse, index) => {
+            var objects = [];
+            // Object.defineProperty(objects, 'Sl No.', {
+            //     value: index + 1,
+            //     writable: true,
+            //     enumerable: true,
+            //     configurable: true
+            // });
+            // Object.defineProperty(objects, 'Surveyor', {
+            //     value: reponse.author_id,
+            //     writable: true,
+            //     enumerable: true,
+            //     configurable: true
+            // });
+
+            // exportjson.push(...objects);
+        })
+
+        console.log(exportjson)
+        const worksheet = XLSX.utils.json_to_sheet(exportjson, {
+            header: headers
+        });
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+        //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+        //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+        XLSX.writeFile(workbook, "DataSheet.xlsx");
     }
     const AddNumber = async (item: number) => {
         const response = await updatenummber(item);
@@ -121,12 +171,18 @@ const QuestionsList = ({ Questions, Responses }: {
         setmultipleAnswers(multipleanswers)
         setdetailsOpen(Questions[quesno].question_no);
     }
+
     return (
         <div className="flex md:flex-row flex-col w-full items-start relative">
+
             <div className='w-full flex max-w-[600px] mx-auto flex-col gap-2'>
+                <div className="flex justify-between w-full items-center max-w-[600px] mx-auto ">
+                    <span>Export Data :</span>
+                    <Button onClick={() => downloadData()} className="text-white bg-green-600 hover:bg-green-700">Export Data to Excel</Button>
+                </div>
                 <div className='grid grid-cols-2 gap-2'>
-                    <h3 className='bg-green-800 p-3 rounded-xl flex gap-3 items-center text-white'>total Questions: <b className='text-[30px]'>{Questions.length}</b></h3>
-                    <h3 className='bg-violet-800 p-3 rounded-xl flex gap-3 items-center text-white'>total Responses: <b className='text-[30px]'>{Responses.length}</b></h3>
+                    <h3 className='bg-violet-800 p-3 rounded-xl flex gap-3 items-center text-white'>total Questions: <b className='text-[30px]'>{Questions.length}</b></h3>
+                    <h3 className='bg-green-800 p-3 rounded-xl flex gap-3 items-center text-white'>total Responses: <b className='text-[30px]'>{Responses.length}</b></h3>
                 </div>
                 {Questions.map((item, index) => {
                     let row = [];

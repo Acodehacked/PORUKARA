@@ -3,6 +3,7 @@ import { ClientResponses } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { Submitted } from "./Submitted";
+import { GetPermission } from "../AdminQuestions/api";
 
 export const dynamic = 'force-dynamic';
 export default async function Page() {
@@ -11,6 +12,7 @@ export default async function Page() {
     const { db, connection } = await getDb2();
     const result = await db.select().from(ClientResponses).where(eq(ClientResponses.author_id, `${session?.user?.email}`)).orderBy(desc(ClientResponses.id))
     connection.end();
+    const permission = await GetPermission();
     return <main>
 
         <div className="flex justify-between">
@@ -20,6 +22,6 @@ export default async function Page() {
             </div>
             <span className="text-[23px]">Total : {result.length}</span>
         </div>
-        <Submitted responses={result} />
+        <Submitted permission={permission} responses={result} />
     </main>
 }

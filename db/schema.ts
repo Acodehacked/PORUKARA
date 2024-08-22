@@ -34,6 +34,7 @@ export const AdminLoginTable = mysqlTable('AdminLoginTable', {
   id: int('id').primaryKey().autoincrement(),
   name: varchar('name', { length: 256 }).notNull(),
   email: varchar('email', { length: 256 }).notNull(),
+  permission: boolean('permission').notNull().default(true),
   status: varchar('status', { length: 50,enum:['offline','online'] }).notNull().default('offline'),
   password: varchar('password', { length: 256 }).notNull(),
 }, (AdminLoginTable) => ({
@@ -125,7 +126,6 @@ export const QuestionsDB = mysqlTable('QuestionsDb', {
   added_on : date('date')
 }, (QuestionsDB) => ({
   nameIndex: uniqueIndex('title_idx').on(QuestionsDB.title),
-  no_index: uniqueIndex('q_noindex').on(QuestionsDB.question_no),
 }))
 
 export const ClientResponses = mysqlTable('ClientResponses', {

@@ -5,12 +5,18 @@ import DashboardCard from "@/components/reusable/public/DashboardCard";
 import { getDb2 } from "@/db";
 import { ClientResponses, QuestionsDB } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import en from 'javascript-time-ago/locale/en'
+import TimeAgo from "javascript-time-ago"
+
 
 export const dynamic = "force-dynamic";
 export default async function page() {
+    TimeAgo.addDefaultLocale(en)
+    const timeAgo = new TimeAgo('en-US')
     const { db, connection } = await getDb2();
     const Responses = await db.select().from(ClientResponses).where(eq(ClientResponses.status, 'completed'));
     const Questions = await db.select().from(QuestionsDB);
+    connection.end();
     return <main className="flex flex-col">
         <div className='p-4 flex flex-col'>
             <AnimatedText text="Welcome Admin!" className='pt-3 pb-4 text-[25px]' />
@@ -18,10 +24,6 @@ export default async function page() {
                 <DashboardCard className=''>
                     <span>Completed Responses</span>
                     <AnimatedText text={Responses.length + ''} className='text-[30px] text-foreground font-bold' />
-                </DashboardCard>
-                <DashboardCard className=''>
-                    <span>Pending Responses</span>
-                    <AnimatedText text={'0'} className='text-[30px] text-foreground font-bold' />
                 </DashboardCard>
                 <DashboardCard className=''>
                     <span>Total Questions</span>
@@ -33,12 +35,14 @@ export default async function page() {
                         if(index > 10){
                             return;
                         }
+                        const d = new Date(response.added_on.toUTCString() ?? '');
+                        d.setHours(d.getHours() - 5.5);
                         return <div key={index} className="p-2 w-full rounded-sm text-[15px] bg-black/5 px-3 flex justify-between">
                             <div>
                             <span className="text-[10px]">{response.gen_id}</span>
                             <h2>{response.author_id}</h2>
                             </div>
-                            <span>{response.added_on?.toISOString()}</span>
+                            <span>{timeAgo.format(d)}</span>
                         </div>
                     })}
                     {Responses.length == 0 ? <span>No responses Recorded</span> : ''}
