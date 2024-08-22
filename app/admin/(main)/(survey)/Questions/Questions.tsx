@@ -3,11 +3,14 @@ import { useState } from 'react';
 import Options from './Options';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronRight, PlusCircle, Trash2Icon, X } from 'lucide-react';
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 import { BiX } from 'react-icons/bi';
 import { Advent_Pro } from 'next/font/google';
 import { Button } from '@/components/ui/button';
 import { deleteQuestion, updatenummber } from './api';
 import { useRouter } from 'next/navigation';
+import { ENV } from '@/constants/places';
 const QuestionsList = ({ Questions, Responses }: {
     Questions: {
         type: "null" | "select" | "text" | "checkbox" | "int" | "yesno" | "havenot" | null;
@@ -27,12 +30,28 @@ const QuestionsList = ({ Questions, Responses }: {
         added_on: Date | null;
     }[]
 }) => {
-    console.log(Responses)
+    console.log(Questions)
     const router = useRouter();
     const [deletedialogOpen, setdeletedialogOpen] = useState(-1);
     const [detailsOpen, setdetailsOpen] = useState(-1);
     const [detailssubOpen, setdetailssubOpen] = useState(-1);
 
+    TimeAgo.addDefaultLocale(en)
+    // "{"1optionvalue0":"fff",
+    // "1optionvalue1":"erfre1",
+    // "5optionvalue":"മുസ്ലിം",
+    // "7response":"34321",
+    // "8response":"rgbgf",
+    // "9optionvalue":"mattullava",
+    // "9optionvalueM":"fbr",
+    // "10response":"ഉണ്ട്",
+    // "11optionvalue0":"SDA",
+    // "12optionvalue0M":"",
+    // "12optionvalue1":"bike",
+    // "12optionvalue1M":"33",
+    // "16optionvalue0M":"",
+    // "16optionvalue1":"kozhi",
+    // "16optionvalue1M":"23"}"
     const [multipleAnswers, setmultipleAnswers] = useState<string[]>([]);
     const DeleteEvent = async () => {
         const response = await deleteQuestion(deletedialogOpen);
@@ -56,11 +75,11 @@ const QuestionsList = ({ Questions, Responses }: {
         console.log(`${Questions[quesno].question_no}${option}`)
 
         let multipleanswers: string[] = [];
-        // let Json = JSON.parse(Questions[quesno].options_list as string) as object;
-        let Json = Questions[quesno].options_list as object;
+        // let Json = ;
+        let Json = ENV == 'live' ? Questions[quesno].options_list as object : JSON.parse(Questions[quesno].options_list as string) as object;
         for (let q = 0; q < Responses.length; q++) {
-            // let responsey: object = JSON.parse(Responses[q].responses as string) as object;
-            let responsey: object = Responses[q].responses as object;
+            // let responsey: object = ;
+            let responsey: object = ENV == 'live' ? Responses[q].responses as object : JSON.parse(Responses[q].responses as string) as object;
             let otype = Object.getOwnPropertyDescriptor(Json, `optiontype${option}`);
             console.log('mutliple:' + otype?.value)
             if (otype?.value == 'select_text') {
@@ -87,11 +106,11 @@ const QuestionsList = ({ Questions, Responses }: {
     const ShowtextAnswers = (quesno: number) => {
         setmultipleAnswers([]);
         let multipleanswers: string[] = [];
-        // let Json = JSON.parse(Questions[quesno].options_list as string) as object;
-        let Json = Questions[quesno].options_list as object;
+        // let Json = ;
+        let Json = ENV == 'live' ? Questions[quesno].options_list as object : JSON.parse(Questions[quesno].options_list as string) as object;
         for (let q = 0; q < Responses.length; q++) {
-            // let responsey: object = JSON.parse(Responses[q].responses as string) as object;
-            let responsey: object = Responses[q].responses as object;
+            // let responsey: object = ;
+            let responsey: object = ENV == 'live' ? Responses[q].responses as object : JSON.parse(Responses[q].responses as string) as object;
             let responsetext = Object.getOwnPropertyDescriptor(responsey, `${Questions[quesno].question_no}response`);
             console.log(responsey)
             // console.log(responsetext?.value);
@@ -115,26 +134,26 @@ const QuestionsList = ({ Questions, Responses }: {
 
 
                     if (item.option_len != 0) {
-                        const len = item.option_len || 0;
+                        const len = item.option_len ?? 0;
                         for (let i = 0; i < len; i++) {
-                            let Json = item.options_list as object;
-                            // let Json = JSON.parse(item.options_list as string) as object;
+                            let Json = ENV == 'live' ? item.options_list as object : JSON.parse(item.options_list as string) as object;
                             let responses = '';
 
-                            // {
-                            //     '0optionvalue': 'ക്രിസ്ത്യന്‍',
-                            //     '1response': 'ABin Antony',
-                            //     '2optionvalue': 'mattullava',
-                            //     '2optionvalueM': 'w456',
-                            //     '3response': 'ഇല്ലാ',
-                            //     '4optionvalue0': 'SA',
-                            //     '5optionvalue0': 'car',
-                            //     '5optionvalue1': 'bike',
-                            //     '6optionvalue0': 'addu',
-                            //     '6optionvalue0M': '345',
-                            //     '6optionvalue1': 'kozhi',
-                            //     '6optionvalue1M': '3451'
-                            //   }
+                            // "{F"1optionvalue0":"fff",
+                            // "1optionvalue1":"erfre1",
+                            // "5optionvalue":"മുസ്ലിം",
+                            // "7response":"34321",
+                            // "8response":"rgbgf",
+                            // "9optionvalue":"mattullava",
+                            // "9optionvalueM":"fbr",
+                            // "10response":"ഉണ്ട്",
+                            // "11optionvalue0":"SDA",
+                            // "12optionvalue0M":"",
+                            // "12optionvalue1":"bike",
+                            // "12optionvalue1M":"33",
+                            // "16optionvalue0M":"",
+                            // "16optionvalue1":"kozhi",
+                            // "16optionvalue1M":"23"}"
 
 
 
@@ -148,8 +167,7 @@ const QuestionsList = ({ Questions, Responses }: {
                             //not needed
                             var text = '';
                             for (let q = 0; q < Responses.length; q++) {
-                                // let responsey: object = JSON.parse(Responses[q].responses as string) as object;
-                                let responsey: object = Responses[q].responses as object;
+                                let responsey: object = ENV == 'live' ? Responses[q].responses as object : JSON.parse(Responses[q].responses as string) as object;
                                 text += Responses[q].responses;
                                 if (otype?.value == 'select') {
                                     var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue`);
@@ -217,11 +235,9 @@ const QuestionsList = ({ Questions, Responses }: {
                         var yespeople = 0;
                         var nopeople = 0;
                         for (let q = 0; q < Responses.length; q++) {
-                            // let responsey: object = JSON.parse(Responses[q].responses as string) as object;
-
-                            let responsey: object = Responses[q].responses as object;
+                            let responsey: object = ENV == 'live' ? Responses[q].responses as object : JSON.parse(Responses[q].responses as string) as object;
                             var value1 = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}response`);
-                            if (value1?.value != undefined) {
+                            if (value1?.value != undefined && value1?.value != null) {
                                 if (value1?.value == 'ഉണ്ട്' || value1?.value == 'അതെ') {
                                     yespeople++;
                                 }
@@ -239,10 +255,13 @@ const QuestionsList = ({ Questions, Responses }: {
                         var yespercent = (yespeople / numberofpeople) * 100;
                         var nopercent = (nopeople / numberofpeople) * 100;
                         if (Questions[index].type == 'havenot') {
-                            row.push(<div className='flex justify-between p-3 gap-3'>
-                                <div className='w-full bg-zinc-100 p-3 font-bold mal rounded-xl'>{'ഉണ്ട്'} - {yespercent.toString().substring(0, 4)} %</div>
-                                <div className='w-full bg-zinc-100 p-3 font-bold mal rounded-xl'>{'ഇല്ലാ'} - {nopercent.toString().substring(0, 4)} %</div>
-                            </div>);
+                            row.push(<>
+                                <span className='text-[12px] text-blue-800'>total {numberofpeople} people attended</span>
+                                <div className='flex justify-between p-3 gap-3'>
+                                    <div className='w-full bg-zinc-100 p-3 font-bold mal rounded-xl'>{'ഉണ്ട്'} - {yespercent.toString().substring(0, 4)} % <span className='text-zinc-400 font-medium text-[13px]'>({yespeople} people)</span></div>
+                                    <div className='w-full bg-zinc-100 p-3 font-bold mal rounded-xl'>{'ഇല്ലാ'} - {nopercent.toString().substring(0, 4)} % <span className='text-zinc-400 font-medium text-[13px]'>({nopeople} people)</span></div>
+                                </div>
+                            </>);
                         }
                         if (Questions[index].type == 'yesno') {
                             row.push(<div className='flex justify-between p-3 gap-3'>
@@ -270,13 +289,13 @@ const QuestionsList = ({ Questions, Responses }: {
                             <div className="border-blue-300 rounded-full px-3 py-1 text-[10px] mt-2 text-zinc-600 border-[0.01rem]">{item.type}</div>
                             <div className='flex gap-2'>
                                 {item.required ? <div className="border-blue-300 rounded-full px-3 py-1 text-[10px] mt-2 text-zinc-600 border-[0.01rem]">Required</div> : ''}
-                                <Button variant={'destructive'} onClick={() => {
+                                {/* <Button variant={'destructive'} onClick={() => {
                                     setdeletedialogOpen(item.question_no);
                                     DeleteEvent();
                                 }} size={'icon'}><Trash2Icon className='text-white' /></Button>
                                 <Button variant={'outline'} onClick={() => {
                                     AddNumber(item.question_no)
-                                }} size={'icon'}><PlusCircle className='' /></Button>
+                                }} size={'icon'}><PlusCircle className='' /></Button> */}
                             </div>
                         </div>
                         <div className="ps-3 w-full flex flex-col mt-3">
@@ -289,15 +308,19 @@ const QuestionsList = ({ Questions, Responses }: {
             <AnimatePresence>
                 {detailsOpen != -1 && <motion.div transition={{ stiffness: 1 }} initial={{ opacity: 0, x: 500 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 500 }} className='max-w-[350px] w-full h-screen bg-white md:sticky fixed left-0 md:rounded-sm rounded-none bottom-0 top-[0px] md:shadow-md shadow-2xl z-[9999]'>
                     <div className='px-5 py-2 flex w-full justify-between'>
-                        <h2>Question: {detailsOpen}</h2>
+                        <h2>Question: {detailsOpen + 1}</h2>
                         <div onClick={() => setdetailsOpen(-1)}>
                             <BiX size={30} className='p-3 bg-zinc-300 rounded-sm' />
                         </div>
                     </div>
                     <div className='h-full mt-2 flex flex-col p-2 gap-1 max-h-[90vh] overflow-y-scroll'>
                         {multipleAnswers.map((item, index) => {
-                            return <div key={index} className='p-2 bg-zinc-50 rounded-sm'>
-                                {index + 1}. {item}
+                            const timeAgo = new TimeAgo('en-US')
+
+                            return <div key={index} className='p-2 mal flex items-start w-full bg-zinc-50 rounded-sm'>
+                                {index + 1}. <div>
+                                    {item}
+                                </div>
                             </div>
                         })}
                     </div>

@@ -30,9 +30,15 @@ export default async function page() {
                 <DashboardCard className='md:col-span-3 flex flex-col gap-1'>
                     <span className="mb-2">Responses</span>
                     {Responses.length > 0 && Responses.map((response, index) => {
+                        if(index > 10){
+                            return;
+                        }
                         return <div key={index} className="p-2 w-full rounded-sm text-[15px] bg-black/5 px-3 flex justify-between">
-                            <span>{response.gen_id}</span>
-                            <span>{response.added_on?.toDateString()}</span>
+                            <div>
+                            <span className="text-[10px]">{response.gen_id}</span>
+                            <h2>{response.author_id}</h2>
+                            </div>
+                            <span>{response.added_on?.toISOString()}</span>
                         </div>
                     })}
                     {Responses.length == 0 ? <span>No responses Recorded</span> : ''}

@@ -134,7 +134,7 @@ export const ClientResponses = mysqlTable('ClientResponses', {
   author_id: varchar('admin_id',{length:300}).notNull(),
   status: varchar('status', { length: 20, enum: ['started', 'progress', 'completed']}),
   responses: json('responses').notNull(),
-  added_on : date('date')
+  added_on : timestamp('date').defaultNow().notNull(),
 }, (ClientDb) => ({
   genIndex: uniqueIndex('gen_idx').on(ClientDb.gen_id),
 }))

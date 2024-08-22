@@ -9,6 +9,7 @@ import { AnimatePresence,motion } from "framer-motion";
 import Image from "next/image";
 import { BiLoaderCircle } from "react-icons/bi";
 import { CheckCircle2Icon } from "lucide-react";
+import { ENV } from "@/constants/places";
 
 const SurveyForm = ({id, MainData, gene_id }: {
   id:string,
@@ -37,7 +38,7 @@ const SurveyForm = ({id, MainData, gene_id }: {
 
   const handlesubmit = async (data: FormData) => {
     setuploading(true);
-    const response = await AddResponse(data, gene_id);
+    const response = await AddResponse(id,data, gene_id);
     if (response.success) {
       snackctx.displayMsg('Response Added');
       setuploading(false);
@@ -46,7 +47,7 @@ const SurveyForm = ({id, MainData, gene_id }: {
         setuploaded(false);
         ref.current?.reset();
         router.push(`/admin/Questionare?refreshId=${new Date().getTime()}`);
-      }, 400)
+      }, 1500)
     } else {
       snackctx.displayMsg('Already Added');
       setuploading(false);
@@ -55,8 +56,7 @@ const SurveyForm = ({id, MainData, gene_id }: {
   return <>
     <form ref={ref} className="w-full max-w-[600px] mx-auto" action={handlesubmit}>
       {MainData.map((item, index) => {
-        let options = MainData[index].options_list as unknown as object;
-        // let options = JSON.parse(MainData[index].options_list as string);
+        let options = ENV == 'live' ? MainData[index].options_list as unknown as object : JSON.parse(MainData[index].options_list as string);
         let rows = [];
         const len = item.option_len || 0;
         const alp = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -135,9 +135,9 @@ const SurveyForm = ({id, MainData, gene_id }: {
     <AnimatePresence>
       {
         uploading && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='bg-black/50 fixed top-0 bottom-0 left-0 right-0 px-5 flex items-center justify-center z-[9999]'>
-          <div className='max-w-[500px] min-h-[150px] justify-center w-full flex flex-col items-center rounded-sm bg-white px-3 py-2'>
+          <div className='max-w-[500px] min-h-[150px] justify-center w-full flex flex-col items-center rounded-xl bg-white px-3 py-2 '>
               <div className='w-full flex flex-col items-center gap-2'>
-                <BiLoaderCircle size={50} className="text-primary animate-spin" />
+                <BiLoaderCircle size={50} className="text-primary animate-spin ease-in-out" />
                 <h2 className="mt-3 mb-2">Please wait</h2>
               </div>
           </div>
@@ -157,6 +157,7 @@ const SurveyForm = ({id, MainData, gene_id }: {
         </motion.div>
       }
     </AnimatePresence>
+
   </>
 }
 

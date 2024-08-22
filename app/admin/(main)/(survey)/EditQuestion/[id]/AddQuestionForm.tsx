@@ -1,5 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button';
+import { ENV } from '@/constants/places';
 import SnackbarContext from '@/lib/Snackbar-context';
 import { Minus, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -28,8 +29,7 @@ const EditQuestionForm = ({ question }: { question: {
     const snackctx = useContext(SnackbarContext);
 
     useEffect(()=>{
-        setInputValues(question.options_list as object);
-        // setInputValues(JSON.parse(question.options_list as string) as unknown as object);
+        setInputValues(ENV == 'live' ? question.options_list as object : JSON.parse(question.options_list as string) as unknown as object);
         console.log(question.options_list)
         setType(question.type);
     },[])

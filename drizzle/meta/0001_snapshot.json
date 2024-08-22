@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "9e431650-9064-4996-ae72-dc044b6326e4",
-  "prevId": "30f23d88-5918-41e7-b8fc-efefe9ffb5f6",
+  "id": "56e3a735-2198-46cb-96f7-800d4c26513a",
+  "prevId": "2af60e42-7aa3-495f-a948-4aa690955b28",
   "tables": {
     "AdminLoginTable": {
       "name": "AdminLoginTable",
@@ -268,7 +268,7 @@
         },
         "admin_id": {
           "name": "admin_id",
-          "type": "int",
+          "type": "varchar(300)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -289,10 +289,11 @@
         },
         "date": {
           "name": "date",
-          "type": "date",
+          "type": "timestamp",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
         }
       },
       "indexes": {

@@ -2,7 +2,7 @@
 import { getDb2 } from "@/db";
 import { ClientResponses } from "@/db/schema";
 import { NextResponse } from "next/server";
-export default async function AddResponse(formdata: FormData, gen_id: string) {
+export default async function AddResponse(id:string,formdata: FormData, gen_id: string) {
     console.log(formdata);
     const { db, connection } = await getDb2();
     let json = <any>{};
@@ -13,10 +13,9 @@ export default async function AddResponse(formdata: FormData, gen_id: string) {
     try{
         const response = await db.insert(ClientResponses).values({
             gen_id: gen_id,
-            author_id: 'abina5448@gmail.com',
+            author_id: id,
             responses: json,
             status: 'completed',
-            added_on: new Date()
         })
         connection.end();
         return {

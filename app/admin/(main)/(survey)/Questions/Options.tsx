@@ -29,7 +29,7 @@ const Options = ({ question, i, otitle, percent, type, SetDetailsPage, numberofp
                     <h3>Total <b>{numberofpeople}</b> people choosed</h3>
                 </div>}
                 {type == "checkboxtype" && <div className='flex w-full justify-between my-1 p-3 rounded-sm bg-zinc-200'>
-                    <h3><b>{`${percent.toString().substring(0, 4)}%`}</b> people answered</h3>
+                    {/* <h3><b>{`${percent.toString().substring(0, 4)}%`}</b> people answered</h3> */}
                     <h3>Total <b>{numberofpeople}</b> people choosed</h3>
                     <h4 className='text-white bg-foreground p-1 rounded-sm'>Total {Number.isNaN(averagevalue) ? 0 : averagevalue}</h4>
                 </div>}

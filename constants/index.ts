@@ -636,13 +636,21 @@ export const ADMINSIDEBARLINKS = [
         link: '/ManageAdmins',
         submenu: []
     },
-    {
+    // {
+    //     onlyDev: true,
+    //     title: 'Add Questions',
+    //     icon: 'bx-plus-circle',
+    //     link: '/AddQuestions',
+    //     submenu: []
+    // },
+        {
         onlyDev: true,
-        title: 'Add Questions',
-        icon: 'bx-plus-circle',
-        link: '/AddQuestions',
+        title: 'All Submissions',
+        icon: 'bx-user',
+        link: '/AllSubmissions',
         submenu: []
     },
+    
     {
         onlyDev: true,
         title: 'Questions',
@@ -662,6 +670,13 @@ export const ADMINSIDEBARLINKS = [
         title: 'Response Analysis',
         icon: 'bxs-book',
         link: '/Questions',
+        submenu: []
+    },
+    {
+        onlyDev: false,
+        title: 'My Submissions',
+        icon: 'bx-user',
+        link: '/MySubmissions',
         submenu: []
     },
 ];
