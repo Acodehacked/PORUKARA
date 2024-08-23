@@ -56,10 +56,10 @@ export const AdminsPage = ({ admins }: {
         }
         setloading(false);
     }
-    const getAll = async ()=>{
+    const getAll = async () => {
         setloading(true);
         const response = await GetAllAdmins();
-        if(response.error != null){
+        if (response.error != null) {
             setadmins(response.data);
         }
         setloading(false);
@@ -77,14 +77,14 @@ export const AdminsPage = ({ admins }: {
         const response = await CloseSurvey();
         if (response?.error == null) {
             router.refresh();
-            var newr = adminss.map((irt)=>{
+            var newr = adminss.map((irt) => {
                 return {
                     password: irt.password,
-                    id:irt.id,
-                    name:irt.name,
-                    email:irt.email,
-                    permission:false,
-                    status:irt.status
+                    id: irt.id,
+                    name: irt.name,
+                    email: irt.email,
+                    permission: false,
+                    status: irt.status
                 }
             })
             setadmins(newr);
@@ -94,16 +94,21 @@ export const AdminsPage = ({ admins }: {
     }
     return <div className="flex flex-col w-full">
         <div className="mb-4 flex gap-3 items-center justify-between">
-            <BiRefresh className="p-1 hover:bg-zinc-300 rounded-full" size={35} onClick={() => router.refresh()} />
-            <div className="flex items-center gap-2 ">
-                <input onChange={(e)=>{
-                    setfilteredAdminss(adminss.filter((i)=>i.name.toLowerCase().includes(e.target.value) || i.email.toLowerCase().includes(e.target.value)))
-                }} placeholder="search here" className="outline-none border-[0.01rem] border-zinc-400 rounded-sm px-3 py-2 bg-white-100" />
-                <Button onClick={() => setaddDialog(true)}>Add New</Button>
-                <Button onClick={()=>{
-                                    CloseEvent();
-                                }} className='bg-red-600 hover:bg-red-700 text-white'>Deactivate All</Button>
+            <div className='flex md:flex-row flex-col md:justify-center justify-between items-center w-full' >
+                <div className="flex w-full items-center gap-2 ">
+                    <BiRefresh className="p-1 hover:bg-zinc-300 rounded-full" size={35} onClick={() => router.refresh()} />
+                    <input onChange={(e) => {
+                        setfilteredAdminss(adminss.filter((i) => i.name.toLowerCase().includes(e.target.value.toLowerCase()) || i.email.toLowerCase().includes(e.target.value.toLowerCase())))
+                    }} placeholder="search here" className="outline-none border-[0.01rem] border-zinc-400 md:w-auto w-full rounded-sm px-3 py-2 bg-white-100" />
+                </div>
+                <div className="flex items-center gap-2 md:m-0 mt-3">
+                    <Button onClick={() => setaddDialog(true)}>Add New</Button>
+                    <Button onClick={() => {
+                        CloseEvent();
+                    }} className='bg-red-600 hover:bg-red-700 text-white'>Deactivate All</Button>
+                </div>
             </div>
+
         </div>
         <div className="w-full grid md:grid-cols-4 grid-cols-1 gap-3 sm:grid-cols-2">
             {filteredAdminss.map(((admin, index) => {
@@ -118,9 +123,9 @@ export const AdminsPage = ({ admins }: {
                          border-zinc-300 px-3 mb-2">
                             <div className="flex gap-2">
                                 {admin.status == 'online' ? <label className="text-white rounded-sm flex  items-center gap-3 px-3 bg-green-700 text-[13px] "><BiWifi className="animate-pulse" /></label> : <label className="text-white flex rounded-sm items-center gap-3 p-1 bg-red-700 text-[13px] "><BiWifiOff className="animate-pulse" /></label>}
-                                <Button onClick={()=>{
-                                    setPermission(!admin.permission,admin.email,index);
-                                }} className={cn('',admin.permission ? 'bg-red-600 hover:bg-red-700 text-white'  : 'bg-blue-600 hover:bg-blue-700 text-white')}>{admin.permission ? 'Deactivate'  : 'Activate'}</Button>
+                                <Button onClick={() => {
+                                    setPermission(!admin.permission, admin.email, index);
+                                }} className={cn('', admin.permission ? 'bg-red-600 hover:bg-red-700 text-white' : 'bg-blue-600 px-3 hover:bg-blue-700 text-white')}>{admin.permission ? 'Deactivate' : 'Activate'}</Button>
                             </div>
                             <BiTrashAlt onClick={() => handleDelete(admin.id)} className="text-red-700 hover:bg-slate-300 rounded-xl p-2" size={36} />
                         </div>}

@@ -9,8 +9,7 @@ import React, { useContext, useState } from 'react'
 
 const AdminSidebar = ({user}:{user?: string | null | undefined }) => {
   const path = usePathname();
-  // const navbarctx = useContext(AdminNavbarContext);
-
+  const navbarctx = useContext(AdminNavbarContext);
   return (
     <div className="flex flex-col gap-3 max-h-[100%] h-full overflow-y-scroll overflow-x-hidden px-3 pb-6 pt-6">{
       ADMINSIDEBARLINKS.map((navlink, index) => {
@@ -19,7 +18,13 @@ const AdminSidebar = ({user}:{user?: string | null | undefined }) => {
             return;
           }
         }
-        return <Link className={cn("py-4 px-3 border-[0.02rem] hover:bg-black/40  border-white/20 text-foreground gap-3  flex justify-center flex-col rounded-xl transition-all", path == '/admin'+navlink.link ? 'bg-muted text-foreground hover:text-white' : 'text-white ')} href={'/admin'+navlink.link} key={index}>
+        return <Link onClick={
+          ()=>{
+            setTimeout(()=>{
+              navbarctx.openNavbar();
+            },500)
+          }
+        } className={cn("py-4 px-3 border-[0.02rem] hover:bg-black/40  border-white/20 text-foreground gap-3  flex justify-center flex-col rounded-xl transition-all", path == '/admin'+navlink.link ? 'bg-muted text-foreground hover:text-white' : 'text-white ')} href={'/admin'+navlink.link} key={index}>
           <div className='flex items-center gap-3'>
             <i className={`bx ${navlink.icon} text-[23px]`}></i>
             <span>{navlink.title}</span>
