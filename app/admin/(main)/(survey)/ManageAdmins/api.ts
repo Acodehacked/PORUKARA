@@ -35,3 +35,14 @@ export async function DeleteAdminn(id: number) {
         error: null
     }
 }
+
+export async function GetAllAdmins() {
+    const { db, connection } = await getDb2();
+    const response = await db.select().from(AdminLoginTable).orderBy(AdminLoginTable.name);
+    connection.end();
+
+    return {
+        data: response,
+        error: null
+    }
+}

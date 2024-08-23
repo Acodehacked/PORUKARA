@@ -4,7 +4,7 @@ import { AdminsPage } from "./admins";
 
 export default async function Page(){
     const { db, connection } = await getDb2();
-    const lastvalue = await db.select().from(AdminLoginTable);
+    const lastvalue = await db.select().from(AdminLoginTable).orderBy(AdminLoginTable.name);
     
     connection.end();
     return <main>

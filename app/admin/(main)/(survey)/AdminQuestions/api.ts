@@ -4,6 +4,7 @@ import { getDb2 } from "@/db";
 import { AdminLoginTable, QuestionsDB } from "@/db/schema";
 import { eq, ne, sql } from "drizzle-orm";
 import { getDefaultAutoSelectFamily } from "net";
+import { getServerSession } from "next-auth";
 
 export async function deleteQuestion(id: number) {
     const {db,connection} = await getDb2();
@@ -46,10 +47,27 @@ export async function OpenSurvey() {
     }
 }
 export async function GetPermission(){
+    const session = await getServerSession();
+    var imail = session?.user?.email ?? '';
     const {db,connection} = await getDb2();
-    const response = await db.select().from(AdminLoginTable).where(ne(AdminLoginTable.email,'abina5448@gmail.com'));
+    const response = await db.select().from(AdminLoginTable).where(eq(AdminLoginTable.email,`${imail}`));
     connection.end();
     return response[0].permission;
+}
+
+export async function UpdatePermission({
+    permission,
+    email
+}:{
+    permission:boolean,
+    email:string
+}){
+    const {db,connection} = await getDb2();
+    const response = await db.update(AdminLoginTable).set({
+        permission: permission
+    }).where(eq(AdminLoginTable.email,`${email}`));
+    connection.end();
+    return true;
 }
 export async function CloseSurvey() {
     const {db,connection} = await getDb2();
