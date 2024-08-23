@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Manrope, Bebas_Neue } from "next/font/google";
 import "@/app/globals.css";
 import HomeNavbar from "@/components/reusable/HomeNavbar";
 import { ThemeProvider } from "@/lib/ThemeProvider";

@@ -1,10 +1,10 @@
 import nodemailer from 'nodemailer'
 import { getDb2 } from "@/db"
 import { app_categories, app_logintable, app_place, app_top_categories } from "@/db/schema";
-import { arrayContains, asc, desc, eq, gt, inArray, or, param, sql } from "drizzle-orm";
+import { arrayContains, asc, desc, eq, gt, inArray, or, param } from "drizzle-orm";
 import { NextResponse,NextRequest } from 'next/server';
 import qs from 'qs';
-import CheckUser from '../../auth/checkUser';
+import CheckUser from '../auth/checkUser';
 
 export const dynamic = 'force-dynamic'
 export async function GET(request: NextRequest) {
@@ -50,19 +50,19 @@ export async function GET(request: NextRequest) {
                         location: app_place.place
                     }).from(app_place).orderBy(desc(app_place.place)).limit(15);
                     const categ = await db.select().from(app_categories).limit(50);
-                    const top_places = await db.select().from(app_place).orderBy(sql` RAND() `).limit(20);
+                    const top_places = await db.select().from(app_place).orderBy(desc(app_place.rating)).limit(15);
                     if(place != undefined && place != ''){
-                        mustvisit_places = await db.select().from(app_place).where(or(eq(app_place.place,place),eq(app_place.sub_place,place))).limit(20);
+                        mustvisit_places = await db.select().from(app_place).where(or(eq(app_place.place,place),eq(app_place.sub_place,place))).limit(10);
                     }else{
-                        mustvisit_places = await db.select().from(app_place).orderBy(asc(app_place.place),asc(app_place.sub_place)).limit(20);
+                        mustvisit_places = await db.select().from(app_place).orderBy(asc(app_place.place),asc(app_place.sub_place)).limit(10);
                     }
                     const recently_places = await db.select().from(app_place).orderBy(desc(app_place.id)).limit(10);
                     interest_places = await db.select().from(app_place).where(inArray(
-                        app_place.app_category_id,interest_categories)).limit(20);
+                        app_place.app_category_id,interest_categories)).limit(10);
                     const sponsor_places = await db.select().from(app_place).where(eq(
                         app_place.paid,
                         true
-                    )).orderBy(desc(app_place.id));
+                    )).orderBy(desc(app_place.id)).limit(10);
         
                     connection.end();
                     Mainresponse = {

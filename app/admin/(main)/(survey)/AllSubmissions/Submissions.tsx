@@ -20,7 +20,6 @@ export const Submissions = ({
 
     const GetAllData = async () => {
         const r = await getResponses();
-        console.log(r);
         setResponses(r.data);
 
         setTimeout(() => {

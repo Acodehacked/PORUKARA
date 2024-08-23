@@ -1,0 +1,31 @@
+(GET)
+place api : /api/app/Place
+return : data: {
+    reviews: placereviewmodel[]
+    average: reviewsd[0].avg
+    error: false,
+}
+---------------------------------------------------------
+
+(POST)
+Add Review Api : /api/app/Place/AddReview/
+
+accept: id(string), placeid(string),rating(string),review(string);
+
+return : {
+	status('success'),
+    message(string),
+    data:(placereviewmodels),
+    error(boolean)
+}
+---------------------------------------------------------
+(POST)
+Add Review Api : /api/app/Place/share/
+
+accept: id(string), place_id(string);
+
+return : {
+	status('success')
+	data(string),
+	error(boolean)
+}
