@@ -231,7 +231,7 @@ const QuestionsList = ({ Questions, Responses }: {
                                 if (otype?.value == 'number') {
                                     numberonly = true;
                                     var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue${i}`);
-                                    numberofpeople += parseInt(value?.value ?? 0);
+                                    if(value?.value != '') numberofpeople += parseInt(value?.value ?? "0");
                                 }
                                 if (otype?.value == 'select') {
                                     var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue`);
