@@ -89,7 +89,7 @@ export default function Page() {
             <TableBody>
                 {personData.map((item, index) => {
                     var result = []
-                    result = JSON.parse(item.responses as unknown as string);
+                    result = ENV == 'live' ? item.responses : JSON.parse(item.responses as unknown as string);
                     console.log(result)
                     var pget = Object.getOwnPropertyDescriptor(result, `1optionvalue0`);
                     const H = Object.getOwnPropertyDescriptor(result, '1optionvalue1');
