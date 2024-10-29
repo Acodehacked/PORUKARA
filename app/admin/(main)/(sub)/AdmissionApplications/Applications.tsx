@@ -34,7 +34,7 @@ const Admissionsapps = ({ data }: {
         }else{
             setFilteredData((prev)=>data.filter((item)=>item.name.toLowerCase().includes(search.toLowerCase()) || item.email.toLowerCase().includes(search.toLowerCase()) || item.mobile.toLowerCase().includes(search.toLowerCase())  || item.appliedCourse.toLowerCase().includes(search.toLowerCase())))
         }
-    },[search])
+    },[search,data])
     const downloadExcel = (data:AdminssionType) => {
         const worksheet = XLSX.utils.json_to_sheet(data);
         const workbook = XLSX.utils.book_new();

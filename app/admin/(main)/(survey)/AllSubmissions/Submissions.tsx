@@ -30,7 +30,7 @@ export const Submissions = ({
         setTimeout(() => {
             GetAllData();
         }, 3000);
-    }, []);
+    }, [GetAllData]);
     return <div className="w-full">
         <div className="flex justify-between">
             <div className="flex flex-col">

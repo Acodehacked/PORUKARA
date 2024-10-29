@@ -32,7 +32,7 @@ const EditQuestionForm = ({ question }: { question: {
         setInputValues(ENV == 'live' ? question.options_list as object : JSON.parse(question.options_list as string) as unknown as object);
         console.log(question.options_list)
         setType(question.type);
-    },[])
+    },[question.options_list])
     const handleoptionValue = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         setInputValues({
             ...inputValues,
@@ -42,7 +42,7 @@ const EditQuestionForm = ({ question }: { question: {
     }
     useEffect(()=>{
         console.log(inputValues);
-    },[])
+    },[inputValues])
     const handlesubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
         if (title == '') {

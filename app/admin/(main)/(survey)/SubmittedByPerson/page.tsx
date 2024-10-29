@@ -29,7 +29,7 @@ type SubmissionType = {
     responses: unknown;
     added_on: Date;
 }[]
-export default function page() {
+export default function Page() {
 
     const [person, setperson] = useState<string>('')
     const [mail, setmail] = useState<string>('')
