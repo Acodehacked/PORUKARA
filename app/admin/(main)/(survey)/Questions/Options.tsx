@@ -3,9 +3,11 @@ import React from 'react'
 import { motion } from 'framer-motion';
 import ProgressBar from "@ramonak/react-progress-bar";
 import { ArrowRight, ChevronRight } from 'lucide-react';
+import { int } from 'drizzle-orm/mysql-core';
 
-const Options = ({ question, i, otitle, percent, type, SetDetailsPage, numberofpeople, totalResponses, reviews, averagevalue}:
+const Options = ({ numeronly, question, i, otitle, percent, type, SetDetailsPage, numberofpeople, totalResponses, reviews, averagevalue }:
     {
+        numeronly: boolean,
         question: number,
         i: number,
         reviews: number[];
@@ -15,7 +17,7 @@ const Options = ({ question, i, otitle, percent, type, SetDetailsPage, numberofp
         type: "extra" | "review" | " " | "checkboxtype",
         otitle: string,
         percent: number | string,
-        averagevalue? : number | undefined
+        averagevalue?: number | undefined
     }) => {
     let rev = ["SA", "A", "CS", "DA", "SDA"];
     const alp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'o', 'p', 'q']
@@ -25,7 +27,7 @@ const Options = ({ question, i, otitle, percent, type, SetDetailsPage, numberofp
                 {/* {text} */}
                 <h2 className='mal text-[15px]'>{`${alp[i]}. ${otitle}`}</h2>
                 {type == " " && <div className='flex w-full justify-between my-1 p-3 rounded-sm bg-zinc-200'>
-                    <h3><b>{`${percent.toString().substring(0, 4)}%`}</b> people answered</h3>
+                    {numeronly == false && <h3><b>{`${percent.toString().substring(0, 4)}%`}</b> people answered</h3>}
                     <h3>Total <b>{numberofpeople}</b> people choosed</h3>
                 </div>}
                 {type == "checkboxtype" && <div className='flex w-full justify-between my-1 p-3 rounded-sm bg-zinc-200'>

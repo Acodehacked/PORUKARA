@@ -32,6 +32,7 @@ const QuestionsList = ({ Questions, Responses }: {
     }[]
 }) => {
     console.log(Questions)
+    console.log(Responses)
     const router = useRouter();
     const [deletedialogOpen, setdeletedialogOpen] = useState(-1);
     const [detailsOpen, setdetailsOpen] = useState(-1);
@@ -217,6 +218,7 @@ const QuestionsList = ({ Questions, Responses }: {
                             let otype = Object.getOwnPropertyDescriptor(Json, `optiontype${i}`);
                             var numberofpeople = 0;
                             var multiplevalues = [];
+                            let numberonly = false;
                             let rev = ["SA", "A", "CS", "DA", "SDA"];
                             let revA = [0, 0, 0, 0, 0];
                             let average = 0;
@@ -224,7 +226,13 @@ const QuestionsList = ({ Questions, Responses }: {
                             var text = '';
                             for (let q = 0; q < Responses.length; q++) {
                                 let responsey: object = ENV == 'live' ? Responses[q].responses as object : JSON.parse(Responses[q].responses as string) as object;
-                                text += Responses[q].responses;
+                                // text += Responses[q].responses;
+
+                                if (otype?.value == 'number') {
+                                    numberonly = true;
+                                    var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue${i}`);
+                                    numberofpeople += parseInt(value?.value ?? 0);
+                                }
                                 if (otype?.value == 'select') {
                                     var value = Object.getOwnPropertyDescriptor(responsey, `${item.question_no}optionvalue`);
                                     if (value != undefined) {
@@ -268,12 +276,14 @@ const QuestionsList = ({ Questions, Responses }: {
                                         }
                                     }
                                 }
+
                             }
                             let percent = numberofpeople == 0 ? '0' : ((numberofpeople / Responses.length) * 100);
 
                             row.push(
                                 <>
                                     <Options
+                                        numeronly={numberonly}
                                         SetDetailsPage={SetDetailsPage}
                                         question={index}
                                         i={i}

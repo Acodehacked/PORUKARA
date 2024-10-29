@@ -82,8 +82,8 @@ export default function Page() {
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">SI No.</TableHead>
-                    <TableHead>Name</TableHead>
-                    <TableHead>House Name / No</TableHead>
+                    <TableHead>House Name / No.</TableHead>
+                    <TableHead>Paddy Field - പാടശേഖരം</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
