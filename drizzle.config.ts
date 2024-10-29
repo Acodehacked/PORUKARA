@@ -7,7 +7,7 @@ export default defineConfig({
   dialect: 'mysql',
   breakpoints: true,
   dbCredentials: ({
-      user: "root" ?? '',
+      user: "root",
       password: 'Abin@12345',
       host: "localhost",
       port: 3306,
