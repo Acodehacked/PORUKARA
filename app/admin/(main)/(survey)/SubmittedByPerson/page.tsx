@@ -82,8 +82,10 @@ export default function Page() {
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">SI No.</TableHead>
+                    <TableHead>Surveyor mail</TableHead>
                     <TableHead>House Name / No.</TableHead>
                     <TableHead>Paddy Field - പാടശേഖരം</TableHead>
+                    <TableHead>51-60</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -93,10 +95,13 @@ export default function Page() {
                     console.log(result)
                     var pget = Object.getOwnPropertyDescriptor(result, `1optionvalue0`);
                     const H = Object.getOwnPropertyDescriptor(result, '1optionvalue1');
+                    const H2 = Object.getOwnPropertyDescriptor(result, '6optionvalue5');
                     return <TableRow key={index}>
                         <TableCell className="font-medium">{index + 1}</TableCell>
+                        <TableCell className="font-medium">{item.author_id}</TableCell>
                         <TableCell>{pget?.value}</TableCell>
                         <TableCell>{H?.value}</TableCell>
+                        <TableCell>{H2?.value}</TableCell>
                         {/* <TableCell className="text-right">$250.00</TableCell> */}
                     </TableRow>
                 })}
