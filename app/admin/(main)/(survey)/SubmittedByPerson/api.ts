@@ -18,7 +18,7 @@ export async function GetAllPerson() {
 }
 export async function GetByPerson(id: string) {
     const { db, connection } = await getDb2();
-    if (id == '0') {
+    if (id == '') {
         const result = await db.select().from(ClientResponses).groupBy(ClientResponses.author_id);
         connection.end();
         return result;

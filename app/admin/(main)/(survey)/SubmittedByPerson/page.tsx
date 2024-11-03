@@ -67,7 +67,7 @@ export default function Page() {
             <select className="px-3 py-2 outline-none" name="" onChange={(e) => {
                 setmail(e.target.value);
             }} id="">
-                <option value="0">select any</option>
+                <option value="">select any</option>
                 {allData.map((item, index) => {
                     return <option key={index} value={item.email} onClick={() => setperson(item.name)}>{item.name}</option>
                 })}
