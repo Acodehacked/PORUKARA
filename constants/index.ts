@@ -693,6 +693,11 @@ export const DEMOEVENTS = [
     {
         title: '',
         desc: '',
+        image: '/assets/Toronto.jpg'
+    },
+    {
+        title: '',
+        desc: '',
         image: '/assets/LY.jpeg'
     },
     {

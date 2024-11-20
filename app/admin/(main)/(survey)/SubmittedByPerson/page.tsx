@@ -22,12 +22,8 @@ type MainData = {
     status: "offline" | "online";
 }
 type SubmissionType = {
-    id: number;
-    gen_id: string;
     author_id: string;
-    status: "started" | "progress" | "completed" | null;
-    responses: unknown;
-    added_on: Date;
+    count: number
 }[]
 export default function Page() {
 
@@ -41,19 +37,28 @@ export default function Page() {
         setloading(true)
         const GetAllData = async () => {
             const response = await GetAllPerson();
-            setallData(response);
+            setallData(response.authors);
+            setpersonData(response.result);
             setloading(false)
         }
         GetAllData();
 
     }, [])
 
-    const GetPersonData = async () => {
-        setloading(true)
-        const response = await GetByPerson(mail);
-        setpersonData(response)
-        setloading(false)
-        console.log(response)
+    // const GetPersonData = async () => {
+    //     setloading(true)
+    //     const response = await GetByPerson(mail);
+    //     setpersonData(response.res)
+    //     setloading(false)
+    //     console.log(response)
+    // }
+    const getAuthor = (email:string) =>{
+        allData.forEach((item,index)=>{
+            if(item.email == email){
+                return item.name;
+            }
+        })
+        return ''
     }
     const exportData = () => {
             const worksheet = XLSX.utils.table_to_sheet(tableref.current);
@@ -72,7 +77,7 @@ export default function Page() {
                     return <option key={index} value={item.email} onClick={() => setperson(item.name)}>{item.name}</option>
                 })}
             </select>
-            <button onClick={() => GetPersonData()} className="px-4 py-2 bg-primary me-5 text-white ">Search</button>
+            <button className="px-4 py-2 bg-primary me-5 text-white ">Search</button>
             {loading && <LoaderIcon className="text-black text-[20px] animate-spin" />}
             <button onClick={() => exportData()} className="px-4 py-2 bg-[#1aa626] me-5 text-white ">Export</button>
         </div>
@@ -82,26 +87,17 @@ export default function Page() {
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">SI No.</TableHead>
-                    <TableHead>Surveyor mail</TableHead>
-                    <TableHead>House Name / No.</TableHead>
-                    <TableHead>Paddy Field - പാടശേഖരം</TableHead>
-                    <TableHead>51-60</TableHead>
+                    <TableHead>Surveyor Name</TableHead>
+                    <TableHead>Total Surveys</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {personData.map((item, index) => {
                     var result = []
-                    result = ENV == 'live' ? item.responses : JSON.parse(item.responses as unknown as string);
-                    console.log(result)
-                    var pget = Object.getOwnPropertyDescriptor(result, `1optionvalue0`);
-                    const H = Object.getOwnPropertyDescriptor(result, '1optionvalue1');
-                    const H2 = Object.getOwnPropertyDescriptor(result, '6optionvalue5');
                     return <TableRow key={index}>
                         <TableCell className="font-medium">{index + 1}</TableCell>
-                        <TableCell className="font-medium">{item.author_id}</TableCell>
-                        <TableCell>{pget?.value}</TableCell>
-                        <TableCell>{H?.value}</TableCell>
-                        <TableCell>{H2?.value}</TableCell>
+                        <TableCell className="font-medium">{getAuthor(item.author_id)}</TableCell>
+                        <TableCell className="font-medium">{item.count}</TableCell>
                         {/* <TableCell className="text-right">$250.00</TableCell> */}
                     </TableRow>
                 })}

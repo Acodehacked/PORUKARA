@@ -1,7 +1,7 @@
 'use server'
 import { getDb2 } from "@/db";
 import { AdminLoginTable, ClientResponses } from "@/db/schema";
-import { desc, eq } from "drizzle-orm";
+import { count, desc, eq } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { GetPermission } from "../AdminQuestions/api";
 import { AdminLoginSection } from "@/components/reusable/public/auth/AdminLoginSection";
@@ -9,12 +9,16 @@ import { AdminLoginSection } from "@/components/reusable/public/auth/AdminLoginS
 export async function GetAllPerson() {
     const session = await getServerSession();
     const { db, connection } = await getDb2();
-    const result = await db.select().from(AdminLoginTable);
+    const authors = await db.select().from(AdminLoginTable).groupBy();
+    const result = await db.select({
+        author_id: ClientResponses.author_id,
+        count:  count(ClientResponses.author_id)
+    }).from(ClientResponses).groupBy(ClientResponses.author_id).orderBy(desc(ClientResponses.added_on));
 
     connection.end();
-    const permission = await GetPermission();
-
-    return result;
+    // const permission = await GetPermission();
+    
+    return {authors,result};
 }
 export async function GetByPerson(id: string) {
     const { db, connection } = await getDb2();
