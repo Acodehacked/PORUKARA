@@ -11,10 +11,22 @@ export async function GetAllPerson() {
     const { db, connection } = await getDb2();
     const authors = await db.select().from(AdminLoginTable).groupBy();
     const result = await db.select({
-        author_id: ClientResponses.author_id,
+        author_id: AdminLoginTable.name,
+        author_email: AdminLoginTable.email,
         count:  count(ClientResponses.author_id)
-    }).from(ClientResponses).groupBy(ClientResponses.author_id).orderBy(desc(ClientResponses.added_on));
-
+    }).from(AdminLoginTable)
+    .leftJoin(ClientResponses,eq(AdminLoginTable.email,ClientResponses.author_id))
+    .groupBy(AdminLoginTable.email)
+    .orderBy(AdminLoginTable.name);
+    // await db
+    // .select({
+    //   country: countries.name,
+    //   citiesCount: count(cities.id),
+    // })
+    // .from(countries)
+    // .leftJoin(cities, eq(countries.id, cities.countryId))
+    // .groupBy(countries.id)
+    // .orderBy(countries.name);
     connection.end();
     // const permission = await GetPermission();
     

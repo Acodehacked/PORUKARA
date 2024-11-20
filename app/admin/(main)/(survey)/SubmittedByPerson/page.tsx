@@ -22,7 +22,8 @@ type MainData = {
     status: "offline" | "online";
 }
 type SubmissionType = {
-    author_id: string;
+    author_id: string,
+    author_email: string,
     count: number
 }[]
 export default function Page() {
@@ -52,14 +53,7 @@ export default function Page() {
     //     setloading(false)
     //     console.log(response)
     // }
-    const getAuthor = (email:string) =>{
-        allData.forEach((item,index)=>{
-            if(item.email == email){
-                return item.name;
-            }
-        })
-        return ''
-    }
+ 
     const exportData = () => {
             const worksheet = XLSX.utils.table_to_sheet(tableref.current);
             const workbook = XLSX.utils.book_new();
@@ -96,7 +90,7 @@ export default function Page() {
                     var result = []
                     return <TableRow key={index}>
                         <TableCell className="font-medium">{index + 1}</TableCell>
-                        <TableCell className="font-medium">{getAuthor(item.author_id)}</TableCell>
+                        <TableCell className="font-medium">{item.author_id}</TableCell>
                         <TableCell className="font-medium">{item.count}</TableCell>
                         {/* <TableCell className="text-right">$250.00</TableCell> */}
                     </TableRow>
