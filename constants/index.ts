@@ -693,6 +693,16 @@ export const DEMOEVENTS = [
     {
         title: '',
         desc: '',
+        image: '/assets/ML2.jpg'
+    },
+    {
+        title: '',
+        desc: '',
+        image: '/assets/ML3.jpg'
+    },
+    {
+        title: '',
+        desc: '',
         image: '/assets/LLM1.jpeg'
     },
     {
