@@ -2,8 +2,16 @@
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { Gallery } from 'react-grid-gallery'
+import Carousel, { Dots } from '@brainhubeu/react-carousel';
+import '@brainhubeu/react-carousel/lib/style.css';
 import { BiImages } from 'react-icons/bi';
+import { useState } from 'react';
 const HomeGallery = () => {
+    const [value, setValue] = useState(0);
+
+    const onChange = (value: number) => {
+        setValue(value);
+    }
     const images = [
         {
             src: "/assets/g1.jpeg",
@@ -92,5 +100,14 @@ const HomeGallery = () => {
             {row}
         </div>
     </div>
+
+    // return <>
+    //     <Carousel value={value} onChange={onChange} >
+    //     </Carousel>
+    //     <Dots
+    //         value={value}
+    //         onChange={onChange}
+    //     />
+    //     </>
 }
 export default HomeGallery
