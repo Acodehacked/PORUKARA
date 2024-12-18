@@ -16,7 +16,7 @@ export async function getDb(){
     user: "root",
     port: 3306,
     database: "porukaracollege",
-    password: "Abin@12345",
+    password: "",
   });  
   const db = drizzle(connection);
   return db;
@@ -27,7 +27,7 @@ export async function getDb2(){
     user: "root",
     port: 3306,
     database: "porukaracollege",
-    password: "Abin@12345",
+    password: "",
   });  
   const db = drizzle(connection);
   return {db,connection};
