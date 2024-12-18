@@ -3,7 +3,6 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { Gallery } from 'react-grid-gallery'
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
-import '@brainhubeu/react-carousel/lib/style.css';
 import { BiImages } from 'react-icons/bi';
 import { useState } from 'react';
 const HomeGallery = () => {
