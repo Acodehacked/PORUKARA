@@ -102,7 +102,7 @@ export const Place = ({ id, categories, topcategories, suggestions ,place }: {
             const bounds = new LatLngBounds();
             setsearchlocation(places[0].location);
             setMainFormData((prev) => ({
-                ...prev, latitude: `${places[0].location?.lat()}` ?? '', longitude: `${places[0].location?.lng()}` ?? ''
+                ...prev, latitude: `${places[0].location?.lat()}`, longitude: `${places[0].location?.lng()}`
             }))
             // Loop through and get all the results.
 
@@ -319,7 +319,7 @@ export const Place = ({ id, categories, topcategories, suggestions ,place }: {
                     <BiRefresh className={cn('rounded-full p-1 hover:bg-zinc-400 text-green-700', loading ? 'animate-spin' : '')} size={38} onClick={!loading ? handlerefresh : () => { }} /> </h3>
                 <h6 className='text-red-800  px-5 py-2 me-auto font-regular rounded-sm flex items-center'>Paid Details
                     {MainFormData.paid && <span className='ms-5 font-bold text-red-600'>
-                        End Date: {`${MainFormData.endDate?.getDate() ?? ''}/${MainFormData.endDate?.getMonth() ?? ''}/${MainFormData.endDate?.getFullYear() ?? 'free'}` ?? 'free'}
+                        End Date: {`${MainFormData.endDate?.getDate() ?? ''}/${MainFormData.endDate?.getMonth()}/${MainFormData.endDate?.getFullYear()}`}
                     </span>}
                 </h6>
                 <div className='flex md:flex-row flex-col mt-2 mb-1 mx-5  items-center cursor-pointer'>
@@ -369,7 +369,7 @@ export const Place = ({ id, categories, topcategories, suggestions ,place }: {
                                     setsearchlocation(item.location)
                                     setgmapopen(false);
                                     setMainFormData((prev) => ({
-                                        ...prev, latitude: `${item.location?.lat()}` ?? '', longitude: `${item.location?.lng()}` ?? ''
+                                        ...prev, latitude: `${item.location?.lat()}`, longitude: `${item.location?.lng()}`
                                     }))
                                     setsearchname(item.displayName ?? '')
                                     setgmaplist([]);

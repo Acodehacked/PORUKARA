@@ -14,9 +14,9 @@ const Appnavbar = () => {
   const adminctx = useContext(MyKuttanaduAdminNavbarContext);
   const path = usePathname();
   const menuref = useRef<HTMLDivElement>(null)
-  useOnClickOutside(menuref, () => {
-    adminctx.onClose();
-  });
+  // useOnClickOutside(menuref, () => {
+  //   adminctx.onClose();
+  // });
   useEffect(() => {
     console.log('appbar:' + adminctx.isDisplayed);
   }, [adminctx.isDisplayed])
