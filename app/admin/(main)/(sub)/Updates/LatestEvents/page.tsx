@@ -24,6 +24,6 @@ export default async function Page() {
         </div>
         <hr />
         <div className="bg-foreground px-3 py-1 text-[13px] rounded-xl text-white mb-2">Live Now</div>
-        <UpcomingEvents events={events} />
+        {/* <UpcomingEvents events={events} /> */}
     </main>
 }
