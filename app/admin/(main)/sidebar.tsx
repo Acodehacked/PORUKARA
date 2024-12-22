@@ -6,7 +6,7 @@ import { IoMdClose } from 'react-icons/io';
 import AdminSidebar from '@/components/reusable/admin/AdminSidebar'
 import AdminFooter from '@/components/reusable/admin/AdminFooter'
 import Loading from './loading'
-import React, { Suspense, useContext, useRef } from 'react'
+import React, { Suspense, useContext, useEffect, useRef } from 'react'
 import { Session } from 'next-auth';
 import { useOnClickOutside } from 'usehooks-ts';
 
@@ -14,10 +14,9 @@ export const Sidebar = ({session,children}:{session: Session | null,children:Rea
     const navbarctx = useContext(AdminNavbarContext);
     
     const ref= useRef(null);
-    const clicked = useOnClickOutside(ref,(e)=>{
-        if(navbarctx.isDisplayed) navbarctx.openNavbar() 
-    });
-
+    // const clicked = useOnClickOutside(ref ,(e)=>{
+    //     if(navbarctx.isDisplayed) navbarctx.openNavbar() 
+    // });
     return <>
         <motion.div ref={ref} className={cn("max-w-[300px] w-full sm:relative fixed top-0 bottom-0 transition-all z-[30]", navbarctx.isDisplayed ? 'left-0 w-full md:shadow-none shadow-[0px_0px_500px_rgba(0,0,0,0.3)]' : 'md:w-full w-0 md:left-0 left-[-100%] ')}>
             <div className='p-2  md:hidden flex bg-white h-[80px] justify-between items-center'>

@@ -1,12 +1,19 @@
 {
-  "version": "1",
+  "version": "0",
   "dialect": "mysql",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1724317236580,
-      "tag": "0004_swift_abomination",
+      "when": 1734764732994,
+      "tag": "0001_daily_silver_centurion",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1734800508810,
+      "tag": "0001_previous_puma",
       "breakpoints": true
     }
   ]

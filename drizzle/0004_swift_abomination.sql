@@ -1,1 +1,0 @@
-ALTER TABLE `AdminLoginTable` ADD `permission` boolean DEFAULT true NOT NULL;

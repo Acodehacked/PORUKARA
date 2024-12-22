@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "60937dd0-9cc9-4343-bfec-ead72fc707bb",
-  "prevId": "2af60e42-7aa3-495f-a948-4aa690955b28",
+  "id": "30440875-be01-49a6-9c70-43ac1e7780c5",
+  "prevId": "c8bab10f-752a-40c6-9c8b-a90b48bbb051",
   "tables": {
     "AdminLoginTable": {
       "name": "AdminLoginTable",
@@ -27,6 +27,14 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "permission": {
+          "name": "permission",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
         },
         "status": {
           "name": "status",
@@ -296,7 +304,15 @@
           "default": "(now())"
         }
       },
-      "indexes": {},
+      "indexes": {
+        "gen_idx": {
+          "name": "gen_idx",
+          "columns": [
+            "generated_id"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {
         "ClientResponses_id": {
@@ -421,7 +437,7 @@
         },
         "images": {
           "name": "images",
-          "type": "varchar(1250)",
+          "type": "json",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -578,13 +594,6 @@
           "name": "title_idx",
           "columns": [
             "title"
-          ],
-          "isUnique": true
-        },
-        "q_noindex": {
-          "name": "q_noindex",
-          "columns": [
-            "question_no"
           ],
           "isUnique": true
         }
@@ -980,7 +989,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'2024-08-22'"
+          "default": "'2024-12-21'"
         },
         "google_location": {
           "name": "google_location",

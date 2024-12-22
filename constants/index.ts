@@ -643,42 +643,43 @@ export const ADMINSIDEBARLINKS = [
     //     link: '/AddQuestions',
     //     submenu: []
     // },
-        {
-        onlyDev: true,
-        title: 'All Submissions',
-        icon: 'bx-user',
-        link: '/AllSubmissions',
+    {
+        onlyDev: false,
+        title: 'Admission Applications',
+        icon: 'bxs-book',
+        link: '/AdmissionApplications',
         submenu: []
+    },
+    {
+        onlyDev: false,
+        title: 'Updates',
+        link:'/Updates/LatestEvents',
+        icon: 'bxs-book',
+        submenu: [
+            {
+                onlyDev: false,
+                title: 'Latest Events',
+                icon: 'bx-user',
+                link: '/Updates/LatestEvents',
+                submenu: []
+            },
+            {
+                onlyDev: false,
+                title: 'Announcements',
+                icon: 'bx-user',
+                link: '/Updates/Annoucements',
+                submenu: []
+            },
+            {
+                onlyDev: false,
+                title: 'Upcoming Events',
+                icon: 'bx-user',
+                link: '/Updates/UpcomingEvents',
+                submenu: []
+            },
+        ]
     },
     
-    {
-        onlyDev: true,
-        title: 'Questions',
-        icon: 'bx-book-alt',
-        link: '/AdminQuestions',
-        submenu: []
-    },
-    {
-        onlyDev: false,
-        title: 'New Questionare',
-        icon: 'bxs-book-reader',
-        link: '/Questionare',
-        submenu: []
-    },
-    {
-        onlyDev: true,
-        title: 'Response Analysis',
-        icon: 'bxs-book',
-        link: '/Questions',
-        submenu: []
-    },
-    {
-        onlyDev: false,
-        title: 'My Submissions',
-        icon: 'bx-user',
-        link: '/MySubmissions',
-        submenu: []
-    },
 ];
 export const LABFACILITIES = [
     "Reading room, discussion room and self-study cubicles exclusively for faculty and students",

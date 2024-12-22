@@ -69,7 +69,7 @@ export const Events = mysqlTable('Events', {
   title: varchar('title', { length: 256 }).notNull(),
   description: varchar('description', { length: 500 }),
   date: date('date'),
-  images: varchar('images', { length: 1250 }),
+  images: json('images'),
   eventType: mysqlEnum('eventType', [
     'Upcoming Event',
     'Announcement',

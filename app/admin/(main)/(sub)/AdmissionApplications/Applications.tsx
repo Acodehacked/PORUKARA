@@ -70,26 +70,26 @@ const Admissionsapps = ({ data }: {
                     </div>
                 </div>
             })}
-            <DialogContainer open={dialog} setOpen={setdialog} title={`${data[details].name} details`}>
+            <DialogContainer open={dialog} setOpen={setdialog} title={`${data[details].name ?? ''} details`}>
                 <div className='px-3 w-full flex flex-col pt-4'>
                     <span className='mt-3 text-[14px]'>Name</span>
-                    <span className="bg-zinc-50 border-[0.01rem] border-zinc-300 px-3 py-2 rounded-sm ">{data[details].name}</span>
+                    <span className="bg-zinc-50 border-[0.01rem] border-zinc-300 px-3 py-2 rounded-sm ">{data[details].name ?? ''}</span>
                 </div>
                 <div className='px-3 w-full flex flex-col pt-4'>
                     <span className='mt-3 text-[14px]'>Mobile</span>
-                    <span className="bg-zinc-50 border-[0.01rem] border-zinc-300 px-3 py-2 rounded-sm ">{data[details].mobile}</span>
+                    <span className="bg-zinc-50 border-[0.01rem] border-zinc-300 px-3 py-2 rounded-sm ">{data[details].mobile ?? ''}</span>
                 </div>
                 <div className='px-3 w-full flex flex-col pt-4'>
                     <span className='mt-3 text-[14px]'>Email</span>
-                    <span className="bg-zinc-50 border-[0.01rem] border-zinc-300 px-3 py-2 rounded-sm ">{data[details].email}</span>
+                    <span className="bg-zinc-50 border-[0.01rem] border-zinc-300 px-3 py-2 rounded-sm ">{data[details].email ?? ''}</span>
                 </div>
                 <div className='px-3 w-full flex flex-col pt-4'>
                     <span className='mt-3 text-[14px]'>Applying Course</span>
-                    <span className="bg-zinc-50 border-[0.01rem] border-zinc-300 px-3 py-2 rounded-sm ">{data[details].appliedCourse}</span>
+                    <span className="bg-zinc-50 border-[0.01rem] border-zinc-300 px-3 py-2 rounded-sm ">{data[details].appliedCourse ?? ''}</span>
                 </div>
                 <div className='px-3 w-full flex flex-col pt-4'>
                     <span className='mt-3 text-[14px]'>Address</span>
-                    <span className="bg-zinc-50 border-[0.01rem] border-zinc-300 px-3 py-2 rounded-sm ">{data[details].address}</span>
+                    <span className="bg-zinc-50 border-[0.01rem] border-zinc-300 px-3 py-2 rounded-sm ">{data[details].address ?? ''}</span>
                 </div>
                 <div className='flex mt-4 p-3 w-full justify-end'>
                     <Button onClick={()=>setdialog(false)} variant={'outline'}>Close</Button>

@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { addDays, format } from "date-fns"
 import { Calendar as CalendarIcon, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -25,20 +25,34 @@ import { usePathname, useRouter } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import SnackbarContext from '@/lib/Snackbar-context'
 import { Textarea } from '@/components/ui/textarea'
-const AddItem = () => {
-    const [dialogOpen, setDialogOpen] = useState(false)
-    const [date,setDate] = useState<Date | undefined>()
+import { Events } from '@/db/schema'
+const EditItem = ({item,open,setOpen}:{item:typeof Events.$inferSelect | null,open:boolean,setOpen: React.Dispatch<React.SetStateAction<{
+    date: Date | null;
+    id: number;
+    title: string;
+    description: string | null;
+    images: unknown;
+    eventType: "Events" | "Upcoming Event" | "Announcement" | "NSS Event" | null;
+    link: string | null;
+} | null>>}) => {
+    const [dialogOpen, setDialogOpen] = useState<boolean>(item != null)
+    const [date,setDate] = useState<Date | undefined>(item?.date ?? undefined)
     const [data, setData] = useState({
-        title: '',
-        link:'',
-        description:'',
-        images:[]
+        title: item?.title ?? '',
+        link:item?.link ?? '',
+        description: item?.description ?? '',
+        images:item?.images ?? []
     });
     const router = useRouter();
     const pathname = usePathname();
     const [errorShown, seterrorShown] = useState(false);
     const [Error, setError] = useState('');
     const Snackctx = useContext(SnackbarContext);
+    useEffect(()=>{
+        if(!dialogOpen){
+            setOpen(null)
+        }
+    },[dialogOpen])
     async function AddData() {
         if (date == null) {
             setError('Please set Date')
@@ -68,9 +82,9 @@ const AddItem = () => {
         <div>
             <div className='flex justify-center items-center'>
                 <Dialog onOpenChange={setDialogOpen} open={dialogOpen}>
-                    <DialogTrigger asChild >
-                        <Button onClick={()=>setDialogOpen(true)} className="flex items-center">Add New <Plus /></Button>
-                        </DialogTrigger>
+                    {/* <DialogTrigger asChild >
+                        <Button onClick={()=>setDialogOpen(true)} className="flex items-center">Edit New <Plus /></Button>
+                        </DialogTrigger> */}
                 {dialogOpen && 
                     <DialogContent className="sm:max-w-[425px]">
                         <DialogHeader>
@@ -101,7 +115,7 @@ const AddItem = () => {
                                 </Label>
                                 <Textarea
                                     id="description"
-                                    value={data.description}
+                                    value={data.description ?? ''}
                                     onChange={(e) =>setData({...data,'description':e.target.value})}
                                     defaultValue=""
                                     className="col-span-3"
@@ -160,4 +174,4 @@ const AddItem = () => {
     )
 }
 
-export default AddItem
+export default EditItem
