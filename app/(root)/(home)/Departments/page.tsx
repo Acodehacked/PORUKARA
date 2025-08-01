@@ -21,7 +21,7 @@ export default function page() {
             </div>
             <p className="md:px-2 px-4">Departments {'>'} Commerce</p>
             <div className="p-3 mt-5 text-[17px] flex gap-3 md:flex-row flex-col">
-                <img className="[object-fit:'cover']" alt="" src={'/assets/bcom1.webp'} objectFit="cover" width={500} height={500} />
+                <img className="[object-fit:'cover']" alt="" src={'/assets/bcom1.webp'}  width={500} height={500} />
                 <div className="px-3 py-4 mt-5 bg-white relative">
                     <img alt="" src={'/assets/bg.webp'} width={100} height={50} className="absolute top-0 right-[20px]" />
                     <p className="p-5 text-secondary border-b border-muted mb-3 font-semibold">About Commerce Department</p>
