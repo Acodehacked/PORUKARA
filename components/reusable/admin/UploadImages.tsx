@@ -87,7 +87,7 @@ const UploadImages = ({ onFilesChanged, text }: { onFilesChanged: (files: string
                                     <span className='text-[13px] text-secondary mt-2 mb-2'>Uploaded files</span>
                                     {uploadedFiles.map((item, index) => {
                                         return <div key={index} className='flex justify-between items-center px-3 py-1 my-1 bg-zinc-200 rounded-sm'>
-                                            <img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${item}`} alt={item} width={70} height={30} objectFit='cover' className="rounded-sm" />
+                                            <img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${item}`} alt={item} width={70} height={30}  className="rounded-sm" />
                                             <button onClick={(e)=>{
                                                 handleRemoveItem(e.currentTarget.value)
                                             }} value={item} className='bg-zinc-600 p-2 rounded-sm text-white'><X /></button>
