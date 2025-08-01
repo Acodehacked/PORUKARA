@@ -149,7 +149,7 @@ const Places = ({ data, categories }: {
           })
           return <div key={place.id} className='relative flex flex-col bg-white rounded-xl overflow-hidden shadow-xl'>
             <div className='w-full me-1'>
-              {ENV == 'local' ? <img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${(JSON.parse(place.images as unknown as string))[0]}`} className='w-full h-[130px] object-cover' width={200} height={300} alt={place.name || ''} /> : <img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${place.images[0]}`} className='w-full h-[130px] object-cover' width={200} height={300}  objectPosition='center' alt={place.name || ''} />}
+              {ENV == 'local' ? <img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${(JSON.parse(place.images as unknown as string))[0]}`} className='w-full h-[130px] object-cover' width={200} height={300} alt={place.name || ''} /> : <img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${place.images[0]}`} className='w-full h-[130px] object-cover' width={200} height={300} alt={place.name || ''} />}
             </div>
             <div className='absolute top-1 right-1 flex items-start'>
               <div className='rounded-full bg-white flex items-center gap-1 px-2 py-1'>
