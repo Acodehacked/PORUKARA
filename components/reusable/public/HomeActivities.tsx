@@ -8,7 +8,7 @@ const HomeActivities = () => {
   const ref = useRef(null)
   const [index, setindex] = useState(0);
   return (
-    <div style={{ background: 'url("/assets/bg3.png") no-repeat', backgroundSize: 'cover' }} className='screen  flex flex-col items-center gap-2 mt-[50px] rounded-xl p-4'>
+    <div style={{ background: 'url("/assets/bg3.webp") no-repeat', backgroundSize: 'cover' }} className='screen  flex flex-col items-center gap-2 mt-[50px] rounded-xl p-4'>
       <div className='flex justify-center items-center w-full ' >
         <h2 className='text-[30px] mt-3 font-bold text-white'>Activities</h2>
       </div>

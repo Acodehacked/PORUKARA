@@ -13,7 +13,7 @@ export const metadata: Metadata = {
         return course.text + ', ';
     })} courses provided by Fr.Porukara College Champakulam, Best Colleges in kuttanad, Best College in Alappuzha,Top 10 colleges in kerala, Top BCA College in Kerala,Top B.Com college in alappuzha, kerala, Fr.Porukara College, CMI College in kerala, Colleges in India,Best Colleges, Porukara, Porukara College, Champakulam Porukara, Courses in Porukara College, Courses provided by Fr.Porukara CMI College, Champakulam`,
     openGraph: {
-        images: ["https://porukaracollege.in/assets/thumbnail.jpg"]
+        images: ["https://porukaracollege.in/assets/thumbnail.webp"]
     }
 }
 export default function Page() {

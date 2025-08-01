@@ -49,7 +49,7 @@ const UpcomingEvents = ({ events }: {
                 {events.map((event, index) => {
                     return <div key={index} className="bg-zinc-100 rounded-md gap-2 p-3 flex items-center justify-between">
                         <div className='flex items-center w-full'>
-                            <Image src={'/assets/logo-gold.png'} width={30} height={30} alt='logo' />
+                            <Image src={'/assets/logo-gold.webp'} width={30} height={30} alt='logo' />
                             <h3 className='text-[22px]'>{event.title}</h3>
                         </div>
                         <div className="w-full flex justify-end gap-2 mt-2">

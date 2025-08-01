@@ -67,7 +67,7 @@ export default function Page({ params }: { params: { name: string } }) {
         <p className="text-black/70">AboutCollege &gt; Facilities &gt; {Facilitiy.text}</p>
         <div className="flex w-full mt-5 md:gap-5 md:flex-row flex-col items-start mb-5">
             <div className="md:max-w-[350px] w-full flex flex-col items-center">
-                <Image width={500} height={400} className="rounded-sm" src={`/assets/${Facilitiy.image}.jpg`} alt={`${Facilitiy.title} image`} />
+                <Image width={500} height={400} className="rounded-sm" src={`/assets/${Facilitiy.image}.webp`} alt={`${Facilitiy.title} image`} />
                 <div className="px-2 flex flex-col mt-3 w-full">
                     <span className="text-[16px] text-zinc-600 px-4 py-2 peer">Other Facilities</span>
                     <div className="w-full">

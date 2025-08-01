@@ -146,7 +146,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <div className="w-full h-full items-center justify-center absolute top-0 left-0 right-0 bottom-0 flex bg-black/50 group-hover:opacity-100 opacity-0">
                             <Link href={'https://maps.app.goo.gl/xeMu3iNUi5seAiGA7'} className="bg-white rounded-full px-3 py-1">Open Location</Link>
                         </div>
-                        <Image src={'/assets/app/locationmap.jpg'} width={500} height={500} className="w-full h-full object-cover" alt="" />
+                        <Image src={'/assets/app/locationmap.webp'} width={500} height={500} className="w-full h-full object-cover" alt="" />
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <h2 className="text-[12px]">Open in App</h2>
         </div>
         <Link href={'/'} className="flex gap-2 items-center">
-            <Image src={'/assets/app/google_play.png'} width={150} height={70} alt="Kuttanad App" />
+            <Image src={'/assets/app/google_play.webp'} width={150} height={70} alt="Kuttanad App" />
         </Link>
     </div>
     {place != null ? <JsonLd data={{

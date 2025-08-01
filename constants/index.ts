@@ -233,49 +233,49 @@ export const ADDONCOURSES = [
         description: '',
         path: '/AddonCourses',
         category: 'computer',
-        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/ai.jpg'
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/ai.webp'
     },
     {
         text: 'Certification in Python',
         description: '',
         category: 'computer',
         path: '/AddonCourses',
-        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/pythonfeature.png'
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/pythonfeature.webp'
     },
     {
         text: 'Advanced Excel',
         description: '',
         path: '/AddonCourses',
         category: 'computer',
-        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/Advanced-Excel.jpg'
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/Advanced-Excel.webp'
     },
     {
         text: 'Certification in Office Administration',
         description: '',
         path: '/AddonCourses',
         category: 'resource',
-        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/office+administration.jpg'
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/office+administration.webp'
     },
     {
         text: 'Logistics Management',
         description: '',
         path: '/AddonCourses',
         category: 'resource',
-        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/logisstics+management.jpg'
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/logisstics+management.webp'
     },
     {
         text: 'Certification in Robotics',
         description: '',
         path: '/AddonCourses',
         category: 'computer',
-        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/robotics.jpg'
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/robotics.webp'
     },
     {
         text: 'German',
         category: 'language',
         description: '',
         path: '/AddonCourses',
-        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/german.jpg'
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/german.webp'
     },
     {
         text: 'Spanish',
@@ -289,14 +289,14 @@ export const ADDONCOURSES = [
         description: '',
         category: 'language',
         path: '/AddonCourses',
-        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/french.jpg'
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/french.webp'
     },
     {
         text: 'Spoken English',
         description: '',
         category: 'language',
         path: '/AddonCourses',
-        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/spoken+english.jpg'
+        image: 'https://mykuttanadu.s3.us-west-1.amazonaws.com/spoken+english.webp'
     },
     {
         text: 'Certificate course in Drone Technology',
@@ -490,27 +490,27 @@ export const MISSION_VISION = [
 ]
 export const HOME_CAROUSEL = [
     {
-        image: '/assets/card2.jpg',
+        image: '/assets/card2.webp',
         text: 'Placement Guarenteed'
     },
     {
-        image: '/assets/college1.png',
+        image: '/assets/college1.webp',
         text: 'Modern Campus'
     },
     {
-        image: '/assets/backwaters.jpg',
+        image: '/assets/backwaters.webp',
         text: 'In the beauty of backwaters'
     },
     {
-        image: '/assets/paddyfields.jpg',
+        image: '/assets/paddyfields.webp',
         text: 'Nice View of Kuttanadu'
     },
     {
-        image: '/assets/graduate1.jpg',
+        image: '/assets/graduate1.webp',
         text: 'Placement Guarenteed'
     },
     {
-        image: '/assets/graduate3.jpg',
+        image: '/assets/graduate3.webp',
         text: '1000+ Students Passed out'
     },
 
@@ -694,172 +694,172 @@ export const DEMOEVENTS = [
     {
         title: '',
         desc: '',
-        image: '/assets/YM1.jpeg'
+        image: '/assets/YM1.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/YM2.jpeg'
+        image: '/assets/YM2.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/YY1.jpeg'
+        image: '/assets/YY1.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/YY2.jpeg'
+        image: '/assets/YY2.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/ML2.jpg'
+        image: '/assets/ML2.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/ML3.jpg'
+        image: '/assets/ML3.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/LLM1.jpeg'
+        image: '/assets/LLM1.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/Toronto.jpg'
+        image: '/assets/Toronto.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/LY.jpeg'
+        image: '/assets/LY.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/LM5.jpeg'
+        image: '/assets/LM5.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/LM1.jpeg'
+        image: '/assets/LM1.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/LM2.jpeg'
+        image: '/assets/LM2.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/LM3.jpeg'
+        image: '/assets/LM3.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/l45.jpg'
+        image: '/assets/l45.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/l46.jpeg'
+        image: '/assets/l46.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/l44.jpg'
+        image: '/assets/l44.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/l31.jpeg'
+        image: '/assets/l31.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/l30.jpeg'
+        image: '/assets/l30.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/l32.jpeg'
+        image: '/assets/l32.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/l33.jpeg'
+        image: '/assets/l33.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/l34.jpeg'
+        image: '/assets/l34.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/L15.png'
+        image: '/assets/L15.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/L16.png'
+        image: '/assets/L16.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/m1.jpeg'
+        image: '/assets/m1.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/Mukhamukham.jpg'
+        image: '/assets/Mukhamukham.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/l2.jpeg'
+        image: '/assets/l2.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/l3.jpeg'
+        image: '/assets/l3.webp'
     },
     {
         title: '',
         desc: '',
-        image: '/assets/lai.jpeg'
+        image: '/assets/lai.webp'
     },
     {
         title: ' ',
         desc: '',
-        image: '/assets/l4.jpeg'
+        image: '/assets/l4.webp'
     },
     {
         title: ' ',
         desc: '',
-        image: '/assets/l5.jpeg'
+        image: '/assets/l5.webp'
     },
     {
         title: ' ',
         desc: '',
-        image: '/assets/l6.jpeg'
+        image: '/assets/l6.webp'
     },
     {
         title: ' ',
         desc: '',
-        image: '/assets/l7.jpeg'
+        image: '/assets/l7.webp'
     },
     {
         title: ' ',
         desc: '',
-        image: '/assets/l8.jpeg'
+        image: '/assets/l8.webp'
     },
     {
         title: ' ',
         desc: '',
-        image: '/assets/l1.jpeg'
+        image: '/assets/l1.webp'
     }
 ];
 export const UPCOMING_EVENTS = [

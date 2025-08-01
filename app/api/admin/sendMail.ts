@@ -63,7 +63,7 @@ export async function sendMail(mail?: string, name?: string) {
                     color: grey
                 }
             </style>
-        </head><body><img src="https://porukaracollege.in/assets/thumbnail.jpg"  width="350px"  /><h3></h3><p>Hello, ${name ?? ''}</p></p>
+        </head><body><img src="https://porukaracollege.in/assets/thumbnail.webp"  width="350px"  /><h3></h3><p>Hello, ${name ?? ''}</p></p>
         <p>&middot; Your Application has submitted. Please Download Application Form from website or from link given below.<br></p>
         <p>&middot; Our Faculties will contact you as soon as possible.<br></p>
         <p>Please contact to college if needed <br> 0477-2737399 <br>

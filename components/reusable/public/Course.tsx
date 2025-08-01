@@ -10,7 +10,7 @@ const Course = ({ children, duration, title, applylink, eligibility, id, image, 
   return (
     <div className='flex flex-col p-4 md:mx-0 mx-3 my-1 bg-white rounded-xl'>
       <div className='flex gap-3 items-start font-bold text-[30px] pb-4'>
-        <Image id={id} src={'/assets/book1.png'} style={{ scrollMarginTop: '100px' }} alt='' width={50} height={50} />
+        <Image id={id} src={'/assets/book1.webp'} style={{ scrollMarginTop: '100px' }} alt='' width={50} height={50} />
         <div className='flex flex-col justify-center'>
           <span className='text-zinc-500 p-0 m-0 font-medium text-[17px]'>{duration}</span>
           <h3 className='p-0 m-0 text-[26px]' style={{ lineHeight: '26px' }}>{title}</h3>

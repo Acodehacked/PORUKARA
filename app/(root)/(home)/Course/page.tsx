@@ -12,7 +12,7 @@ export const metadata: Metadata = {
         return course.text + ', ';
     })} courses provided by Fr.Porukara College Champakulam, Best Colleges in kuttanad, Best College in Alappuzha,Top 10 colleges in kerala, Top BCA College in Kerala,Top B.Com college in alappuzha, kerala, Fr.Porukara College, CMI College in kerala, Colleges in India,Best Colleges, Porukara, Porukara College, Champakulam Porukara, Courses in Porukara College, Courses provided by Fr.Porukara CMI College, Champakulam`,
     openGraph: {
-        images: ["https://porukaracollege.in/assets/thumbnail.jpg"]
+        images: ["https://porukaracollege.in/assets/thumbnail.webp"]
     }
 }
 export default function page() {
@@ -23,7 +23,7 @@ export default function page() {
                     <h3 className="text-link-dark no-hover">Courses We Offer</h3>
                     <p className="text-[15px] font-medium">Explore different courses that we are providing</p>
                 </div>
-                <Image className="p-0 " src={'/assets/graduatehat.png'} alt="" height={200} width={200} />
+                <Image className="p-0 " src={'/assets/graduatehat.webp'} alt="" height={200} width={200} />
 
             </div>
         </div>

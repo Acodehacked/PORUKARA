@@ -13,10 +13,10 @@ import Categories from "./Categories";
 export default async function Page() {
 
     const img = [
-        "https://mykuttanadu.s3.us-west-1.amazonaws.com/1715524885391.jpg",
-        "https://mykuttanadu.s3.us-west-1.amazonaws.com/1715524885391.jpg",
-        "https://mykuttanadu.s3.us-west-1.amazonaws.com/1715524885391.jpg",
-        "https://mykuttanadu.s3.us-west-1.amazonaws.com/1715524885391.jpg",
+        "https://mykuttanadu.s3.us-west-1.amazonaws.com/1715524885391.webp",
+        "https://mykuttanadu.s3.us-west-1.amazonaws.com/1715524885391.webp",
+        "https://mykuttanadu.s3.us-west-1.amazonaws.com/1715524885391.webp",
+        "https://mykuttanadu.s3.us-west-1.amazonaws.com/1715524885391.webp",
     ]
     const { db, connection } = await getDb2();
     const place = await db.select().from(app_place).limit(0);;
@@ -24,7 +24,7 @@ export default async function Page() {
     return <div className="screen flex flex-col items-center">
         {/* {
             place != null ? <div className="w-full max-h-[350px] flex items-center mx-auto rounded-xl overflow-hidden">
-                <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/1715524885391.jpg`} width={900} height={900} style={{ objectPosition: 'center' }} className="w-full h-full object-cover object-center" alt='' />
+                <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/1715524885391.webp`} width={900} height={900} style={{ objectPosition: 'center' }} className="w-full h-full object-cover object-center" alt='' />
             </div> : ''
         }
         <section className="w-full md:px-10 px-4">
@@ -76,7 +76,7 @@ export default async function Page() {
                             <div className="w-full h-full items-center justify-center absolute top-0 left-0 right-0 bottom-0 flex bg-black/50 group-hover:opacity-100 opacity-0">
                                 <Link href={'https://maps.app.goo.gl/xeMu3iNUi5seAiGA7'} className="bg-white rounded-full px-3 py-1">Open Location</Link>
                             </div>
-                            <Image src={'/assets/app/locationmap.jpg'} width={500} height={500} className="w-full h-full object-cover" alt="" />
+                            <Image src={'/assets/app/locationmap.webp'} width={500} height={500} className="w-full h-full object-cover" alt="" />
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ export default async function Page() {
                 <h2 className="text-[12px]">Open in App</h2>
             </div>
             <Link href={'/'} className="flex gap-2 items-center">
-                <Image src={'/assets/app/google_play.png'} width={150} height={70} alt="Kuttanad App" />
+                <Image src={'/assets/app/google_play.webp'} width={150} height={70} alt="Kuttanad App" />
             </Link>
         </div> */}
     </div>

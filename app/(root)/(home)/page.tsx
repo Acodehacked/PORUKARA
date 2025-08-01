@@ -20,7 +20,7 @@ export const metadata: Metadata = {
         title: "Fr. Porukara CMI Colllege of Advanced Studies",
         description: "Offical website of Fr. Porukara CMI College of advanced Studies, Gagultha Monastry,Champakulam , Kerala",
         siteName: "Fr. Porukara CMI College",
-        images: ["https://porukaracollege.in/assets/thumbnail.jpg"],
+        images: ["https://porukaracollege.in/assets/thumbnail.webp"],
     }
   }
 export default function Page() {
@@ -37,7 +37,7 @@ export default function Page() {
                 <h2 className='text-[35px] font-bold mb-3 text-pink-700 text-center'>Some of the CMI institutions</h2>
                 <Link className='link-hover text-[20px] hover:underline' href={'http://www.cmi.org.in/'}>http://www.cmi.org.in/</Link>
                 <div className='flex md:flex-row flex-col px-4 items-center md:justify-center md:items-start pt-5'>
-                    <Image className='md:w-[40%]' src={'/assets/cmi.png'} width={400} height={400} alt='CMI institutes' />
+                    <Image className='md:w-[40%]' src={'/assets/cmi.webp'} width={400} height={400} alt='CMI institutes' />
                     <table border={1} className='screen-lg table-custom text-[20px] text-primary mb-4'>
                         <tr>Christ University, Bangalore,<br /> </tr>
                         <tr>

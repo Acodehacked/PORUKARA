@@ -145,7 +145,7 @@ const HomeHead = () => {
     return <div className='w-full flex m-0 mt-10 overflow-hidden'>
         <div className="screen justify-between w-full flex md:flex-row flex-col py-3 min-h-[500px]">
             <div className="h-[400px] md:w-[500px] w-full md:h-auto relative">
-                <Image src="/assets/aboutcollege.png" fill objectFit='contain' alt="" />
+                <Image src="/assets/aboutcollege.webp" fill objectFit='contain' alt="" />
             </div>
             <div className="md:p-5 py-0 px-6 md:w-[50%] flex flex-col items-end md:mt-[60px]">
                 <span className='topright_lines'></span>
@@ -168,7 +168,7 @@ const AdmssionForm = () => {
             <Link target='_blank' className='sm:text-[23px] text-[18px] font-medium flex items-center gap-3 p-3 border-2 border-white/50 rounded-sm hover:bg-white/40 hover:text-foreground transition-all duration-200' href={'/assets/PorukaraApplicationForm.pdf'}>Download Admission Form <DownloadCloud /></Link>
             <Link className='sm:text-[23px] text-[18px]  font-medium flex items-center gap-3 p-3 border-2 border-white/50 rounded-sm hover:bg-white/40 hover:text-foreground transition-all duration-200' href={'/Admission'}>Register Now <BiLinkExternal /></Link>
         </div>
-        <Image className='mb-[-100px] animate-pulse' src={'/assets/graduatehat.png'} width={200} height={200} alt='' />
+        <Image className='mb-[-100px] animate-pulse' src={'/assets/graduatehat.webp'} width={200} height={200} alt='' />
     </div>
 }
 

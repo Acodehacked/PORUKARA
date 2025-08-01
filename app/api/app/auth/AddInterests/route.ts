@@ -85,7 +85,7 @@ async function SendVerificationMail({ mail, code }: { mail?: string, code?: stri
                         }
                     </style>
                 </head><body>
-                <img src="https://porukaracollege.in/assets/app/app_logo.png"  width="60px"  /><h3></h3>
+                <img src="https://porukaracollege.in/assets/app/app_logo.webp"  width="60px"  /><h3></h3>
                 
                 <p>Hi ${mail},</p>
                 <p>Greetings from My Kuttanad App</p>

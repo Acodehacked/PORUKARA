@@ -51,19 +51,19 @@ const HeroPage = () => {
           <div className='w-full'>
             <div className='md:grid flex grid-cols-4 mb-6 md:max-w-[550px]'>
               <div className='flex justify-start gap-2 flex-col items-center p-2'>
-                <Image src={'/assets/jesus.jpg'} className='rounded-full overflow-hidden' width={50} height={50} alt="jesus" />
+                <Image src={'/assets/jesus.webp'} className='rounded-full overflow-hidden' width={50} height={50} alt="jesus" />
                 <span className="text-[13px] text-center font-medium sm:block hidden">Our Guiding force</span>
               </div>
               <div className='flex justify-start gap-2 flex-col items-center p-2'>
-                <Image src={'/assets/stchavara.png'} width={50} height={50} alt="jesus" />
+                <Image src={'/assets/stchavara.webp'} width={50} height={50} alt="jesus" />
                 <span className="text-[13px] text-center font-medium sm:block hidden">Our Inspiration</span>
               </div>
               <div className='flex justify-start gap-2 flex-col items-center p-2'>
-                <Image src={'/assets/thomasporukara.jpg'} className='rounded-full overflow-hidden' width={50} height={50} alt="jesus" />
+                <Image src={'/assets/thomasporukara.webp'} className='rounded-full overflow-hidden' width={50} height={50} alt="jesus" />
                 <span className="text-[13px] text-center font-medium sm:block hidden">Our Patron</span>
               </div>
               <div className='flex justify-start gap-2 flex-col items-center p-2'>
-                <Image src={'/assets/mary.jpg'} className='rounded-full overflow-hidden' width={50} height={50} alt="jesus" />
+                <Image src={'/assets/mary.webp'} className='rounded-full overflow-hidden' width={50} height={50} alt="jesus" />
                 <span className="text-[13px] text-center  font-medium sm:block hidden">Our Protection</span>
               </div>
             </div>
@@ -89,11 +89,11 @@ const HeroPage = () => {
           </div>
         </div>
         {/* <div className='min-h-[300px] w-full md:p-4'> 
-            <Image src='/assets/bg.jpg' alt='bg image' fill={true} className='opacity-[0.07] object-contain' />
+            <Image src='/assets/bg.webp' alt='bg image' fill={true} className='opacity-[0.07] object-contain' />
         </div> */}
       </div>
       <div className='md:w-[45%] w-full md:flex hidden select-none'>
-        <Image src='/assets/logo-gold.png' className='select-none absolute opacity-20 right-[-10%] top-[-50%] z-[10] bottom-0 ' style={{ objectFit: 'cover', height: '900px', width: '900px' }} width={1000} height={600} alt='Hero Image' />
+        <Image src='/assets/logo-gold.webp' className='select-none absolute opacity-20 right-[-10%] top-[-50%] z-[10] bottom-0 ' style={{ objectFit: 'cover', height: '900px', width: '900px' }} width={1000} height={600} alt='Hero Image' />
       </div>
     </div>
   )

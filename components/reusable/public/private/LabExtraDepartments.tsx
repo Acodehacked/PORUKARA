@@ -52,9 +52,9 @@ export default function LabExtraDepartments() {
                         <p className='p-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam recusandae velit quam rerum fugit labore eligendi autem laborum perferendis, facilis inventore odit doloremque quis praesentium, aut amet porro cumque? Ipsam.</p>
                     </div>
                     <div className='w-full flex gap-2 justify-end items-center p-3'>
-                        <AnimatedImage src={'/assets/library1.jpg'} classname="rounded-sm transition-all hover:scale-105" delay={0} width={300} height={400} alt="lib1" />
-                        <AnimatedImage src={'/assets/library2.jpg'} classname="rounded-sm transition-all hover:scale-105" delay={0.2} width={300} height={400} alt="lib1" />
-                        <AnimatedImage src={'/assets/library3.jpg'} classname="rounded-sm transition-all hover:scale-105" delay={0.4} width={300} height={400} alt="lib1" />
+                        <AnimatedImage src={'/assets/library1.webp'} classname="rounded-sm transition-all hover:scale-105" delay={0} width={300} height={400} alt="lib1" />
+                        <AnimatedImage src={'/assets/library2.webp'} classname="rounded-sm transition-all hover:scale-105" delay={0.2} width={300} height={400} alt="lib1" />
+                        <AnimatedImage src={'/assets/library3.webp'} classname="rounded-sm transition-all hover:scale-105" delay={0.4} width={300} height={400} alt="lib1" />
                     </div>
                 </div>
                 <hr />
@@ -69,9 +69,9 @@ export default function LabExtraDepartments() {
                         <p className='p-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam recusandae velit quam rerum fugit labore eligendi autem laborum perferendis, facilis inventore odit doloremque quis praesentium, aut amet porro cumque? Ipsam.</p>
                     </div>
                     <div className='w-full flex gap-2 justify-end items-center p-3'>
-                        <AnimatedImage src={'/assets/computer_lab1.jpg'} classname="rounded-sm transition-all hover:scale-105" delay={0} width={300} height={400} alt="lib1" />
-                        <AnimatedImage src={'/assets/computer_lab2.jpg'} classname="rounded-sm transition-all hover:scale-105" delay={0.2} width={300} height={400} alt="lib1" />
-                        <AnimatedImage src={'/assets/computer_lab3.jpg'} classname="rounded-sm transition-all hover:scale-105" delay={0.4} width={300} height={400} alt="lib1" />
+                        <AnimatedImage src={'/assets/computer_lab1.webp'} classname="rounded-sm transition-all hover:scale-105" delay={0} width={300} height={400} alt="lib1" />
+                        <AnimatedImage src={'/assets/computer_lab2.webp'} classname="rounded-sm transition-all hover:scale-105" delay={0.2} width={300} height={400} alt="lib1" />
+                        <AnimatedImage src={'/assets/computer_lab3.webp'} classname="rounded-sm transition-all hover:scale-105" delay={0.4} width={300} height={400} alt="lib1" />
                     </div>
                 </div>
                 <hr />

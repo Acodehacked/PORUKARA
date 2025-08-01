@@ -19,7 +19,7 @@ export async function POST(req:Request,res:Response) {
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes);
     const filename =  file.name.replaceAll(" ", "_");
-    const Datestring = Date.now().toString()+'.jpg'
+    const Datestring = Date.now().toString()+'.webp'
     try {
         const path = join(process.cwd(),'/public/assets/uploads/',Datestring)
         await writeFile(path,buffer);

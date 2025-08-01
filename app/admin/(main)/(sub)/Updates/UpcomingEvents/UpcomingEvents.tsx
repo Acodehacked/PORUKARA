@@ -49,7 +49,7 @@ const UpcomingEvents = ({ events }: {
                 {events.map((event, index) => {
                     return <div key={index} className="bg-zinc-100 border-[0.01rem] border-zinc-500 rounded-md gap-2 p-3 flex items-center justify-between">
                         <div className='flex items-center w-full'>
-                            <Image src={'/assets/logo-gold.png'} width={30} height={30} alt='logo' />
+                            <Image src={'/assets/logo-gold.webp'} width={30} height={30} alt='logo' />
                             <div className='ps-3'>
                                 <h3 className='text-[17px] font-medium '>{event.title}</h3>
                                 <p className='text-[10px]'>{event.date?.toDateString()}</p>

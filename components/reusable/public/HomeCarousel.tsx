@@ -12,7 +12,7 @@ const HomeCarousel = () => {
             src={'/videos/final.mp4'}
             loop
             style={{objectFit:'cover'}}
-            poster={'/assets/college1.png'}
+            poster={'/assets/college1.webp'}
             className=' [object-fit:cover] h-[110%] md:w-full w-auto z-[3] '
             muted
             controls

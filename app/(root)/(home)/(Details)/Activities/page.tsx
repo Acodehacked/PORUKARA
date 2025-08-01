@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     description: 'Activities in Fr. Porukara CMI College,Champakulam'
 }
 export default function Page() {
-    return <main style={{ background: 'url("/assets/bg3.png") no-repeat', backgroundSize: 'cover' }} className="min-h-[100vh] pt-[100px]">
+    return <main style={{ background: 'url("/assets/bg3.webp") no-repeat', backgroundSize: 'cover' }} className="min-h-[100vh] pt-[100px]">
         <Activities />
     </main>
 }

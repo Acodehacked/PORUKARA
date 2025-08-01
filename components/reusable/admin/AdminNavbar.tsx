@@ -21,7 +21,7 @@ const AdminNavbar = ({ session }: { session: Session | null }) => {
             <motion.div onClick={() => navbarctx.openNavbar()} transition={{ duration: 0.01 }} whileTap={{ scale: 0.93 }} className="w-[40px] mx-1 bg-muted md:hidden rounded-sm hover:bg-foreground hover:text-white transition-all">
                 <MenuIcon size={30} className='w-full' />
             </motion.div>
-            <Image alt='College logo' className='rounded-xl ' width={50} height={50} src="/assets/logo-gold.png" />
+            <Image alt='College logo' className='rounded-xl ' width={50} height={50} src="/assets/logo-gold.webp" />
             <h1 className=" transition-colors duration-700 font-regular navtitle sm:text-[25px] text-[20px]">FR PORUKARA CMI COLLEGE<br /> OF ADVANCED STUDIES </h1>
         </div>
         <div className='flex items-center gap-2'>

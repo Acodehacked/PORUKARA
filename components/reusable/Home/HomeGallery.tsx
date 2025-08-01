@@ -12,63 +12,63 @@ const HomeGallery = () => {
     }
     const images = [
         {
-            src: "/assets/g1.jpeg",
+            src: "/assets/g1.webp",
             width: 320,
             height: 174,
         },
         {
-            src: "/assets/g2.jpeg",
+            src: "/assets/g2.webp",
             width: 320,
             height: 174,
         },
         {
-            src: "/assets/g3.jpeg",
+            src: "/assets/g3.webp",
             width: 320,
             height: 174,
         },
         {
-            src: "/assets/g4.jpeg",
+            src: "/assets/g4.webp",
             width: 320,
             height: 174,
         },
         {
-            src: "/assets/g5.jpeg",
+            src: "/assets/g5.webp",
             width: 320,
             height: 174,
         },
         {
-            src: "/assets/card.jpg",
+            src: "/assets/card.webp",
             width: 420,
             height: 252,
             alt: "Boats (Jeshu John - designerspics.com)",
         },
         {
-            src: "/assets/graduate3.jpg",
+            src: "/assets/graduate3.webp",
             width: 400,
             height: 212,
         },
         {
-            src: "/assets/card2.jpg",
+            src: "/assets/card2.webp",
             width: 320,
             height: 212,
         },
         {
-            src: "/assets/college1.png",
+            src: "/assets/college1.webp",
             width: 520,
             height: 212,
         },
         {
-            src: "/assets/course1.jpg",
+            src: "/assets/course1.webp",
             width: 320,
             height: 212,
         },
         {
-            src: "/assets/graduate1.jpg",
+            src: "/assets/graduate1.webp",
             width: 320,
             height: 212,
         },
         {
-            src: "/assets/graduate2.jpg",
+            src: "/assets/graduate2.webp",
             width: 400,
             height: 272,
         },

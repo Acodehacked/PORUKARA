@@ -17,9 +17,9 @@ export default function page() {
             </div>
             <p className="md:px-2 px-4">Departments {'>'} Commerce</p>
             <div className="p-3 mt-5 text-[17px] flex gap-3 md:flex-row flex-col">
-                <Image className="[object-fit:'cover']" alt="" src={'/assets/bca.jpg'} objectFit="cover" width={500} height={500} />
+                <Image className="[object-fit:'cover']" alt="" src={'/assets/bca.webp'} objectFit="cover" width={500} height={500} />
                 <div className="px-3 py-4 mt-5 bg-white relative">
-                    <Image alt="" src={'/assets/bg.jpg'} width={100} height={50} className="absolute top-0 right-[20px]" />
+                    <Image alt="" src={'/assets/bg.webp'} width={100} height={50} className="absolute top-0 right-[20px]" />
                     <p className="p-5 text-secondary border-b border-muted mb-3 font-semibold">About CS Department</p>
                     <p className="p-2">Department of Commerce exists from the very beginning of the college (2012). This department is the largest department in the college with over 250 students and still growing. The department not only concentrates on the academic excellence of its students but also nurtures their co-curricular activities.</p>
                     <div className="flex justify-end">

@@ -41,7 +41,7 @@ const Comments = () => {
                         <div className='max-w-[500px] w-full flex flex-col items-center rounded-sm bg-white px-3 py-2'>
                             <div className='flex justify-between w-full'>
                                 <div className='w-full flex items-center gap-2'>
-                                    <Image src={'/assets/app/app_logo.png'} width={20} height={20} alt="Kuttanad App" />
+                                    <Image src={'/assets/app/app_logo.webp'} width={20} height={20} alt="Kuttanad App" />
                                     <h2>Please download our app</h2>
                                 </div>
                                 <div onClick={() => {
@@ -51,7 +51,7 @@ const Comments = () => {
                                 </div>
                             </div>
                             <Image src={'/assets/app/apps.webp'} width={300} height={100} alt="Kuttanad App" />
-                            <Image src={'/assets/app/google_play.png'} width={250} height={100} alt="Kuttanad App" />
+                            <Image src={'/assets/app/google_play.webp'} width={250} height={100} alt="Kuttanad App" />
                         </div>
                     </motion.div>
                 }

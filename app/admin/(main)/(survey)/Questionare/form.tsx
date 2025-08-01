@@ -157,7 +157,7 @@ const SurveyForm = ({ id, MainData, gene_id,allowed }: {
         </Link>
       </div>
     </form> : <div className="flex min-h-[70vh] flex-col justify-start items-center gap-1">
-        <Image alt="Porukara college Logo" src={'/assets/logo-gold.png'} height={100} width={100} />
+        <Image alt="Porukara college Logo" src={'/assets/logo-gold.webp'} height={100} width={100} />
         <h4 className="text-[25px] text-center font-semibold">Web Survey is now Closed</h4>
         <span className="text-[15px] mb-3 text-center">You Cannot submit / open this survey right now. It will open soon!</span>
         <Button onClick={()=>GetAllData()} variant={'outline'}>Refresh</Button>

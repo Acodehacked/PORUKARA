@@ -13,7 +13,7 @@ const HomeCentres = () => {
         return color;
     }
     return (
-        <div style={{ background: 'linear-gradient(0deg,rgba(255,255,255),rgba(255,255,255,0.8),rgba(255,255,255)),url("/assets/linesbg.jpg") no-repeat', backgroundSize: 'cover' }} className='screen relative flex flex-col items-center overflow-hidden'>
+        <div style={{ background: 'linear-gradient(0deg,rgba(255,255,255),rgba(255,255,255,0.8),rgba(255,255,255)),url("/assets/linesbg.webp") no-repeat', backgroundSize: 'cover' }} className='screen relative flex flex-col items-center overflow-hidden'>
             <div className='text-secondary/10 select-none font-bold top-[-30px] left-0 text-[80px] absolute '>
                 #Centres & Clubs
             </div>
@@ -25,7 +25,7 @@ const HomeCentres = () => {
                         setselected(index)
                     }} initial={{ opacity: 0, y: 60 }} transition={{ duration: 0.3 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className=" hover:scale-105 transition-all  rounded-lg flex flex-col items-center"  key={index}>
                         <div className='w-full h-[150px] shadow-md rounded-md overflow-hidden'>
-                            <Image src={`/assets/${item?.image}.jpeg`} style={{objectFit:'fill'}} className='w-full h-full' alt='' height={200} width={300} />
+                            <Image src={`/assets/${item?.image}.webp`} style={{objectFit:'fill'}} className='w-full h-full' alt='' height={200} width={300} />
                         </div>
                         <h3 className='text-foreground text-[14px] font-semibold mt-3 text-center'>{item?.text}</h3>
                     </motion.div>

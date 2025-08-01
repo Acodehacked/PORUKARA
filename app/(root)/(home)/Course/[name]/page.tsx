@@ -53,7 +53,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
             title: "Fr. Porukara CMI Colllege of Advanced Studies",
             description: "Offical website of Fr. Porukara CMI College of advanced Studies, Gagultha Monastry,Champakulam , Kerala",
             siteName: "Fr. Porukara CMI College",
-            images: ["https://porukaracollege.in/assets/thumbnail.jpg"],
+            images: ["https://porukaracollege.in/assets/thumbnail.webp"],
         }
     }
 }
@@ -86,7 +86,7 @@ export default function Page({ params }: { params: { name: string } }) {
                 <div className="md:absolute relative flex flex-col items-start sm:pt-[200px] pt-[140px] left-0 right-0 bottom-0 top-0 bg-gradient-to-l via-foreground/80 from-foreground/40 to-foreground z-[3]">
                     <div className="flex justify-between flex-col md:flex-row screen">
                         <div className="flex flex-col items-start md:p-0 p-5 w-full">
-                            <Image src={'/assets/graduatehat.png'} height={80} width={80} alt="Logo" />
+                            <Image src={'/assets/graduatehat.webp'} height={80} width={80} alt="Logo" />
                             <h3 className="text-white/80">{Coursee?.duration} Course</h3>
                             <h2 className="text-white text-[30px] md:text-[39px] font-semibold">{Coursee?.title}</h2>
                             <div className='flex gap-3 md:flex-row flex-row mt-6 px-4 pb-6'>
@@ -124,7 +124,7 @@ export default function Page({ params }: { params: { name: string } }) {
                         </div>
                     </div>}
                 </div>
-                <Image className="z-[2] hidden sm:block w-full h-full max-h-[650px] object-cover" src="/assets/porukara.jpeg" height={800} width={1000} alt="/assets/porukara.jpeg" />
+                <Image className="z-[2] hidden sm:block w-full h-full max-h-[650px] object-cover" src="/assets/porukara.webp" height={800} width={1000} alt="/assets/porukara.webp" />
             </div>
 
 
@@ -142,7 +142,7 @@ export default function Page({ params }: { params: { name: string } }) {
                     {otheru.map((item, index) => {
                         return <Link href={`${item.path}`} key={index} className="bg-white hover-cards rounded-md relative shadow-sm hover:shadow-xl p-3">
                             <div className="flex flex-col justify-start items-start gap-3">
-                                <Image src={'/assets/logo-gold.png'} width={80} height={80} alt="" />
+                                <Image src={'/assets/logo-gold.webp'} width={80} height={80} alt="" />
                                 <div className="flex flex-col">
                                     <h2 className="text-[17px] mt-1 font-semibold">{item.title}</h2>
                                     <p className=" text-black text-[12px] mt-2 w-max px-3 py-1 rounded-sm border-[0.01rem] border-zinc-200">{item.duration}</p>
@@ -163,7 +163,7 @@ export default function Page({ params }: { params: { name: string } }) {
                     {otherp.map((item, index) => {
                         return <Link href={`${item.path}`} key={index} className="bg-white hover-cards rounded-md relative shadow-sm hover:shadow-xl p-3">
                             <div className="flex justify-start items-start gap-3">
-                                <Image src={'/assets/logo-gold.png'} width={80} height={80} alt="" />
+                                <Image src={'/assets/logo-gold.webp'} width={80} height={80} alt="" />
                                 <div className="flex flex-col">
                                     <h2 className="text-[17px] mt-1 font-semibold">{item.title}</h2>
                                     <p className=" text-black text-[12px] mt-2 w-max px-3 py-1 rounded-sm border-[0.01rem] border-zinc-200">{item.duration}</p>

@@ -41,7 +41,7 @@ const UploadImage = ({ onFilesChanged, text }: { onFilesChanged: (files: string)
         if (!event.currentTarget.files) return;
         setSelectedFile(event.currentTarget.files[0]);
         const unique_id = new Date().getTime();;
-        const filename = unique_id+'.jpg';
+        const filename = unique_id+'.webp';
         setuprogress(true)
         const response = await uploadFile(filename,'mykuttanadu',event.currentTarget.files[0]);
         console.log(response.url);
@@ -74,9 +74,9 @@ const UploadImage = ({ onFilesChanged, text }: { onFilesChanged: (files: string)
                             </div>
                             <label htmlFor='uploadfile' className={cn('flex flex-col justify-center items-center p-3 mx-2 my-2 border-dashed border-zinc-500 border-[0.03rem]', selectedFile == null || !uprogress  ? 'flex' : 'hidden')}>
                                 <form className='w-full h-full flex justify-center items-center'>
-                                    <Image src={'/assets/uploadfile.png'} alt="uploadfile" width={100} height={100} />
+                                    <Image src={'/assets/uploadfile.webp'} alt="uploadfile" width={100} height={100} />
                                     <span>Upload Images here</span>
-                                    <input type="file" accept='.jpg,.png,.jpeg' id='uploadfile' name='file' className=' hidden' onChange={handleFileChange} />
+                                    <input type="file" accept='.webp,.webp,.webp' id='uploadfile' name='file' className=' hidden' onChange={handleFileChange} />
                                     {/* <input className='' type="submit" value='submit' /> */}
                                 </form>
                             </label>
