@@ -17,7 +17,7 @@ export default function Page() {
         </div>
         <div className="screen flex md:flex-row flex-col mt-3">
             <div className="flex flex-col items-center md:max-w-[350px] w-full bg-white">
-                <Image src={'/assets/thomasporukara.webp'} alt="" width={250} height={250} className="pt-4" />
+                <img src={'/assets/thomasporukara.webp'} alt="" width={250} height={250} className="pt-4" />
                 <h5 className="text-[23px] pt-3 font-semibold">Fr. Thomas Porukara</h5>
                 <h1> (27 December 1799 – 8 January 1846)</h1>
             </div>

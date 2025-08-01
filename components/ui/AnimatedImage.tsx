@@ -16,7 +16,7 @@ const AnimatedImage = ({width,height,delay=0,src,alt,duration=0.5,classname}:{wi
         }}
         whileInView={{y:0,opacity:1}}
     >
-        <Image className={classname} width={width} height={height} src={src} alt={alt} />
+        <img className={classname} width={width} height={height} src={src} alt={alt} />
     </motion.div>
   )
 }

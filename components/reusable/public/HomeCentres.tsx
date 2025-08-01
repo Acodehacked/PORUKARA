@@ -25,7 +25,7 @@ const HomeCentres = () => {
                         setselected(index)
                     }} initial={{ opacity: 0, y: 60 }} transition={{ duration: 0.3 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className=" hover:scale-105 transition-all  rounded-lg flex flex-col items-center"  key={index}>
                         <div className='w-full h-[150px] shadow-md rounded-md overflow-hidden'>
-                            <Image src={`/assets/${item?.image}.webp`} style={{objectFit:'fill'}} className='w-full h-full' alt='' height={200} width={300} />
+                            <img src={`/assets/${item?.image}.webp`} style={{objectFit:'fill'}} className='w-full h-full' alt='' height={200} width={300} />
                         </div>
                         <h3 className='text-foreground text-[14px] font-semibold mt-3 text-center'>{item?.text}</h3>
                     </motion.div>

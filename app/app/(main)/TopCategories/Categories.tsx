@@ -142,7 +142,7 @@ const Categories = ({ data, topcategories }: {
         {topmainCategories.map((category, index) => {
           return <div key={category.id} className='relative items-center flex h-[70px] bg-white rounded-sm overflow-hidden'>
             <div className='w-full items-center flex transition-all ps-2'>
-              <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${category.image}`} className='w-[50px] h-[50px] rounded-full' width={200} height={300} alt={category.name || ''} />
+              <img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${category.image}`} className='w-[50px] h-[50px] rounded-full' width={200} height={300} alt={category.name || ''} />
               <h3 className='p-2'>{category.name}</h3>
             </div>
             <div className='flex gap-2 absolute bottom-[5px] right-[5px]'>
@@ -194,7 +194,7 @@ const Categories = ({ data, topcategories }: {
         </div>
         <div className='px-3 w-full pt-4'>
           <span className='mt-3 text-[14px]'>Image</span>
-          {image != '' ? <div className='max-h-[100px] overflow-hidden'><Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${image}`} alt={''} width={400} height={100} className='h-full w-full max-h-[100px] object-contain' /></div> : ''}
+          {image != '' ? <div className='max-h-[100px] overflow-hidden'><img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${image}`} alt={''} width={400} height={100} className='h-full w-full max-h-[100px] object-contain' /></div> : ''}
           <UploadImage text={image != '' ? 'ReUpload Image' : ''} onFilesChanged={(file) => setimage(file)} />
         </div>
         <div className='flex mt-4 p-3 w-full justify-end'>

@@ -17,7 +17,7 @@ export default function Page() {
                 <span>Principal&#39;s Message</span>
                 <span className="text-[15px] font-medium">About College {'>'} Principal&#39;s Message</span>
             </h3>
-            <Image src={'/assets/principal.webp'} alt="" width={450} height={450} className="mt-[-100px] w-full  max-w-[400px] rounded-2xl" />
+            <img src={'/assets/principal.webp'} alt="" width={450} height={450} className="mt-[-100px] w-full  max-w-[400px] rounded-2xl" />
         </div>
         <div className="screen flex md:flex-row flex-col-reverse mt-3">
             <div className="flex flex-col items-center md:max-w-[350px] w-full bg-white">

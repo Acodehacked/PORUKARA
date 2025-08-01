@@ -25,7 +25,7 @@ export default function Page() {
                     {TORCHBEARERS.map((person, index) => {
                         return <div key={index} className="flex min-w-[150px] max-w-[220px] w-max justify-start items-center flex-col">
                             <div style={{width:'150px',height:'200px'}} className="rounded-xl shadow-[0px_2px_10px_rgba(0,0,0,0.1)] overflow-hidden m-2 ">
-                                <Image src={`/assets/Tb${index + 1}.webp`} className="w-full h-full object-cover " width={150} height={200} alt={person.name} />
+                                <img src={`/assets/Tb${index + 1}.webp`} className="w-full h-full object-cover " width={150} height={200} alt={person.name} />
                             </div>
                             <h3 className="text-[18px] mt-3 font-bold text-center">{person.name}</h3>
                             <h3 className="text-[12px] text-secondary text-center">{person.place}</h3>

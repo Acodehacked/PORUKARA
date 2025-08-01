@@ -16,7 +16,7 @@ const HomeLoader = () => {
       opacity:0,
       pointerEvents:'none'
     }: {}} className={cn('fixed z-[100] bg-foreground text-white flex justify-center items-center left-0 right-0 top-0 bottom-0', loaded ? '' : '')}>
-      <Image className=' animate-in' src={'/assets/logo-gold.webp'} alt="" width={300} height={300} />
+      <img className=' animate-in' src={'/assets/logo-gold.webp'} alt="" width={300} height={300} />
     </motion.div>
   )
 }

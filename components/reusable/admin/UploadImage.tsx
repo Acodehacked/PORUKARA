@@ -74,7 +74,7 @@ const UploadImage = ({ onFilesChanged, text }: { onFilesChanged: (files: string)
                             </div>
                             <label htmlFor='uploadfile' className={cn('flex flex-col justify-center items-center p-3 mx-2 my-2 border-dashed border-zinc-500 border-[0.03rem]', selectedFile == null || !uprogress  ? 'flex' : 'hidden')}>
                                 <form className='w-full h-full flex justify-center items-center'>
-                                    <Image src={'/assets/uploadfile.webp'} alt="uploadfile" width={100} height={100} />
+                                    <img src={'/assets/uploadfile.webp'} alt="uploadfile" width={100} height={100} />
                                     <span>Upload Images here</span>
                                     <input type="file" accept='.webp,.webp,.webp' id='uploadfile' name='file' className=' hidden' onChange={handleFileChange} />
                                     {/* <input className='' type="submit" value='submit' /> */}
@@ -88,7 +88,7 @@ const UploadImage = ({ onFilesChanged, text }: { onFilesChanged: (files: string)
                                 {uploadedFiles.length > 0 ? <div>
                                     <span className='text-[13px] text-secondary mt-2 mb-2'>Uploaded files</span>
                                     {uploadedFiles != '' ? <div className='flex justify-between items-center px-3 py-1 my-1 bg-zinc-200 rounded-sm'>
-                                        <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${uploadedFiles}`} alt={uploadedFiles} width={70} height={30} objectFit='cover' className="rounded-sm" />
+                                        <img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${uploadedFiles}`} alt={uploadedFiles} width={70} height={30} objectFit='cover' className="rounded-sm" />
                                         <button onClick={(e) => {
                                             handleRemoveItem(e.currentTarget.value)
                                         }} value={uploadedFiles} className='bg-zinc-600 p-2 rounded-sm text-white'><X /></button>

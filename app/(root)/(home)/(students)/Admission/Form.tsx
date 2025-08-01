@@ -82,10 +82,10 @@ const Form = () => {
         <>
             <form ref={form} className="px-4 bg-white mb-3 screen-md py-6 rounded-xl shadow-xl relative">
                 <div className='absolute z-[1] sm:rounded-t-none sm:rounded-b-xl rounded-xl bg-yellow-500 sm:top-0 top-[-40px] right-[2rem]'>
-                    <Image className="p-0 " src={'/assets/graduatehat.webp'} alt="" height={80} width={80} />
+                    <img className="p-0 " src={'/assets/graduatehat.webp'} alt="" height={80} width={80} />
                 </div>
                 <div className="flex items-center gap-2">
-                    <Image className="p-0 " src={'/assets/logo-gold.webp'} alt="" height={100} width={100} />
+                    <img className="p-0 " src={'/assets/logo-gold.webp'} alt="" height={100} width={100} />
                     <h3 className="text-[30px] font-semibold mt-3 mb-4">Apply For A Course</h3>
                 </div>
                 <div className='bg-green-100 text-green-900 px-6 py-3 rounded-md mt-2 mb-2 text-[13px]'>
@@ -167,7 +167,7 @@ const Form = () => {
                     uploaded && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='bg-black/50 fixed top-0 bottom-0 left-0 right-0 px-5 flex items-center justify-center z-[9999]'>
                         <div className='max-w-[500px] min-h-[150px] justify-center w-full flex flex-col items-center rounded-sm bg-white px-3 py-4'>
                             <div className='w-full flex flex-col items-center gap-2'>
-                                <Image src={'/assets/logo-gold.webp'} width={60} className='mt-2 mb-3' height={60} alt="" />
+                                <img src={'/assets/logo-gold.webp'} width={60} className='mt-2 mb-3' height={60} alt="" />
                                 <CheckCircle2Icon size={50} className="text-green-500" />
                                 <h2 className="text-center text-green-800 font-semibold mt-4">Admission Details Submitted Successfully</h2>
                                 <Button onClick={() => {
@@ -183,7 +183,7 @@ const Form = () => {
                     already && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='bg-black/50 fixed top-0 bottom-0 left-0 right-0 px-5 flex items-center justify-center z-[9999]'>
                         <div className='max-w-[500px] min-h-[150px] justify-center w-full flex flex-col items-center rounded-sm bg-white px-3 py-4'>
                             <div className='w-full flex flex-col items-center gap-2'>
-                                <Image src={'/assets/logo-gold.webp'} width={60} className='mt-2 mb-3' height={60} alt='' />
+                                <img src={'/assets/logo-gold.webp'} width={60} className='mt-2 mb-3' height={60} alt='' />
                                 <CheckCircle2Icon size={50} className="text-green-500" />
                                 <h2 className="text-center text-green-800 font-semibold mt-4">Details Already Submitted with Same Email id or Phone number</h2>
                                 <Button onClick={() => {

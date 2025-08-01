@@ -29,7 +29,7 @@ const Appnavbar = () => {
         <motion.div ref={menuref} initial={{ x: -390 }} animate={adminctx.isDisplayed ? { x: 0, pointerEvents: 'all' } : { opacity: 0, pointerEvents: 'none' }} exit={{ x: -390, pointerEvents: 'none' }} transition={{ stiffness: 0.1, duration: 0.2 }} className="flex absolute left-0 top-0 bottom-0 max-w-[370px] w-full bg-[#031408] flex-col gap-3 pt-2 px-3 hide-scrollbar">
           <div className='mt-5 text-white p-2 flex justify-between items-center'>
             <div className='flex items-center'>
-              <Image src={'/assets/app/app_logo.webp'} className='select-none rounded-full' alt="Kuttanadu App" width={30} height={30} />
+              <img src={'/assets/app/app_logo.webp'} className='select-none rounded-full' alt="Kuttanadu App" width={30} height={30} />
               <h2 className='text-white/40 ms-1'>My Kuttanad Dashboard</h2>
             </div>
             <BiX size={30} onClick={() => adminctx.openNavbar()} />
@@ -57,7 +57,7 @@ const AppLoader = () => {
       opacity: 0,
       pointerEvents: 'none'
     } : {}} className={cn('fixed z-[100] bg-white text-white flex flex-col justify-center items-center left-0 right-0 top-0 bottom-0', loaded ? '' : '')}>
-      <Image className=' animate-in' src={'/assets/app/app_logo.webp'} alt="" width={150} height={150} />
+      <img className=' animate-in' src={'/assets/app/app_logo.webp'} alt="" width={150} height={150} />
       <LucideLoader size={40} className='animate-spin mt-3 text-green-600' />
     </motion.div>
   )
@@ -75,7 +75,7 @@ const MKAdminNavbar = () => {
       <BiMenu className='text-white rounded-full hover:bg-black/90 p-1 cursor-pointer' size={34} onClick={() => {
         adminctx.openNavbar();
       }} />
-      <Image src={'/assets/app/app_logo.webp'} className='m-3 select-none rounded-xl shadow-xl' alt="Kuttanadu App" width={50} height={50} />
+      <img src={'/assets/app/app_logo.webp'} className='m-3 select-none rounded-xl shadow-xl' alt="Kuttanadu App" width={50} height={50} />
       <h2 className="text-[17px] text-white font-semibold"></h2>
     </div>
     <Link className="bg-green-900 rounded-full p-3 m-2 text-white text-[10px]" href={'/admin/dashboard'}><BiExit size={34} /></Link>

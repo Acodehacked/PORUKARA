@@ -22,7 +22,7 @@ export default function Layout({
             <div className="w-full bg-gradient-to-b fixed z-[99] px-6 py-3 to-center from-black to-transparent">
                 <div className="flex items-center screen justify-between">
                     <div className="flex items-center gap-2 ps-4">
-                        <Image src={'/assets/app/app_logo.webp'} width={50} height={50} alt="Kuttanad App" />
+                        <img src={'/assets/app/app_logo.webp'} width={50} height={50} alt="Kuttanad App" />
                         <h3 className="text-white">My Kuttanad App</h3>
                     </div>
                     <div className="pe-4">

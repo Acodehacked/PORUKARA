@@ -94,7 +94,7 @@ export default async function Page({ params }: { params: { id: string } }) {
     return <div className="screen flex flex-col items-center">
     {
         place != null ? <div className="w-full max-h-[350px] flex items-center mx-auto rounded-xl overflow-hidden">
-            <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${place[0]?.images[0]}`} width={900} height={900} style={{ objectPosition: 'center' }} className="w-full h-full object-cover object-center" alt='' />
+            <img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${place[0]?.images[0]}`} width={900} height={900} style={{ objectPosition: 'center' }} className="w-full h-full object-cover object-center" alt='' />
         </div> : ''
     }
     <section className="w-full md:px-10 px-4">
@@ -102,7 +102,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <div className="w-full no-scrollbar flex justify-end gap-2 px-2 pt-2 overflow-scroll">
                 {place != null && place[0]?.images.map((item, index) => {
                     return <div key={index} className="h-[50px] bg-white p-[4px] border-[0.01rem] border-zinc-300 w-[50px] rounded-sm shadow-lg">
-                        <Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${item}`} width={50} height={50} className="w-full h-full rounded-sm object-cover" alt="" />
+                        <img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${item}`} width={50} height={50} className="w-full h-full rounded-sm object-cover" alt="" />
                     </div>
                 })}
             </div>
@@ -146,7 +146,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <div className="w-full h-full items-center justify-center absolute top-0 left-0 right-0 bottom-0 flex bg-black/50 group-hover:opacity-100 opacity-0">
                             <Link href={'https://maps.app.goo.gl/xeMu3iNUi5seAiGA7'} className="bg-white rounded-full px-3 py-1">Open Location</Link>
                         </div>
-                        <Image src={'/assets/app/locationmap.webp'} width={500} height={500} className="w-full h-full object-cover" alt="" />
+                        <img src={'/assets/app/locationmap.webp'} width={500} height={500} className="w-full h-full object-cover" alt="" />
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <h2 className="text-[12px]">Open in App</h2>
         </div>
         <Link href={'/'} className="flex gap-2 items-center">
-            <Image src={'/assets/app/google_play.webp'} width={150} height={70} alt="Kuttanad App" />
+            <img src={'/assets/app/google_play.webp'} width={150} height={70} alt="Kuttanad App" />
         </Link>
     </div>
     {place != null ? <JsonLd data={{

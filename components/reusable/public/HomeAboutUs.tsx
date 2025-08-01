@@ -17,7 +17,7 @@ const HomeAboutUs = () => {
       </div>
       <div className='relative flex md:flex-row flex-col overflow-hidden w-full screen-lg  md:h-auto md:rounded-2xl'>
         <div className='w-[650px] h-[300px] pt-[50px] relative overflow-hidden'>
-          <Image src="/assets/principal.webp" className='flex md:rounded-tl-xl md:rounded-bl-xl md:p-0 h-full w-full object-cover' alt="" width={500} height={500} objectFit='cover' />
+          <img src="/assets/principal.webp" className='flex md:rounded-tl-xl md:rounded-bl-xl md:p-0 h-full w-full object-cover' alt="" width={500} height={500} objectFit='cover' />
         </div>
         <div className='bg-foreground relative w-full p-5'>
           <span className="w-[0px] md:block hidden h-[0px] z-[2] absolute left-[-350px] top-0 bottom-0 rightriangle bg-foreground"></span>

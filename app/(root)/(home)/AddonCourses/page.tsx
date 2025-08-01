@@ -52,7 +52,7 @@ const CourseList = (({list,text}:{
             {list.map((item, index) => {
                 return <Link href={`${item.path}`} key={index} className=" overflow-hidden relative shadow-sm">
                     <div className="flex flex-col justify-start items-start">
-                        <Image src={item.image} className="w-full h-[130px] object-cover rounded-xl" width={580} height={580} alt="" />
+                        <img src={item.image} className="w-full h-[130px] object-cover rounded-xl" width={580} height={580} alt="" />
                         <div className="flex flex-col px-5 py-2">
                             <h2 className="text-[17px] mt-1 font-semibold">{item.text}</h2>
                         </div>

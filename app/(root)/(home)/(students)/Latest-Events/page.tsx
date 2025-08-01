@@ -15,7 +15,7 @@ export default function Page() {
         <div className="mt-4 text-[18px] grid md:grid-cols-4 gap-3">
             {DEMOEVENTS.map((event, index) => {
                 return <div key={index} className="flex flex-col p-3">
-                    <Image src={event.image} width={400} height={300} alt="Graduate" />
+                    <img src={event.image} width={400} height={300} alt="Graduate" />
                     <h2 className="text-[26px] mt-2 font-semibold">{event.title}</h2>
                     <p className="text-[17px]">{event.desc}</p>
                     <div className="flex justify-end">

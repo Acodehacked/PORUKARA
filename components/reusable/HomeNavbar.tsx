@@ -48,7 +48,7 @@ export default function HomeNavbar() {
                 <div className='flex select-none'>
                     <div className='flex items-center'>
                         <div className='rounded-full p-0 w-[60px] h-[60px] bg-foreground'>
-                            <Image alt='College logo' className='' width={70} height={70} src="/assets/logo-gold.webp" />
+                            <img alt='College logo' className='' width={70} height={70} src="/assets/logo-gold.webp" />
                         </div>
                         <div className='ps-1 flex flex-col items-start text-white'>
                             <h1 style={{ lineHeight: '26px', letterSpacing: '0.3px' }} className="m-0 p-0 transition-colors font-[400] duration-700 font-bebas navtitle sm:text-[34px] text-[28px]">FR. PORUKARA CMI COLLEGE</h1>
@@ -91,7 +91,7 @@ export default function HomeNavbar() {
                                     <motion.div initial={{ opacity: 0, pointerEvents: 'none', y: '-50%,10px' }} animate={{ opacity: 1, pointerEvents: 'all', transform: '-50%,0%' }} exit={{ opacity: 0, pointerEvents: 'none', y: '-50%,10px' }} style={{ transformOrigin: "top center" }} className={cn("md:fixed min-w-[350px]  md:group-focus: scale-100  md:left-[50%] md:translate-x-[-50%] md:group-hover: md:opacity-100 transition-all duration-300 md: opacity md:overflow-hidden opacity-100 group-hover:h-auto md:auto h-[0] group-hover  :opacity-100 overflow-auto relative flex flex-col z-50  rounded-sm md:w-max ", _nav.submenu.length > 0 ? "group-hover:p-2 drop-shadow-lg" : "")}>
                                         <div className='screen-lg bg-zinc-100 flex mt-[-5px]' key={index}>
                                             <div className='relative md:w-[500px] md:block hidden m-5 rounded-lg overflow-hidden'>
-                                                <Image className='w-full h-full object-cover' height={600} width={800} alt='' src={'/assets/college1.webp'} />
+                                                <img className='w-full h-full object-cover' height={600} width={800} alt='' src={'/assets/college1.webp'} />
                                             </div>
                                             <div className='flex flex-col w-full'>
                                                 <div className='grid md:grid-cols-2  grid-cols-1 md:p-4 p-2 w-full md:gap-2'>

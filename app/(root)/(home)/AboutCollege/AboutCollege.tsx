@@ -54,7 +54,7 @@ const AboutCollege = () => {
                             <h3 className="sm:text-[45px] text-[25px] text-center text-link-lighte text-foreground font-bold mt-2 mb-3">Explore Our College</h3>
                         </div>
                         <div className="screen-lg group relative rounded-xl overflow-hidden min-h-[50vh] max-h-[50vh] z-[2]">
-                            <Image src="/assets/porukara.webp" className="min-h-[50vh]" alt="college" fill objectFit="cover" />
+                            <img src="/assets/porukara.webp" className="min-h-[50vh]" alt="college" fill objectFit="cover" />
                             {/* <div className='absolute top-0 bottom-0 flex justify-center items-center left-0 right-0 bg-[rgba(0,0,0,0.3)] group-hover:opacity-100 transition-all opacity-0'>
                             <motion.div whileTap={{ scale: 0.97 }} onClick={() => setgalleryvisible(true)} className="px-6 py-2 bg-white rounded-xl text-foreground cursor-pointer select-none" >Image Gallery</motion.div>
                         </div> */}
@@ -77,19 +77,19 @@ const AboutCollege = () => {
                         </div>
                         <div className='grid md:grid-cols-4 screen-lg grid-cols-2 gap-8 items-center mb-6 mt-4'>
                             <div className='flex justify-center gap-2 flex-col items-center p-2'>
-                                <Image src={'/assets/jesus.webp'} className='rounded-full overflow-hidden' width={150} height={150} alt="jesus" />
+                                <img src={'/assets/jesus.webp'} className='rounded-full overflow-hidden' width={150} height={150} alt="jesus" />
                                 <span className="text-[18px] text-center font-medium ">Our Guiding force</span>
                             </div>
                             <div className='flex justify-center gap-2 flex-col items-center p-2'>
-                                <Image src={'/assets/stchavara.webp'} width={150} height={150} alt="jesus" />
+                                <img src={'/assets/stchavara.webp'} width={150} height={150} alt="jesus" />
                                 <span className="text-[18px] text-center font-medium ">Our Inspiration</span>
                             </div>
                             <div className='flex justify-center gap-2 flex-col items-center p-2'>
-                                <Image src={'/assets/thomasporukara.webp'} className='rounded-full overflow-hidden' width={150} height={150} alt="jesus" />
+                                <img src={'/assets/thomasporukara.webp'} className='rounded-full overflow-hidden' width={150} height={150} alt="jesus" />
                                 <span className="text-[18px] text-center font-medium ">Our Patron</span>
                             </div>
                             <div className='flex justify-center gap-2 flex-col items-center p-2'>
-                                <Image src={'/assets/mary.webp'} className='rounded-full overflow-hidden' width={150} height={150} alt="jesus" />
+                                <img src={'/assets/mary.webp'} className='rounded-full overflow-hidden' width={150} height={150} alt="jesus" />
                                 <span className="text-[18px] text-center  font-medium ">Our Protection</span>
                             </div>
                         </div>
@@ -131,7 +131,7 @@ const AboutCollege = () => {
                                 {images.map((item, index) => {
                                     return <motion.div key={index} className={`h-[400px] 
                                 ${gindex == index ? 'w-[500px] opacity-100' : 'w-[200px] opacity-50'}`} >
-                                        <Image src={item} style={{ objectFit: 'cover' }} objectFit='cover' width={500} height={500} className='w-full h-full' alt="" />
+                                        <img src={item} style={{ objectFit: 'cover' }} objectFit='cover' width={500} height={500} className='w-full h-full' alt="" />
                                     </motion.div>
                                 })}
                             </motion.div>

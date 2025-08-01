@@ -11,7 +11,7 @@ export default function page() {
                     <h3 className="text-link-dark no-hover">Courses We Offer</h3>
                     <p className="text-[15px] font-medium">Explore different courses that we are providing</p>
                 </div>
-                <Image className="p-0 " src={'/assets/graduatehat.webp'} alt="" height={200} width={200} />
+                <img className="p-0 " src={'/assets/graduatehat.webp'} alt="" height={200} width={200} />
 
             </div>
         </div>

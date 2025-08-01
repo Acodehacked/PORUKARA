@@ -18,7 +18,7 @@ export default function Page() {
         </div>
         <div className="screen flex md:flex-row flex-col mt-3">
             <div className="flex flex-col items-center md:max-w-[350px] w-full bg-white">
-                <Image src={'/assets/stchavara.webp'} alt="" width={250} height={250} className="pt-4" />
+                <img src={'/assets/stchavara.webp'} alt="" width={250} height={250} className="pt-4" />
                 <h5 className="text-[23px] pt-3 font-semibold">Kuriakose Elias Chavara</h5>
                 <h1> (10 February 1805 – 3 January 1871)</h1>
                 <p className="px-5 pt-2 text-justify text-[13px]">
@@ -32,7 +32,7 @@ export default function Page() {
         </div>
         <div className="flex bg-zinc-50 justify-end screen p-3 mb-4">
             <Link className="flex justify-center p-2 gap-2 rounded-xl bg-white border-[0.01rem] border-foreground/30 items-center" href={'/AboutCollege/OurPatron'}>
-                <Image src={'/assets/thomasporukara.webp'} alt="Thomas Porukara" height={50} width={50} />
+                <img src={'/assets/thomasporukara.webp'} alt="Thomas Porukara" height={50} width={50} />
                 <h2 className="font-semibold">Our Patron</h2>
                 <ChevronRight />
             </Link>

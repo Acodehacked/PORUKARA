@@ -397,7 +397,7 @@ export const Place = ({ id, categories, topcategories, suggestions ,place }: {
                     <span className='mt-3 text-[14px]'>Image</span>
                     <div className='flex flex-wrap gap-2 mb-2'>
                         {image.map((img, index) => {
-                            return <div key={index} className='max-h-[100px] overflow-hidden rounded-sm'><Image src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${img}`} alt={''} width={400} height={100} className='h-full w-full max-h-[100px] object-contain' /></div>
+                            return <div key={index} className='max-h-[100px] overflow-hidden rounded-sm'><img src={`https://mykuttanadu.s3.us-west-1.amazonaws.com/${img}`} alt={''} width={400} height={100} className='h-full w-full max-h-[100px] object-contain' /></div>
                         })}
                         {image.length == 0 ? <span className='text-secondary py-3 px-2 text-[14px]'>no images uploaded!</span> : ''}
                     </div>
