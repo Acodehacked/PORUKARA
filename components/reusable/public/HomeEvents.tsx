@@ -62,7 +62,7 @@ const HomeEvents = () => {
                                             hidden: { opacity: 0, y: 200 }
                                         }} key={index} className={`group event_card w-full max-w-[450px] bg-zinc-50 md:h-[330px] h-[270px] mt-2 rounded-sm relative overflow-hidden`}>
                                         <div className="bg absolute group-hover:scale-[1.1] duration-700 transition-all scale-100 top-0 bottom-0 left-0 right-0 z-[1]">
-                                            <img src={item.image} className='object-contain  transition-all duration-500' alt='d' fill={true} />
+                                            <img src={item.image} className='object-contain  transition-all duration-500 object-fill' alt='d' />
                                         </div>
                                     </motion.div>
                                     <div className="px-3 text-black flex flex-col justify-end z-[2]">
@@ -145,7 +145,7 @@ const HomeHead = () => {
     return <div className='w-full flex m-0 mt-10 overflow-hidden'>
         <div className="screen justify-between w-full flex md:flex-row flex-col py-3 min-h-[500px]">
             <div className="h-[400px] md:w-[500px] w-full md:h-auto relative">
-                <img src="/assets/aboutcollege.webp" fill objectFit='contain' alt="" />
+                <img src="/assets/aboutcollege.webp" className='object-contain' alt="" />
             </div>
             <div className="md:p-5 py-0 px-6 md:w-[50%] flex flex-col items-end md:mt-[60px]">
                 <span className='topright_lines'></span>

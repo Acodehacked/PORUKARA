@@ -54,7 +54,7 @@ const AboutCollege = () => {
                             <h3 className="sm:text-[45px] text-[25px] text-center text-link-lighte text-foreground font-bold mt-2 mb-3">Explore Our College</h3>
                         </div>
                         <div className="screen-lg group relative rounded-xl overflow-hidden min-h-[50vh] max-h-[50vh] z-[2]">
-                            <img src="/assets/porukara.webp" className="min-h-[50vh]" alt="college" fill objectFit="cover" />
+                            <img src="/assets/porukara.webp" className="min-h-[50vh] object-cover" alt="college" />
                             {/* <div className='absolute top-0 bottom-0 flex justify-center items-center left-0 right-0 bg-[rgba(0,0,0,0.3)] group-hover:opacity-100 transition-all opacity-0'>
                             <motion.div whileTap={{ scale: 0.97 }} onClick={() => setgalleryvisible(true)} className="px-6 py-2 bg-white rounded-xl text-foreground cursor-pointer select-none" >Image Gallery</motion.div>
                         </div> */}
@@ -131,7 +131,7 @@ const AboutCollege = () => {
                                 {images.map((item, index) => {
                                     return <motion.div key={index} className={`h-[400px] 
                                 ${gindex == index ? 'w-[500px] opacity-100' : 'w-[200px] opacity-50'}`} >
-                                        <img src={item} style={{ objectFit: 'cover' }} objectFit='cover' width={500} height={500} className='w-full h-full' alt="" />
+                                        <img src={item} style={{ objectFit: 'cover' }} width={500} height={500} className='w-full h-full' alt="" />
                                     </motion.div>
                                 })}
                             </motion.div>
